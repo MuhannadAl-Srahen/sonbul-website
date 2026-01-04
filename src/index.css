@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-white text-ink font-sans;
+  }
+  html[dir='rtl'] body,
+  html[dir='rtl'] h1,
+  html[dir='rtl'] h2,
+  html[dir='rtl'] h3,
+  html[dir='rtl'] h4,
+  html[dir='rtl'] h5,
+  html[dir='rtl'] h6,
+  html[dir='rtl'] .font-display {
+    font-family: 'Cairo', 'Tajawal', system-ui, sans-serif !important;
+  }
+  html[dir='rtl'] {
+    line-height: 1.7;
+  }
+  /* Arabic script must never have letter-spacing or be uppercased */
+  html[dir='rtl'] h1,
+  html[dir='rtl'] h2,
+  html[dir='rtl'] h3,
+  html[dir='rtl'] h4,
+  html[dir='rtl'] h5,
+  html[dir='rtl'] h6,
+  html[dir='rtl'] .heading-xl,
+  html[dir='rtl'] .heading-lg,
+  html[dir='rtl'] .eyebrow,
+  html[dir='rtl'] .btn,
+  html[dir='rtl'] [class*='tracking-'],
+  html[dir='rtl'] [class*='uppercase'] {
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+  html[dir='rtl'] .heading-xl,
+  html[dir='rtl'] .heading-lg {
+    line-height: 1.25;
+  }
+  h1, h2, h3, h4 {
+    @apply font-semibold tracking-tight text-ink;
+  }
+  ::selection {
+    background-color: #C8102E;
+    color: #fff;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 whitespace-nowrap;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-600 active:scale-[0.97] shadow-sm hover:shadow-lg hover:-translate-y-px;
+  }
+  .btn-outline {
+    @apply btn border border-ink/20 text-ink hover:bg-ink hover:text-white hover:-translate-y-px active:scale-[0.97];
+  }
+  .btn-ghost {
+    @apply btn text-ink hover:bg-ink/5;
+  }
+  .section {
+    @apply py-16 md:py-24;
+  }
+  .section-tight {
+    @apply py-12 md:py-16;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary;
+  }
+  .heading-xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08];
+  }
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold tracking-tight leading-tight;
+  }
+  .lead {
+    @apply text-base md:text-lg text-ink-500 leading-relaxed;
+  }
+  .card {
+    @apply rounded-xl bg-white border border-ink-100 shadow-card overflow-hidden;
+  }
+  .nav-link {
+    @apply relative text-sm font-medium text-ink/75 hover:text-primary transition-colors py-2;
+  }
+}
+
+html[dir='rtl'] .rtl-flip { transform: scaleX(-1); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.grain {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+@keyframes loadbar {
+  0%   { transform: translateX(-100%); width: 40%; }
+  50%  { width: 60%; }
+  100% { transform: translateX(280%); width: 40%; }
+}
+.page-loading-bar {
+  animation: loadbar 1.2s ease-in-out infinite;
+}
+
+/* ── Arabic text sizing ────────────────────────────── */
+html[dir='rtl'] .eyebrow {
+  font-size: 0.875rem;   /* text-sm, up from text-xs */
+}
+html[dir='rtl'] footer h4,
+html[dir='rtl'] .footer-heading {
+  font-size: 0.875rem;
+}
+/* Page hero eyebrow in Arabic */
+html[dir='rtl'] .heading-xl + *,
+html[dir='rtl'] .page-hero-eyebrow {
+  font-size: 0.875rem;
+}
+
+/* ── Logo on dark backgrounds — tight white stroke makes dark text readable ── */
+.logo-dark-glow {
+  filter:
+    drop-shadow(0 0 1px rgba(255,255,255,0.95))
+    drop-shadow(0 0 1px rgba(255,255,255,0.85))
+    drop-shadow(0 1px 4px rgba(0,0,0,0.5));
+}
+
+/* ── Arabic hero title sizing (avoid overflow at large Arabic text) ── */
+html[dir='rtl'] .page-hero-title {
+  font-size: clamp(1.85rem, 4.8vw, 3.25rem);
+  line-height: 1.4;
+}
+html[dir='rtl'] .home-hero-title {
+  font-size: clamp(2rem, 5.5vw, 3.75rem);
+  line-height: 1.35;
+}
+
+/* ── Hero image: flip horizontally in RTL so truck mirrors correctly ── */
+html[dir='rtl'] .hero-img {
+  transform: scaleX(-1);
+  object-position: left bottom;
+}
+
+/* ── Mobile: reduce hero vertical padding on small screens ── */
+@media (max-width: 639px) {
+  .page-hero-title {
+    font-size: clamp(1.875rem, 7.5vw, 3rem);
+  }
+  /* Ensure hero sections don't over-pad on very small phones */
+  .section { padding-top: 3rem; padding-bottom: 3rem; }
+}
+
+/* ── Hero text shadow for readability over bright images ── */
+.hero-text-shadow {
+  text-shadow: 0 1px 12px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* ── Global hover elevations ──────────────────────── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #C8102E;
+  outline-offset: 2px;
+}
+/* Footer links */
+footer a {
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+/* Service / gallery / card links underline-free */
+.card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* ── Infinite logo marquee ──────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 45s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+html[dir='rtl'] .marquee-track {
+  animation-direction: reverse;
+}
+.marquee-fade {
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+html[dir='rtl'] .marquee-fade {
+  mask-image: linear-gradient(to left, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to left, transparent, black 6%, black 94%, transparent);
+}
+
+/* ── Mobile UX ──────────────────────────────────────── */
+/* Remove tap highlight flash on iOS */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+/* Prevent horizontal overflow on small screens */
+html, body {
+  overflow-x: hidden;
+}
+/* Smooth momentum scrolling on iOS */
+.no-scrollbar, [data-scroll] {
+  -webkit-overflow-scrolling: touch;
+}
+/* Ensure buttons and links are easy to tap (min 44px) */
+@media (max-width: 639px) {
+  .btn {
+    min-height: 44px;
+  }
+  nav a, nav button {
+    min-height: 44px;
+  }
+}
