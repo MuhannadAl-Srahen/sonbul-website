@@ -24,7 +24,7 @@ const projects = ['0013', '0014', '0015', '0018', '0019', '0022', '0023', '0025'
 const items: GalleryItem[] = [
   { src: '/assets/gallery/equipment/equipment-1.jpg', category: 'equipment' },
   { src: '/assets/gallery/equipment/equipment-2.jpg', category: 'equipment' },
-  { src: '/assets/hero/hero.png',                     category: 'equipment' },
+  { src: '/assets/hero/hero.jpg',                     category: 'equipment' },
   { src: '/assets/gallery/projects/project-1.webp',  category: 'projects'  },
   ...camps.map((n) => ({ src: slide(n), category: 'logistics' as const })),
   ...projects.map((n) => ({ src: slide(n), category: 'projects' as const })),

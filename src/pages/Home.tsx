@@ -54,9 +54,11 @@ export default function Home() {
         {/* Background image + overlay */}
         <div className="absolute inset-0">
           <img
-            src="/assets/hero/hero.png"
+            src="/assets/hero/hero.jpg"
             alt=""
             loading="eager"
+            decoding="async"
+            fetchPriority="high"
             className="h-full w-full object-cover object-right-bottom hero-img"
           />
           {/* Strong left overlay so text is always readable */}
