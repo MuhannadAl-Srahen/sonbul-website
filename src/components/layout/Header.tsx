@@ -26,7 +26,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-ink-100">
+    <header className="bg-white shadow-sm border-b border-ink-100">
       <div className="container-page flex h-20 items-center justify-between gap-4">
         <Link to="/" aria-label="Abu Sonbul home" className="flex-shrink-0">
           <img src="/assets/logo/main-logo.svg" alt="Abu Sonbul Transporters" className="h-10 w-auto object-contain" />

@@ -16,7 +16,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="lg:col-span-1">
           <Link to="/" className="inline-flex">
-            <LogoBrand className="brightness-0 invert" />
+            <img src="/assets/logo/main-logo.svg" alt="Abu Sonbul Transporters" className="h-10 w-auto object-contain" />
           </Link>
           <p className="mt-5 text-sm text-white/55 leading-relaxed max-w-xs">
             {t('footer.tagline')}
