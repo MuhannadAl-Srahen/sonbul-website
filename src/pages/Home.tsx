@@ -110,7 +110,7 @@ export default function Home() {
         <div className="relative bg-primary/95 backdrop-blur-sm text-white">
           <div className="container-page grid grid-cols-2 md:grid-cols-4">
             {[
-              { end: 17, suffix: '+', label: t('home.stats.years') },
+              { end: 18, suffix: '+', label: t('home.stats.years') },
               { end: 25, suffix: '+', label: t('home.stats.projects') },
               { end: 40, suffix: '+', label: t('home.stats.clients') },
               { end: 80, suffix: '+', label: t('home.stats.team') },
@@ -205,7 +205,7 @@ export default function Home() {
               </div>
               {/* Floating accent badge */}
               <div className="absolute -bottom-5 -end-5 hidden md:flex flex-col bg-primary text-white px-8 py-6 shadow-2xl rounded-xl">
-                <span className="text-4xl font-bold leading-none">17+</span>
+                <span className="text-4xl font-bold leading-none">18+</span>
                 <span className="text-sm text-white/80 mt-1">{t('home.stats.years')}</span>
               </div>
             </div>

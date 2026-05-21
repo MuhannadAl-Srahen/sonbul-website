@@ -16,7 +16,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="lg:col-span-1">
           <Link to="/" className="inline-flex">
-            <LogoBrand dark />
+            <LogoBrand className="brightness-0 invert" />
           </Link>
           <p className="mt-5 text-sm text-white/55 leading-relaxed max-w-xs">
             {t('footer.tagline')}

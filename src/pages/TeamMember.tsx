@@ -179,7 +179,7 @@ export default function TeamMember() {
                 <div ref={cardRef} className="rounded-2xl overflow-hidden shadow-2xl">
                   {/* Card top bar */}
                   <div className="bg-ink px-5 py-4 flex items-center justify-between">
-                    <LogoBrand dark className="h-7" />
+                    <LogoBrand className="h-7 brightness-0 invert" />
                     <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/30 flex-shrink-0">
                       Staff ID
                     </span>

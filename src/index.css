@@ -127,13 +127,6 @@ html[dir='rtl'] .page-hero-eyebrow {
   font-size: 0.875rem;
 }
 
-/* ── Logo on dark backgrounds — tight white stroke makes dark text readable ── */
-.logo-dark-glow {
-  filter:
-    drop-shadow(0 0 1px rgba(255,255,255,0.95))
-    drop-shadow(0 0 1px rgba(255,255,255,0.85))
-    drop-shadow(0 1px 4px rgba(0,0,0,0.5));
-}
 
 /* ── Arabic hero title sizing (avoid overflow at large Arabic text) ── */
 html[dir='rtl'] .page-hero-title {

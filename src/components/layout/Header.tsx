@@ -27,10 +27,10 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-ink-100">
+    <header className="bg-white shadow-sm border-b border-ink-100">
       <div className="container-page flex h-20 items-center justify-between gap-4">
         <Link to="/" aria-label="Abu Sonbul home" className="flex-shrink-0">
-          <LogoBrand dark={false} />
+          <LogoBrand />
         </Link>
 
         {/* Desktop nav */}
@@ -107,7 +107,7 @@ export default function Header() {
             </NavLink>
           ))}
           <div className="mt-3 flex flex-col gap-2 pt-2 border-t border-ink-100">
-            <button onClick={toggleLang} className="btn-outline">
+            <button onClick={() => { toggleLang(); setOpen(false); }} className="btn-outline">
               <Globe className="h-4 w-4" />
               {t('lang.switchTo')}
             </button>
