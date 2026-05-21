@@ -19,16 +19,6 @@ export default function Header() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  const transparent = !scrolled;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
@@ -37,17 +27,10 @@ export default function Header() {
   };
 
   return (
-    <header
-      className={clsx(
-        'sticky top-0 z-50 transition-all duration-400',
-        transparent
-          ? 'bg-black/35 backdrop-blur-sm border-b border-white/10'
-          : 'bg-white shadow-sm border-b border-ink-100',
-      )}
-    >
+    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-ink-100">
       <div className="container-page flex h-20 items-center justify-between gap-4">
         <Link to="/" aria-label="Abu Sonbul home" className="flex-shrink-0">
-          <LogoBrand dark={transparent} />
+          <LogoBrand dark={false} />
         </Link>
 
         {/* Desktop nav */}
@@ -60,13 +43,9 @@ export default function Header() {
               className={({ isActive }) =>
                 clsx(
                   'rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap',
-                  transparent
-                    ? isActive
-                      ? 'bg-white/20 text-white'
-                      : 'text-white/85 hover:text-white hover:bg-white/12 active:bg-white/18'
-                    : isActive
-                      ? 'bg-primary text-white shadow-sm'
-                      : 'text-ink/75 hover:text-ink hover:bg-ink/6 active:bg-ink/10',
+                  isActive
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'text-ink/75 hover:text-ink hover:bg-ink/6 active:bg-ink/10',
                 )
               }
             >
@@ -80,9 +59,7 @@ export default function Header() {
             onClick={toggleLang}
             className={clsx(
               'inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
-              transparent
-                ? 'text-white/85 hover:text-white hover:bg-white/12'
-                : 'text-ink/60 hover:text-ink hover:bg-ink/6',
+              'text-ink/60 hover:text-ink hover:bg-ink/6',
             )}
             aria-label="Switch language"
           >
@@ -98,10 +75,7 @@ export default function Header() {
         {/* Mobile burger */}
         <button
           onClick={() => setOpen(!open)}
-          className={clsx(
-            'lg:hidden rounded-full p-2 transition-colors',
-            transparent ? 'text-white hover:bg-white/15' : 'text-ink hover:bg-ink/5',
-          )}
+          className="lg:hidden rounded-full p-2 transition-colors text-ink hover:bg-ink/5"
           aria-label="Toggle menu"
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
