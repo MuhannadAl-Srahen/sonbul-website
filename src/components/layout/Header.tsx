@@ -3,7 +3,6 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, Globe, ArrowRight } from 'lucide-react';
 import clsx from 'clsx';
-import LogoBrand from '../ui/LogoBrand';
 
 const navItems = [
   { to: '/', key: 'home' },
@@ -27,10 +26,10 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm border-b border-ink-100">
+    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-ink-100">
       <div className="container-page flex h-20 items-center justify-between gap-4">
         <Link to="/" aria-label="Abu Sonbul home" className="flex-shrink-0">
-          <LogoBrand />
+          <img src="/assets/logo/main-logo.svg" alt="Abu Sonbul Transporters" className="h-10 w-auto object-contain" />
         </Link>
 
         {/* Desktop nav */}
