@@ -1,5 +1,21 @@
 Options -MultiViews
 RewriteEngine On
+
+# Canonicalize to https://www
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^abusonbul-transporters\.com$ [NC]
+RewriteRule ^ https://www.abusonbul-transporters.com%{REQUEST_URI} [R=301,L]
+
+# Legacy URLs from the previous site — still indexed by Google, redirect to the new routes
+RewriteRule ^index(-2)?\.html$ / [R=301,L]
+RewriteRule ^index(-2)?-ar\.html$ /?lng=ar [R=301,L]
+RewriteRule ^about\.html$ /about [R=301,L]
+RewriteRule ^about-ar\.html$ /about?lng=ar [R=301,L]
+RewriteRule ^contact\.html$ /contact [R=301,L]
+RewriteRule ^contact-ar\.html$ /contact?lng=ar [R=301,L]
+RewriteRule ^service\.html$ /services [R=301,L]
+RewriteRule ^service-ar\.html$ /services?lng=ar [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [QSA,L]
