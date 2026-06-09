@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
-import SEO from '../components/util/SEO';
-import PageHero from '../components/ui/PageHero';
-import Reveal from '../components/ui/Reveal';
+import PageHero from '../ui/PageHero';
+import Reveal from '../ui/Reveal';
+import { useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
-export default function Contact() {
-  const { t } = useTranslation();
+interface Props {
+  lang: Lang;
+}
+
+export default function Contact({ lang }: Props) {
+  const { t } = useLocale(lang);
   const [status, setStatus] = useState<Status>('idle');
-  const [params] = useSearchParams();
   // When arriving via the "Get a Quote" button (/contact?subject=quote),
   // pre-fill the subject so the user lands on a quote request.
-  const defaultSubject = params.get('subject') === 'quote' ? t('contact.quoteSubject') : '';
+  const isQuote = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('subject') === 'quote';
+  const defaultSubject = isQuote ? t('contact.quoteSubject') : '';
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,7 +47,6 @@ export default function Contact() {
 
   return (
     <>
-      <SEO title={t('nav.contact')} description={t('contact.hero.subtitle')} />
       <PageHero
         eyebrow={t('contact.hero.eyebrow')}
         title={t('contact.hero.title')}

@@ -1,12 +1,12 @@
 import { useMemo, useState, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import { ChevronLeft, ChevronRight, Images } from 'lucide-react';
 import clsx from 'clsx';
-import SEO from '../components/util/SEO';
-import PageHero from '../components/ui/PageHero';
-import Reveal from '../components/ui/Reveal';
+import PageHero from '../ui/PageHero';
+import Reveal from '../ui/Reveal';
+import { useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
 type Category = 'all' | 'equipment' | 'logistics' | 'projects';
 
@@ -32,8 +32,12 @@ const items: GalleryItem[] = [
 
 const PAGE_SIZE = 12;
 
-export default function Gallery() {
-  const { t } = useTranslation();
+interface Props {
+  lang: Lang;
+}
+
+export default function Gallery({ lang }: Props) {
+  const { t } = useLocale(lang);
   const [filter, setFilter] = useState<Category>('all');
   const [page, setPage] = useState(0);
   const [openIndex, setOpenIndex] = useState(-1);
@@ -63,7 +67,6 @@ export default function Gallery() {
 
   return (
     <>
-      <SEO title={t('nav.gallery')} description={t('gallery.hero.subtitle')} />
       <PageHero
         eyebrow={t('gallery.hero.eyebrow')}
         title={t('gallery.hero.title')}

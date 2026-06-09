@@ -1,17 +1,21 @@
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { MapPin, Building, ArrowRight, CheckCircle2, Truck, Forklift } from 'lucide-react';
-import SEO from '../components/util/SEO';
-import PageHero from '../components/ui/PageHero';
-import Reveal from '../components/ui/Reveal';
+import PageHero from '../ui/PageHero';
+import Reveal from '../ui/Reveal';
+import { localizedHref, useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
 interface ProjectLoc {
   name: string;
   body: string;
 }
 
-export default function Logistics() {
-  const { t } = useTranslation();
+interface Props {
+  lang: Lang;
+}
+
+export default function Logistics({ lang }: Props) {
+  const { t } = useLocale(lang);
+  const href = (path: string) => localizedHref(path, lang);
   const headPoints = t('logistics.locations.headOffice.points', { returnObjects: true }) as string[];
   const projects = t('logistics.locations.projects', { returnObjects: true }) as ProjectLoc[];
   const capabilities = t('logistics.locations.capabilities', { returnObjects: true }) as string[];
@@ -19,7 +23,6 @@ export default function Logistics() {
 
   return (
     <>
-      <SEO title={t('nav.logistics')} description={t('logistics.hero.subtitle')} />
       <PageHero
         eyebrow={t('logistics.hero.eyebrow')}
         title={t('logistics.hero.title')}
@@ -112,10 +115,10 @@ export default function Logistics() {
           <Reveal>
             <h2 className="heading-lg">{t('home.cta.title')}</h2>
             <p className="lead mt-4">{t('home.cta.subtitle')}</p>
-            <Link to="/contact" className="btn-primary mt-8 hover:shadow-lg transition-shadow">
+            <a href={href('/contact')} className="btn-primary mt-8 hover:shadow-lg transition-shadow">
               {t('home.cta.button')}
               <ArrowRight className="h-4 w-4 rtl-flip" />
-            </Link>
+            </a>
           </Reveal>
         </div>
       </section>

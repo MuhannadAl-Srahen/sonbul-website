@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next';
 import { ShieldCheck, HardHat, Sparkles, Handshake, CheckCircle2 } from 'lucide-react';
-import SEO from '../components/util/SEO';
-import PageHero from '../components/ui/PageHero';
-import Reveal from '../components/ui/Reveal';
+import PageHero from '../ui/PageHero';
+import Reveal from '../ui/Reveal';
+import { useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
 const valueIcons = {
   integrity: ShieldCheck,
@@ -11,13 +11,16 @@ const valueIcons = {
   partnership: Handshake,
 } as const;
 
-export default function About() {
-  const { t } = useTranslation();
+interface Props {
+  lang: Lang;
+}
+
+export default function About({ lang }: Props) {
+  const { t } = useLocale(lang);
   const founderPoints = t('about.founder.points', { returnObjects: true }) as string[];
 
   return (
     <>
-      <SEO title={t('nav.about')} description={t('about.hero.subtitle')} />
       <PageHero
         eyebrow={t('about.hero.eyebrow')}
         title={t('about.hero.title')}

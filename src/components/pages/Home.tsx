@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import {
@@ -18,10 +16,11 @@ import {
   Play,
   Quote,
 } from 'lucide-react';
-import SEO from '../components/util/SEO';
-import Reveal from '../components/ui/Reveal';
-import StatCounter from '../components/ui/StatCounter';
-import ClientSlider from '../components/ui/ClientSlider';
+import Reveal from '../ui/Reveal';
+import StatCounter from '../ui/StatCounter';
+import ClientSlider from '../ui/ClientSlider';
+import { localizedHref, useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
 const serviceIcons = {
   transport: Truck,
@@ -39,13 +38,17 @@ const whyIcons = {
   endToEnd: Layers,
 } as const;
 
-export default function Home() {
-  const { t } = useTranslation();
+interface Props {
+  lang: Lang;
+}
+
+export default function Home({ lang }: Props) {
+  const { t } = useLocale(lang);
+  const href = (path: string) => localizedHref(path, lang);
   const [playing, setPlaying] = useState(false);
 
   return (
     <>
-      <SEO title={t('nav.home')} description={t('home.hero.subtitle')} />
 
       {/* ══════════════════════════════════════════
           HERO — full-screen, transparent header overlay
@@ -89,19 +92,19 @@ export default function Home() {
               {t('home.hero.subtitle')}
             </p>
             <div className="mt-11 flex flex-wrap gap-4">
-              <Link
-                to="/contact"
+              <a
+                href={href('/contact')}
                 className="btn bg-primary text-white hover:bg-primary-600 shadow-lg hover:shadow-xl active:scale-[0.98] !px-8 !py-4 !text-base"
               >
                 {t('home.hero.ctaPrimary')}
                 <ArrowRight className="h-5 w-5 rtl-flip" />
-              </Link>
-              <Link
-                to="/services"
+              </a>
+              <a
+                href={href('/services')}
                 className="btn border-2 border-white/30 text-white hover:bg-white hover:text-ink hover:border-white !px-8 !py-4 !text-base transition-all duration-200"
               >
                 {t('home.hero.ctaSecondary')}
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -147,10 +150,10 @@ export default function Home() {
               <p className="lead mt-4">{t('home.services.subtitle')}</p>
             </Reveal>
             <Reveal delay={0.2}>
-              <Link to="/services" className="btn-outline shrink-0">
+              <a href={href('/services')} className="btn-outline shrink-0">
                 {t('home.services.viewAll')}
                 <ArrowRight className="h-4 w-4 rtl-flip" />
-              </Link>
+              </a>
             </Reveal>
           </div>
 
@@ -160,8 +163,8 @@ export default function Home() {
               const Icon = serviceIcons[key];
               return (
                 <Reveal key={key} delay={i * 0.06}>
-                  <Link
-                    to={key === 'logistics' ? '/logistics' : '/services'}
+                  <a
+                    href={href(key === 'logistics' ? '/logistics' : '/services')}
                     className="group relative block bg-white p-8 hover:bg-primary transition-colors duration-300 h-full"
                   >
                     <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-primary/10 text-primary group-hover:bg-white/15 group-hover:text-white transition-colors">
@@ -179,7 +182,7 @@ export default function Home() {
                       </span>
                       <ArrowRight className="h-4 w-4 rtl-flip group-hover:translate-x-1 transition-transform" />
                     </div>
-                  </Link>
+                  </a>
                 </Reveal>
               );
             })}
@@ -240,10 +243,10 @@ export default function Home() {
               })}
             </div>
             <Reveal delay={0.35}>
-              <Link to="/about" className="btn bg-white text-ink hover:bg-primary hover:text-white mt-8">
+              <a href={href('/about')} className="btn bg-white text-ink hover:bg-primary hover:text-white mt-8">
                 {t('nav.about')}
                 <ArrowRight className="h-4 w-4 rtl-flip" />
-              </Link>
+              </a>
             </Reveal>
           </div>
         </div>
@@ -357,13 +360,13 @@ export default function Home() {
                 </div>
                 <h2 className="heading-lg !text-white">{t('home.cta.title')}</h2>
                 <p className="mt-4 text-white/65 text-lg leading-relaxed">{t('home.cta.subtitle')}</p>
-                <Link
-                  to="/contact"
+                <a
+                  href={href('/contact')}
                   className="btn bg-primary text-white hover:bg-primary-600 shadow-lg hover:shadow-xl mt-8 !px-8 !py-4 !text-base active:scale-[0.98]"
                 >
                   {t('home.cta.button')}
                   <ArrowRight className="h-5 w-5 rtl-flip" />
-                </Link>
+                </a>
               </div>
             </div>
           </Reveal>
