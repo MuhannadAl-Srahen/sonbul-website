@@ -1,5 +1,3 @@
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import {
   Crown,
   Briefcase,
@@ -12,9 +10,10 @@ import {
   Coins,
   ArrowRight,
 } from 'lucide-react';
-import SEO from '../components/util/SEO';
-import PageHero from '../components/ui/PageHero';
-import Reveal from '../components/ui/Reveal';
+import PageHero from '../ui/PageHero';
+import Reveal from '../ui/Reveal';
+import { localizedHref, useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
 interface Member {
   name: string;
@@ -100,12 +99,16 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-export default function Team() {
-  const { t } = useTranslation();
+interface Props {
+  lang: Lang;
+}
+
+export default function Team({ lang }: Props) {
+  const { t } = useLocale(lang);
+  const href = (path: string) => localizedHref(path, lang);
 
   return (
     <>
-      <SEO title={t('nav.team')} description={t('team.hero.subtitle')} />
       <PageHero
         eyebrow={t('team.hero.eyebrow')}
         title={t('team.hero.title')}
@@ -124,8 +127,8 @@ export default function Team() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {leadership.map((l, i) => (
               <Reveal key={l.name} delay={i * 0.08}>
-                <Link
-                  to={`/team/${l.slug}`}
+                <a
+                  href={href(`/team/${l.slug}`)}
                   className="card text-center p-7 flex flex-col items-center hover:shadow-soft hover:-translate-y-1 transition-all duration-300 group h-full"
                 >
                   <div className="relative inline-flex">
@@ -148,7 +151,7 @@ export default function Team() {
                     {t('teamMember.viewProfile')}
                     <ArrowRight className="h-3 w-3 rtl-flip" />
                   </span>
-                </Link>
+                </a>
               </Reveal>
             ))}
           </div>
@@ -180,8 +183,8 @@ export default function Team() {
                   <ul className="grid grid-cols-2 gap-5">
                     {d.members.map((m) => (
                       <li key={m.name}>
-                        <Link
-                          to={`/team/${m.slug}`}
+                        <a
+                          href={href(`/team/${m.slug}`)}
                           className="flex flex-col items-center text-center gap-2.5 group"
                         >
                           {m.photo ? (
@@ -198,7 +201,7 @@ export default function Team() {
                           <span className="text-xs font-medium text-ink-700 leading-tight group-hover:text-primary transition-colors">
                             {m.name}
                           </span>
-                        </Link>
+                        </a>
                       </li>
                     ))}
                   </ul>

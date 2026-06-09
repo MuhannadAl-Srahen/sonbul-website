@@ -1,5 +1,3 @@
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import {
   Truck,
   PackageSearch,
@@ -9,9 +7,10 @@ import {
   ClipboardList,
   ArrowRight,
 } from 'lucide-react';
-import SEO from '../components/util/SEO';
-import PageHero from '../components/ui/PageHero';
-import Reveal from '../components/ui/Reveal';
+import PageHero from '../ui/PageHero';
+import Reveal from '../ui/Reveal';
+import { localizedHref, useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
 const services = [
   { key: 'transport', icon: Truck, to: '/services' },
@@ -22,11 +21,15 @@ const services = [
   { key: 'operations', icon: ClipboardList, to: '/services' },
 ] as const;
 
-export default function Services() {
-  const { t } = useTranslation();
+interface Props {
+  lang: Lang;
+}
+
+export default function Services({ lang }: Props) {
+  const { t } = useLocale(lang);
+  const href = (path: string) => localizedHref(path, lang);
   return (
     <>
-      <SEO title={t('nav.services')} description={t('services.hero.subtitle')} />
       <PageHero
         eyebrow={t('services.hero.eyebrow')}
         title={t('services.hero.title')}
@@ -52,13 +55,13 @@ export default function Services() {
                   {t(`services.items.${s.key}.body`)}
                 </p>
                 <div className="mt-6">
-                  <Link
-                    to="/contact"
+                  <a
+                    href={href('/contact')}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
                   >
                     {t('nav.contact')}
                     <ArrowRight className="h-4 w-4 rtl-flip" />
-                  </Link>
+                  </a>
                 </div>
               </article>
             </Reveal>
@@ -73,10 +76,10 @@ export default function Services() {
           <Reveal>
             <h2 className="heading-lg">{t('home.cta.title')}</h2>
             <p className="lead mt-4">{t('home.cta.subtitle')}</p>
-            <Link to="/contact" className="btn-primary mt-8">
+            <a href={href('/contact')} className="btn-primary mt-8">
               {t('home.cta.button')}
               <ArrowRight className="h-4 w-4 rtl-flip" />
-            </Link>
+            </a>
           </Reveal>
         </div>
       </section>

@@ -1,13 +1,12 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { ArrowLeft, CheckCircle2, Building2, Download } from 'lucide-react';
 import QRCode from 'qrcode';
 import html2canvas from 'html2canvas';
-import SEO from '../components/util/SEO';
-import LogoBrand from '../components/ui/LogoBrand';
-import Reveal from '../components/ui/Reveal';
-import { getProfile } from '../data/teamProfiles';
+import LogoBrand from '../ui/LogoBrand';
+import Reveal from '../ui/Reveal';
+import { getProfile } from '../../data/teamProfiles';
+import { localizedHref, useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
 function initials(name: string) {
   return name
@@ -19,13 +18,18 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-export default function TeamMember() {
-  const { slug } = useParams<{ slug: string }>();
-  const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
+interface Props {
+  slug: string;
+  lang: Lang;
+}
+
+export default function TeamMember({ slug, lang }: Props) {
+  const { t } = useLocale(lang);
+  const href = (path: string) => localizedHref(path, lang);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const profile = getProfile(slug ?? '');
+  // getStaticPaths on the Astro route guarantees this slug always resolves.
+  const profile = getProfile(slug)!;
 
   const [qrDataUrl, setQrDataUrl] = useState('');
   const [downloading, setDownloading] = useState(false);
@@ -33,7 +37,7 @@ export default function TeamMember() {
   const profileUrl =
     typeof window !== 'undefined'
       ? window.location.href
-      : `https://abusonbul-transporters.com/team/${slug}`;
+      : `https://www.abusonbul-transporters.com/team/${slug}`;
 
   // Generate QR code client-side (no CORS issues when downloading)
   useEffect(() => {
@@ -43,10 +47,6 @@ export default function TeamMember() {
       color: { dark: '#1A1A1A', light: '#FFFFFF' },
     }).then(setQrDataUrl);
   }, [profileUrl]);
-
-  useEffect(() => {
-    if (!profile) navigate('/team', { replace: true });
-  }, [profile, navigate]);
 
   const handleDownload = useCallback(async () => {
     if (!cardRef.current) return;
@@ -67,9 +67,7 @@ export default function TeamMember() {
     }
   }, [profile]);
 
-  if (!profile) return null;
-
-  const isAr = i18n.language === 'ar';
+  const isAr = lang === 'ar';
   const bio = isAr && profile.arBio ? profile.arBio : profile.bio;
 
   const deptLabel =
@@ -79,10 +77,6 @@ export default function TeamMember() {
 
   return (
     <>
-      <SEO
-        title={`${profile.name} — ${t('brand.full')}`}
-        description={profile.bio[0]}
-      />
 
       {/* ── Dark hero ────────────────────────────────── */}
       <section className="relative bg-ink overflow-hidden -mt-20 flex flex-col justify-end min-h-[50vh]">
@@ -92,13 +86,13 @@ export default function TeamMember() {
         <div className="absolute bottom-0 start-0 end-0 h-1 bg-primary" />
 
         <div className="relative container-page pb-12 sm:pb-14 pt-28 sm:pt-44">
-          <Link
-            to="/team"
+          <a
+            href={href('/team')}
             className="inline-flex items-center gap-2 text-white/45 hover:text-white/90 text-sm mb-10 transition-colors group"
           >
             <ArrowLeft className="h-4 w-4 rtl-flip group-hover:-translate-x-1 transition-transform" />
             {t('nav.team')}
-          </Link>
+          </a>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-end gap-7">
             <div className="flex-shrink-0">
@@ -249,13 +243,13 @@ export default function TeamMember() {
 
           {/* Back button */}
           <div className="mt-16 pt-8 border-t border-ink-100">
-            <Link
-              to="/team"
+            <a
+              href={href('/team')}
               className="inline-flex items-center gap-2 text-ink/50 hover:text-primary font-semibold transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 rtl-flip group-hover:-translate-x-1 transition-transform" />
               {t('teamMember.backToTeam')}
-            </Link>
+            </a>
           </div>
         </div>
       </section>
