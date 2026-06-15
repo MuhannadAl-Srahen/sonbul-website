@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import TeamMember from '../../../components/pages/TeamMember';
+import { profiles, getProfile } from '../../../data/teamProfiles';
+import type { Lang } from '../../../i18n';
+
+export function getStaticPaths() {
+  return profiles.flatMap((p) => [
+    { params: { lang: undefined, slug: p.slug } },
+    { params: { lang: 'ar', slug: p.slug } },
+  ]);
+}
+
+const lang = ((Astro.params.lang as string | undefined) ?? 'en') as Lang;
+const { slug } = Astro.params;
+const profile = getProfile(slug!)!;
+const description = lang === 'ar' && profile.arBio ? profile.arBio[0] : profile.bio[0];
+---
+
+<BaseLayout title={profile.name} description={description} path={Astro.url.pathname} lang={lang}>
+  <TeamMember slug={slug!} lang={lang} client:load />
+</BaseLayout>

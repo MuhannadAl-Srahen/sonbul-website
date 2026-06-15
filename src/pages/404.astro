@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NotFound from '../components/pages/NotFound';
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The page you're looking for doesn't exist or was moved."
+  path={Astro.url.pathname}
+  lang="en"
+>
+  <NotFound lang="en" client:load />
+</BaseLayout>
