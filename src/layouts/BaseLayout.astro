@@ -1,0 +1,64 @@
+---
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import type { Lang } from '../i18n';
+import '../index.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  lang: Lang;
+  image?: string;
+}
+
+const { title, description, path, lang, image = '/assets/logo/logo.png' } = Astro.props;
+
+const SITE_URL = 'https://www.abusonbul-transporters.com';
+const fullTitle = `${title} — Abu Sonbul Arab Transporters`;
+const canonical = `${SITE_URL}${path === '/' ? '' : path}`;
+
+// path is always the current (possibly /ar-prefixed) URL — derive the sibling URL in the other language.
+const enPath = lang === 'ar' ? (path.replace(/^\/ar/, '') || '/') : path;
+const arPath = lang === 'ar' ? path : (path === '/' ? '/ar' : `/ar${path}`);
+const enUrl = `${SITE_URL}${enPath === '/' ? '' : enPath}`;
+const arUrl = `${SITE_URL}${arPath}`;
+---
+
+<!doctype html>
+<html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/ficon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/ficon.png" />
+    <link rel="apple-touch-icon" href="/ficon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#C8102E" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="ar" href={arUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{fullTitle}</title>
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Header currentPath={path} lang={lang} client:load />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} client:load />
+  </body>
+</html>
