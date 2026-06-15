@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import About from '../../components/pages/About';
+import en from '../../i18n/locales/en.json';
+import ar from '../../i18n/locales/ar.json';
+import type { Lang } from '../../i18n';
+
+export function getStaticPaths() {
+  return [{ params: { lang: undefined } }, { params: { lang: 'ar' } }];
+}
+
+const lang = ((Astro.params.lang as string | undefined) ?? 'en') as Lang;
+const t = lang === 'ar' ? ar : en;
+---
+
+<BaseLayout title={t.nav.about} description={t.about.hero.subtitle} path={Astro.url.pathname} lang={lang}>
+  <About lang={lang} client:load />
+</BaseLayout>
