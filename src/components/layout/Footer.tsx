@@ -1,10 +1,15 @@
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { localizedHref, useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
-export default function Footer() {
-  const { t } = useTranslation();
+interface Props {
+  lang: Lang;
+}
+
+export default function Footer({ lang }: Props) {
+  const { t } = useLocale(lang);
   const year = new Date().getFullYear();
+  const href = (path: string) => localizedHref(path, lang);
 
   return (
     <footer className="bg-ink text-white">
@@ -14,19 +19,19 @@ export default function Footer() {
       <div className="container-page pt-16 pb-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
         <div className="lg:col-span-1">
-          <Link to="/" className="inline-flex">
+          <a href={href('/')} className="inline-flex">
             <img src="/assets/logo/main-logo.svg" alt="Abu Sonbul Transporters" className="h-10 w-auto object-contain" />
-          </Link>
+          </a>
           <p className="mt-5 text-sm text-white/55 leading-relaxed max-w-xs">
             {t('footer.tagline')}
           </p>
-          <Link
-            to="/contact?subject=quote"
+          <a
+            href={href('/contact?subject=quote')}
             className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-primary-300 hover:text-primary-200 transition-colors"
           >
             {t('nav.getQuote')}
             <ArrowRight className="h-4 w-4 rtl-flip" />
-          </Link>
+          </a>
         </div>
 
         {/* Explore */}
@@ -35,10 +40,10 @@ export default function Footer() {
             {t('footer.explore')}
           </h4>
           <ul className="space-y-3 text-sm">
-            <li><Link to="/about" className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.about')}</Link></li>
-            <li><Link to="/team" className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.team')}</Link></li>
-            <li><Link to="/gallery" className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.gallery')}</Link></li>
-            <li><Link to="/contact" className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.contact')}</Link></li>
+            <li><a href={href('/about')} className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.about')}</a></li>
+            <li><a href={href('/team')} className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.team')}</a></li>
+            <li><a href={href('/gallery')} className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.gallery')}</a></li>
+            <li><a href={href('/contact')} className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.contact')}</a></li>
           </ul>
         </div>
 
@@ -48,9 +53,9 @@ export default function Footer() {
             {t('footer.services')}
           </h4>
           <ul className="space-y-3 text-sm">
-            <li><Link to="/services" className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.services')}</Link></li>
-            <li><Link to="/logistics" className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.logistics')}</Link></li>
-            <li><Link to="/services" className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.equipment')}</Link></li>
+            <li><a href={href('/services')} className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.services')}</a></li>
+            <li><a href={href('/logistics')} className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.logistics')}</a></li>
+            <li><a href={href('/services')} className="text-white/70 hover:text-primary-300 transition-colors">{t('nav.equipment')}</a></li>
           </ul>
         </div>
 

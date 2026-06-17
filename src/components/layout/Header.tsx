@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import { Menu, X, Globe, ArrowRight } from 'lucide-react';
 import clsx from 'clsx';
+import { localizedHref, useLocale } from '../../i18n';
+import type { Lang } from '../../i18n';
 
 const navItems = [
   { to: '/', key: 'home' },
@@ -14,61 +14,69 @@ const navItems = [
   { to: '/contact', key: 'contact' },
 ];
 
-export default function Header() {
-  const { t, i18n } = useTranslation();
-  const location = useLocation();
+interface Props {
+  currentPath: string;
+  lang: Lang;
+}
+
+export default function Header({ currentPath, lang }: Props) {
+  const { t } = useLocale(lang);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => { setOpen(false); }, [location.pathname]);
-
-  const toggleLang = () => {
-    i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar');
+  // Navigation is now a full page load (no client-side router), so each
+  // route change remounts Header fresh — no effect needed to reset `open`.
+  const isActive = (to: string) => {
+    const href = localizedHref(to, lang);
+    return to === '/' ? currentPath === href : currentPath.startsWith(href);
   };
+
+  // The alternate-language version of whatever page we're currently on —
+  // a real crawlable link, not a client-side state toggle.
+  const altHref =
+    lang === 'ar' ? currentPath.replace(/^\/ar/, '') || '/' : localizedHref(currentPath, 'ar');
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
       <div className="container-page flex h-20 items-center justify-between gap-4">
-        <Link to="/" aria-label="Abu Sonbul home" className="flex-shrink-0">
+        <a href={localizedHref('/', lang)} aria-label="Abu Sonbul home" className="flex-shrink-0">
           <img src="/assets/logo/main-logo.svg" alt="Abu Sonbul Transporters" className="h-10 w-auto object-contain" />
-        </Link>
+        </a>
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
-            <NavLink
+            <a
               key={item.to}
-              to={item.to}
-              end={item.to === '/'}
-              className={({ isActive }) =>
-                clsx(
-                  'rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap',
-                  isActive
-                    ? 'bg-primary text-white shadow-sm'
-                    : 'text-ink/75 hover:text-ink hover:bg-ink/6 active:bg-ink/10',
-                )
-              }
+              href={localizedHref(item.to, lang)}
+              className={clsx(
+                'rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap',
+                isActive(item.to)
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-ink/75 hover:text-ink hover:bg-ink/6 active:bg-ink/10',
+              )}
             >
               {t(`nav.${item.key}`)}
-            </NavLink>
+            </a>
           ))}
         </nav>
 
         <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
-          <button
-            onClick={toggleLang}
+          <a
+            href={altHref}
             className={clsx(
               'inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
               'text-ink/60 hover:text-ink hover:bg-ink/6',
             )}
             aria-label="Switch language"
+            hrefLang={lang === 'ar' ? 'en' : 'ar'}
           >
             <Globe className="h-4 w-4 flex-shrink-0" />
             <span>{t('lang.switchTo')}</span>
-          </button>
-          <Link to="/contact?subject=quote" className="btn-primary !py-2 !px-4 !text-sm">
+          </a>
+          <a href={localizedHref('/contact?subject=quote', lang)} className="btn-primary !py-2 !px-4 !text-sm">
             {t('nav.getQuote')}
             <ArrowRight className="h-4 w-4 rtl-flip" />
-          </Link>
+          </a>
         </div>
 
         {/* Mobile burger */}
@@ -90,29 +98,26 @@ export default function Header() {
       >
         <nav className="container-page py-4 flex flex-col gap-1">
           {navItems.map((item) => (
-            <NavLink
+            <a
               key={item.to}
-              to={item.to}
-              end={item.to === '/'}
+              href={localizedHref(item.to, lang)}
               onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                clsx(
-                  'rounded-lg px-4 py-3 text-base font-medium transition-colors',
-                  isActive ? 'bg-primary text-white' : 'text-ink hover:bg-ink/5',
-                )
-              }
+              className={clsx(
+                'rounded-lg px-4 py-3 text-base font-medium transition-colors',
+                isActive(item.to) ? 'bg-primary text-white' : 'text-ink hover:bg-ink/5',
+              )}
             >
               {t(`nav.${item.key}`)}
-            </NavLink>
+            </a>
           ))}
           <div className="mt-3 flex flex-col gap-2 pt-2 border-t border-ink-100">
-            <button onClick={() => { toggleLang(); setOpen(false); }} className="btn-outline">
+            <a href={altHref} onClick={() => setOpen(false)} className="btn-outline" hrefLang={lang === 'ar' ? 'en' : 'ar'}>
               <Globe className="h-4 w-4" />
               {t('lang.switchTo')}
-            </button>
-            <Link to="/contact?subject=quote" onClick={() => setOpen(false)} className="btn-primary">
+            </a>
+            <a href={localizedHref('/contact?subject=quote', lang)} onClick={() => setOpen(false)} className="btn-primary">
               {t('nav.getQuote')}
-            </Link>
+            </a>
           </div>
         </nav>
       </div>

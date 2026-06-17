@@ -1,34 +1,49 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import { useState } from 'react';
+import i18next from 'i18next';
 import en from './locales/en.json';
 import ar from './locales/ar.json';
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: en },
-      ar: { translation: ar },
-    },
+export type Lang = 'en' | 'ar';
+
+const resources = {
+  en: { translation: en },
+  ar: { translation: ar },
+};
+
+/**
+ * Each page/island gets its own fixed-language i18next instance — language
+ * is a build-time constant derived from the URL (/ar/... vs /...), not
+ * runtime-detected. Deliberately NOT using react-i18next's context/hook
+ * machinery here: Astro renders each client-hydrated island as its own
+ * independent SSR pass, and nesting an <I18nextProvider> around a child in
+ * a .astro file does not reliably propagate React context across that
+ * boundary — components silently fell back to react-i18next's shared
+ * global-default instance instead, which produced wrong/swapped-language
+ * output depending on whatever page had most recently initialized an
+ * instance elsewhere in the same build. Every component instead calls
+ * useLocale(lang) directly and uses the plain i18next instance's own
+ * .t()/.language, with no shared/global state involved at all.
+ */
+export function createLocaleInstance(lang: Lang) {
+  const instance = i18next.createInstance();
+  instance.init({
+    resources,
+    lng: lang,
     fallbackLng: 'en',
     supportedLngs: ['en', 'ar'],
     interpolation: { escapeValue: false },
-    detection: {
-      order: ['querystring', 'localStorage', 'navigator', 'htmlTag'],
-      lookupQuerystring: 'lng',
-      caches: ['localStorage'],
-    },
   });
+  return instance;
+}
 
-const applyDir = (lng: string) => {
-  const dir = lng === 'ar' ? 'rtl' : 'ltr';
-  document.documentElement.dir = dir;
-  document.documentElement.lang = lng;
-};
+/** One instance per component mount, created once and reused across re-renders. */
+export function useLocale(lang: Lang) {
+  const [instance] = useState(() => createLocaleInstance(lang));
+  return instance;
+}
 
-applyDir(i18n.language || 'en');
-i18n.on('languageChanged', applyDir);
-
-export default i18n;
+/** Prefixes an internal path with /ar when lang is Arabic, leaves it alone otherwise. */
+export function localizedHref(path: string, lang: Lang) {
+  if (lang !== 'ar') return path;
+  return path === '/' ? '/ar' : `/ar${path}`;
+}
