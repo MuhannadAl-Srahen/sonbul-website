@@ -1,0 +1,23 @@
+{
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/index-2.html", "destination": "/", "permanent": true },
+    { "source": "/index-ar.html", "destination": "/ar", "permanent": true },
+    { "source": "/index-2-ar.html", "destination": "/ar", "permanent": true },
+    { "source": "/about.html", "destination": "/about", "permanent": true },
+    { "source": "/about-ar.html", "destination": "/ar/about", "permanent": true },
+    { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/contact-ar.html", "destination": "/ar/contact", "permanent": true },
+    { "source": "/service.html", "destination": "/services", "permanent": true },
+    { "source": "/service-ar.html", "destination": "/ar/services", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
