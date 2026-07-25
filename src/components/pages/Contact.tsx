@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FormEvent } from 'react';
+import type { SubmitEvent } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 import PageHero from '../ui/PageHero';
 import Reveal from '../ui/Reveal';
@@ -20,7 +20,7 @@ export default function Contact({ lang }: Props) {
   const isQuote = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('subject') === 'quote';
   const defaultSubject = isQuote ? t('contact.quoteSubject') : '';
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -35,7 +35,7 @@ export default function Contact({ lang }: Props) {
 
     setStatus('sending');
     try {
-      window.open(mailtoHref, '_blank');
+      window.location.href = mailtoHref;
       setTimeout(() => {
         setStatus('success');
         form.reset();
