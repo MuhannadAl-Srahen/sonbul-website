@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { SubmitEvent } from 'react';
+import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 import PageHero from '../ui/PageHero';
 import Reveal from '../ui/Reveal';
@@ -24,22 +25,32 @@ export default function Contact({ lang }: Props) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    const name = data.get('name');
-    const email = data.get('email');
-    const phone = data.get('phone') || '';
-    const subject = data.get('subject');
-    const message = data.get('message');
-
-    const bodyText = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`;
-    const mailtoHref = `mailto:info@abusonbul-transporters.com?subject=${encodeURIComponent(String(subject))}&body=${encodeURIComponent(bodyText)}`;
+    const name = String(data.get('name') || '');
+    const email = String(data.get('email') || '');
+    const phone = String(data.get('phone') || '');
+    const subject = String(data.get('subject') || '');
+    const message = String(data.get('message') || '');
 
     setStatus('sending');
     try {
-      window.location.href = mailtoHref;
-      setTimeout(() => {
-        setStatus('success');
-        form.reset();
-      }, 500);
+      await emailjs.send(
+        import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+        import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
+        {
+          name,
+          email,
+          phone,
+          subject,
+          title: subject,
+          message,
+          from_name: name,
+          from_email: email,
+          submitted_at: new Date().toLocaleString('en-GB', { timeZone: 'Asia/Amman' }),
+        },
+        { publicKey: import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY },
+      );
+      setStatus('success');
+      form.reset();
     } catch {
       setStatus('error');
     }
