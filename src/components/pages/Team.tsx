@@ -22,7 +22,7 @@ interface Member {
 }
 
 const leadership = [
-  { name: 'Mr. Raed Abu Sonbul',  slug: 'raed-abu-sonbul', roleKey: 'gm',        icon: Crown,         photo: '/assets/people/Mr.Raed Abu Sonbul.jpeg' },
+  { name: 'Mr. Raed Abu Sonbul',  slug: 'raed-abu-sonbul', roleKey: 'gm',        icon: Crown,         photo: '/assets/people/raed-abu-sonbul.webp' },
   { name: 'Mr. Diaa Abu Sonbul',  slug: 'diaa-abu-sonbul', roleKey: 'vp',         icon: Briefcase,     photo: undefined },
   { name: 'Mr. Ahmad Al Kurdi',   slug: 'ahmad-al-kurdi',  roleKey: 'ceo',        icon: Building2,     photo: undefined },
   { name: 'Eng. Ramy El Haj',     slug: 'ramy-el-haj',     roleKey: 'operations', icon: ClipboardList, photo: undefined },

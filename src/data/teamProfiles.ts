@@ -105,7 +105,7 @@ export const profiles: TeamMemberProfile[] = [
     name: 'Mr. Raed Abu Sonbul',
     roleKey: 'gm',
     departmentKey: 'leadership',
-    photo: '/assets/people/Mr.Raed Abu Sonbul.jpeg',
+    photo: '/assets/people/raed-abu-sonbul.webp',
     bio: [
       'Founded Abu Sonbul Arab Transporters in 2008, building it from a single transport licence into a fully integrated logistics group.',
       'Over 30 years of experience in transport, logistics and large-scale project management across Jordan and the Middle East.',
