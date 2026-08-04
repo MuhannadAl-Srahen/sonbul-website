@@ -96,6 +96,7 @@
     "founder": {
       "eyebrow": "Founder & General Manager",
       "name": "Mr. Raed Abdel Fatah Abu Sonbul",
+      "videoCaption": "A message from our founder.",
       "points": [
         "Over 30 years of experience in logistics, transport and project management.",
         "Strong leadership in executing large-scale projects in Jordan.",
@@ -193,10 +194,13 @@
     },
     "filters": {
       "all": "All",
-      "equipment": "Fleet & Equipment",
-      "logistics": "Camps & Accommodation",
+      "transport": "Transportation & Fleet",
+      "equipment": "Heavy Equipment",
+      "camps": "Camps & Accommodation",
+      "catering": "Catering & Housekeeping",
       "projects": "Project Sites"
     },
+    "playVideo": "Play video",
     "loadMore": "Load more ",
     "prev": "Previous",
     "next": "Next",
