@@ -54,7 +54,7 @@ export default function About({ lang }: Props) {
           <Reveal>
             <div className="aspect-[4/3] sm:aspect-[4/5] overflow-hidden rounded-3xl shadow-soft">
               <img
-                src="/assets/people/Mr.Raed Abu Sonbul.jpeg"
+                src="/assets/people/raed-abu-sonbul.webp"
                 alt={t('about.founder.name')}
                 className="h-full w-full object-cover object-top"
               />
@@ -76,6 +76,23 @@ export default function About({ lang }: Props) {
                 </Reveal>
               ))}
             </ul>
+
+            <Reveal delay={0.2}>
+              <figure className="mt-10">
+                <video
+                  controls
+                  playsInline
+                  preload="none"
+                  poster="/assets/video/founder-message-poster.webp"
+                  className="w-full rounded-2xl shadow-soft bg-ink"
+                >
+                  <source src="/assets/video/founder-message.mp4" type="video/mp4" />
+                </video>
+                <figcaption className="mt-3 text-sm text-ink-500">
+                  {t('about.founder.videoCaption')}
+                </figcaption>
+              </figure>
+            </Reveal>
           </div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 const logos = [
-  'adnoc', 'adnocc', 'arabeeh', 'arrow', 'etihad', 'golf', 'go-tech',
+  'adnoc', 'adnocc', 'arabeeh', 'arrow', 'etihad', 'gig', 'golf', 'go-tech',
   'jana', 'kemyan', 'kibar', 'krbonat', 'lion', 'maraii', 'mnaser',
   'moasron', 'mondi', 'mr', 'nabd', 'obekan', 'pipsico', 'rabee',
   'rajhi', 'safwa', 'savola', 'texofib', 'ucic', 'watad', 'wataneh',
