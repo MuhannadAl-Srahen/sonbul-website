@@ -56,7 +56,10 @@
     "ourCompanies": "شركاتنا",
     "youAreHere": "أنت هنا",
     "groupHome": "الصفحة الرئيسية للمجموعة",
-    "explore": "استكشف"
+    "explore": "استكشف",
+    "switchLanguage": "تغيير اللغة",
+    "toggleMenu": "فتح القائمة",
+    "skipToContent": "تخطَّ إلى المحتوى"
   },
   "lang": {
     "switchTo": "English"
@@ -167,6 +170,8 @@
       "projects": "مواقع المشاريع"
     },
     "allCompanies": "كل الشركات",
+    "browse": "تصفّح المكتبة",
+    "page": "صفحة",
     "empty": "لا توجد صور هنا بعد — جرّب شركة أو فئة أخرى.",
     "playVideo": "تشغيل الفيديو",
     "loadMore": "عرض المزيد ",

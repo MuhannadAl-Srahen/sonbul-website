@@ -68,6 +68,7 @@ export default function CompanyServices({ company, lang }: Props) {
           </Reveal>
           <PhotoStrip
             query={chrome.photos}
+            lang={lang}
             altPrefix={t(`companies.${company}.name`)}
             seeAllLabel={t(`${ns}.gallery.seeAll`)}
             seeAllHref={href(`/gallery?company=${company}`)}

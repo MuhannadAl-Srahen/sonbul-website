@@ -122,13 +122,14 @@ export default function Gallery({ lang }: Props) {
       <section className="section">
         <div className="container-page">
 
-          {/* Section intro */}
-          <Reveal className="text-center max-w-2xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <Images className="h-5 w-5 text-primary" />
-              <span className="eyebrow">{t('gallery.hero.eyebrow')}</span>
-            </div>
-            <p className="lead">{t('gallery.hero.subtitle')}</p>
+          {/* The hero already carries the eyebrow, title and subtitle directly above this;
+              repeating them here printed the same sentence twice in a row. This heading
+              labels the filters and the grid, which otherwise had none. */}
+          <Reveal className="mb-8 text-center">
+            <h2 className="heading-lg inline-flex items-center gap-3">
+              <Images className="h-6 w-6 text-primary" />
+              {t('gallery.browse')}
+            </h2>
           </Reveal>
 
           {/* Filters — company first, then category within it */}
@@ -203,7 +204,7 @@ export default function Gallery({ lang }: Props) {
                     </span>
                   </span>
                 )}
-                <span className="absolute bottom-3 left-3 text-xs font-semibold uppercase tracking-wider text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="absolute bottom-3 start-3 text-xs font-semibold uppercase tracking-wider text-white opacity-0 group-hover:opacity-100 transition-opacity">
                   {t(`gallery.filters.${item.category}`)}
                 </span>
               </button>
@@ -227,17 +228,24 @@ export default function Gallery({ lang }: Props) {
                 <span className="max-sm:hidden">{t('gallery.prev')}</span>
               </button>
 
-              <div className="flex items-center gap-1.5">
+              {/* The dot is decorative; the button around it carries the 24px hit area
+                  WCAG 2.5.8 asks for. A bare 10px dot is not tappable on a phone. */}
+              <div className="flex items-center">
                 {Array.from({ length: totalPages }, (_, i) => (
                   <button
                     key={i}
                     onClick={() => goToPage(i)}
-                    className={clsx(
-                      'rounded-full transition-all',
-                      i === safePage ? 'bg-primary w-6 h-2.5' : 'bg-ink/15 hover:bg-ink/30 w-2.5 h-2.5',
-                    )}
-                    aria-label={`Page ${i + 1}`}
-                  />
+                    className="grid h-6 w-6 place-items-center rounded-full"
+                    aria-label={`${t('gallery.page')} ${i + 1}`}
+                    aria-current={i === safePage ? 'true' : undefined}
+                  >
+                    <span
+                      className={clsx(
+                        'block rounded-full transition-all',
+                        i === safePage ? 'bg-primary w-5 h-2.5' : 'bg-ink/20 hover:bg-ink/40 w-2.5 h-2.5',
+                      )}
+                    />
+                  </button>
                 ))}
               </div>
 
@@ -258,7 +266,7 @@ export default function Gallery({ lang }: Props) {
           )}
 
           {totalPages > 1 && (
-            <p className="text-center text-xs text-ink/40 mt-4">
+            <p className="text-center text-xs text-ink-500 mt-4">
               {safePage + 1} / {totalPages} — {shown.length} {t('gallery.of')} {filtered.length}
             </p>
           )}

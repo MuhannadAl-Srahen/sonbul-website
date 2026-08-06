@@ -1,31 +1,13 @@
 import { useState } from 'react';
-import {
-  ArrowRight,
-  Award,
-  CheckCircle2,
-  Container,
-  HardHat,
-  Layers,
-  Globe2,
-  Play,
-  Quote,
-  Truck,
-  Users,
-} from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { ArrowRight, Award, CheckCircle2, Globe2, Layers, Play, Quote, Users } from 'lucide-react';
 import Reveal from '../ui/Reveal';
 import ClientSlider from '../ui/ClientSlider';
 import StatStrip, { type Stat } from '../sections/StatStrip';
 import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
-import { COMPANIES, type CompanyId } from '../../data/companies';
+import { COMPANIES } from '../../data/companies';
 import { companyChrome } from './companyChrome';
-
-const companyIcons: Record<CompanyId, LucideIcon> = {
-  transport: Truck,
-  'project-services': HardHat,
-  logistics: Container,
-};
+import { companyIcons } from '../ui/companyIcons';
 
 const whyIcons = {
   experience: Award,
@@ -70,7 +52,9 @@ export default function GroupHome({ lang }: Props) {
             loading="eager"
             decoding="async"
             fetchPriority="high"
-            className="h-full w-full object-cover object-right-bottom hero-img"
+            /* No `hero-img`: that class mirrors the photo in RTL, and this one carries the
+               company's own name on the cab door and bumper. */
+            className="h-full w-full object-cover object-right-bottom"
           />
           <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-ink via-ink/90 to-ink/20" />
           <div className="absolute inset-y-0 start-0 w-2/3 bg-gradient-to-r rtl:bg-gradient-to-l from-ink/60 to-transparent pointer-events-none" />
@@ -236,11 +220,11 @@ export default function GroupHome({ lang }: Props) {
       <section className="relative section bg-ink text-white overflow-hidden">
         <div className="absolute inset-0 grain opacity-10 pointer-events-none" aria-hidden />
         <div
-          className="absolute -top-24 -start-24 h-96 w-96 rounded-full bg-primary/8 blur-3xl pointer-events-none"
+          className="absolute -top-24 -start-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl pointer-events-none"
           aria-hidden
         />
         <div
-          className="absolute -bottom-24 -end-24 h-96 w-96 rounded-full bg-primary/6 blur-3xl pointer-events-none"
+          className="absolute -bottom-24 -end-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"
           aria-hidden
         />
 
@@ -290,7 +274,7 @@ export default function GroupHome({ lang }: Props) {
                 )}
               </div>
 
-              <div className="mt-6 flex items-center justify-center gap-3 text-white/45 text-sm">
+              <div className="mt-6 flex items-center justify-center gap-3 text-white/60 text-sm">
                 <span className="h-px w-8 bg-primary inline-block" />
                 <span>{t('group.video.attribution')}</span>
                 <span className="h-px w-8 bg-primary inline-block" />
@@ -328,7 +312,7 @@ export default function GroupHome({ lang }: Props) {
                 aria-hidden
               />
               <div
-                className="absolute bottom-0 end-32 h-48 w-48 rounded-full bg-primary/8 blur-2xl pointer-events-none"
+                className="absolute bottom-0 end-32 h-48 w-48 rounded-full bg-primary/10 blur-2xl pointer-events-none"
                 aria-hidden
               />
 

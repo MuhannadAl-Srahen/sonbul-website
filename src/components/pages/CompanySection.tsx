@@ -78,6 +78,7 @@ export default function CompanySection({ company, section, lang }: Props) {
           </Reveal>
           <PhotoStrip
             query={{ ...chrome.photos, tags: meta.tags, match: 'any' }}
+            lang={lang}
             altPrefix={t(`companies.${company}.name`)}
             seeAllLabel={t(`${c.i18nKey}.gallery.seeAll`)}
             seeAllHref={href(`/gallery?company=${company}`)}

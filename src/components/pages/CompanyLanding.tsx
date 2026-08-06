@@ -41,7 +41,7 @@ export default function CompanyLanding({ company, lang }: Props) {
     icon: cfg.serviceIcons[key],
     title: t(`${ns}.services.items.${key}.title`),
     short: t(`${ns}.services.items.${key}.short`),
-    href: href(`${c.base}/services`),
+    href: href(`${c.base}${cfg.serviceLinks[key] ?? '/services'}`),
   }));
 
   const features = cfg.featureKeys.map((key) => ({
@@ -186,6 +186,7 @@ export default function CompanyLanding({ company, lang }: Props) {
           />
           <PhotoStrip
             query={cfg.photos}
+            lang={lang}
             altPrefix={t(`companies.${company}.name`)}
             seeAllLabel={t(`${ns}.gallery.seeAll`)}
             seeAllHref={href(`/gallery?company=${company}`)}

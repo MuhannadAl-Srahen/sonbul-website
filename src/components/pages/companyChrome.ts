@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import type { MediaTag } from '../../data/media';
 import type { LucideIcon } from 'lucide-react';
-import type { CompanyId } from '../../data/companies';
+import { COMPANY_BY_ID, type CompanyId } from '../../data/companies';
 import type { MediaQuery } from '../../data/media';
 import type { HeroOverlay } from '../ui/PageHero';
 
@@ -35,6 +35,15 @@ export interface CompanyChrome {
   surface: string;
   hero: string;
   serviceIcons: Record<string, LucideIcon>;
+  /**
+   * Where each service tile actually goes, relative to the company root.
+   *
+   * Every tile used to point at `/services`, so a tile with its own icon, title and
+   * "Know more" delivered the generic list instead — eight identical links on one page.
+   * Anything not listed here falls back to `/services`, which is the honest destination
+   * when no deeper page exists yet.
+   */
+  serviceLinks: Record<string, string>;
   featureKeys: string[];
   statKeys: string[];
   photos: MediaQuery;
@@ -45,8 +54,14 @@ export const companyChrome: Record<CompanyId, CompanyChrome> = {
     overlay: 'sweep',
     texture: 'grain',
     surface: 'bg-sand',
-    hero: '/assets/hero/hero.jpg',
+    hero: COMPANY_BY_ID.transport.heroImage,
     serviceIcons: { crossBorder: Truck, bulk: Ship, projectCargo: Layers, general: Package },
+    serviceLinks: {
+      crossBorder: '/routes',
+      bulk: '/cargo',
+      projectCargo: '/fleet',
+      general: '/fleet',
+    },
     featureKeys: ['reach', 'fleet', 'cargo', 'control'],
     statKeys: ['years', 'trucks', 'clients', 'loads'],
     photos: { company: 'transport' },
@@ -55,7 +70,7 @@ export const companyChrome: Record<CompanyId, CompanyChrome> = {
     overlay: 'lift',
     texture: 'none',
     surface: 'bg-ink-50',
-    hero: '/assets/gallery/camps/camps-01.webp',
+    hero: COMPANY_BY_ID['project-services'].heroImage,
     serviceIcons: {
       manpower: Users,
       camps: Home,
@@ -66,6 +81,14 @@ export const companyChrome: Record<CompanyId, CompanyChrome> = {
       siteTransport: Truck,
       operations: Settings,
     },
+    serviceLinks: {
+      camps: '/camps',
+      infrastructure: '/camps',
+      accommodation: '/camps',
+      caravans: '/camps',
+      catering: '/catering',
+      projects: '/projects',
+    },
     featureKeys: ['endToEnd', 'mobilise', 'manufacture', 'scale'],
     statKeys: ['workforce', 'camps', 'meals', 'years'],
     photos: { company: 'project-services' },
@@ -74,14 +97,17 @@ export const companyChrome: Record<CompanyId, CompanyChrome> = {
     overlay: 'diagonal',
     texture: 'hatch',
     surface: 'bg-steel',
-    // A gantry crane over a loaded trailer in a border yard — the one shot in the library
-    // that says what this company actually does.
-    hero: '/assets/gallery/equipment/equipment-02.webp',
+    hero: COMPANY_BY_ID.logistics.heroImage,
     serviceIcons: {
       crossBorder: Container,
       lifting: Forklift,
       clearance: ClipboardCheck,
       coordination: Boxes,
+    },
+    serviceLinks: {
+      crossBorder: '/crossings',
+      lifting: '/equipment',
+      clearance: '/customs',
     },
     featureKeys: ['coverage', 'equipment', 'crews', 'paperwork'],
     statKeys: ['crossings', 'forklifts', 'capacity', 'hours'],

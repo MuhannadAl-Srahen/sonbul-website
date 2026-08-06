@@ -1,9 +1,11 @@
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../ui/Reveal';
 import { mediaFor, type MediaQuery } from '../../data/media';
+import type { Lang } from '../../i18n';
 
 interface Props {
   query: MediaQuery;
+  lang: Lang;
   /** Fallback alt when a photo has no per-image text in the manifest yet. */
   altPrefix: string;
   seeAllLabel?: string;
@@ -17,7 +19,7 @@ interface Props {
  * of crops; a grid from md up. Renders nothing when the query matches nothing, so a
  * page never ships an empty heading.
  */
-export default function PhotoStrip({ query, altPrefix, seeAllLabel, seeAllHref }: Props) {
+export default function PhotoStrip({ query, lang, altPrefix, seeAllLabel, seeAllHref }: Props) {
   const items = mediaFor({ limit: 8, ...query });
   if (!items.length) return null;
 
@@ -31,7 +33,7 @@ export default function PhotoStrip({ query, altPrefix, seeAllLabel, seeAllHref }
           >
             <img
               src={item.thumb}
-              alt={item.alt?.en ? item.alt.en : altPrefix}
+              alt={item.alt?.[lang] ?? altPrefix}
               loading="lazy"
               decoding="async"
               width={600}

@@ -141,13 +141,13 @@ export default function Team({ lang }: Props) {
                         {initials(l.name)}
                       </div>
                     )}
-                    <div className="absolute -bottom-1 -right-1 h-9 w-9 rounded-full bg-ink text-white flex items-center justify-center shadow-sm">
+                    <div className="absolute -bottom-1 -end-1 h-9 w-9 rounded-full bg-ink text-white flex items-center justify-center shadow-sm">
                       <l.icon className="h-4 w-4" />
                     </div>
                   </div>
                   <h3 className="mt-5 font-semibold text-lg">{l.name}</h3>
                   <p className="mt-1 text-sm text-primary font-medium">{t(`team.roles.${l.roleKey}`)}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-ink/40 group-hover:text-primary transition-colors">
+                  <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-ink-500 group-hover:text-primary transition-colors">
                     {t('teamMember.viewProfile')}
                     <ArrowRight className="h-3 w-3 rtl-flip" />
                   </span>
@@ -194,7 +194,7 @@ export default function Team({ lang }: Props) {
                               className="h-20 w-20 rounded-full object-cover border-2 border-primary/20 shadow-sm group-hover:border-primary/60 group-hover:shadow-md transition-all"
                             />
                           ) : (
-                            <span className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-ink/8 text-ink-600 text-lg font-bold border border-ink-100 group-hover:bg-primary/10 group-hover:text-primary group-hover:border-primary/30 transition-all">
+                            <span className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-ink/10 text-ink-600 text-lg font-bold border border-ink-100 group-hover:bg-primary/10 group-hover:text-primary group-hover:border-primary/30 transition-all">
                               {initials(m.name)}
                             </span>
                           )}

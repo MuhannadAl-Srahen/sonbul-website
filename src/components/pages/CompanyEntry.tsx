@@ -73,6 +73,7 @@ export default function CompanyEntry({ collection, slug, lang }: Props) {
           {/* Falls back to the company's photos while the manifest is still untagged. */}
           <PhotoStrip
             query={{ ...chrome.photos, tags: entry.tags }}
+            lang={lang}
             altPrefix={t(`${base}.name`)}
             seeAllLabel={t(`${ns}.gallery.seeAll`)}
             seeAllHref={href(`/gallery?company=${company}&tag=${entry.tags[0]}`)}

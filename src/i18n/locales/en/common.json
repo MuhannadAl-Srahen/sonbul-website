@@ -56,7 +56,10 @@
     "ourCompanies": "Our companies",
     "youAreHere": "You are here",
     "groupHome": "Group home",
-    "explore": "Explore"
+    "explore": "Explore",
+    "switchLanguage": "Switch language",
+    "toggleMenu": "Toggle menu",
+    "skipToContent": "Skip to content"
   },
   "lang": {
     "switchTo": "العربية"
@@ -167,6 +170,8 @@
       "projects": "Project Sites"
     },
     "allCompanies": "All companies",
+    "browse": "Browse the library",
+    "page": "Page",
     "empty": "No photos here yet — try another company or category.",
     "playVideo": "Play video",
     "loadMore": "Load more ",
