@@ -1,6 +1,5 @@
 {
   "brand": {
-    "name": "Abu Sonbul",
     "full": "Abu Sonbul Arab Transporters",
     "group": "Abu Sonbul Group",
     "tagline": "Transport & Logistics Solutions in Jordan and the Middle East"
@@ -44,11 +43,8 @@
     }
   },
   "nav": {
-    "home": "Home",
     "about": "About",
     "services": "Services",
-    "logistics": "Logistics",
-    "equipment": "Heavy Equipment",
     "gallery": "Gallery",
     "team": "Team",
     "contact": "Contact",
@@ -70,9 +66,7 @@
     "home": "Go to the group home"
   },
   "common": {
-    "knowMore": "Know more",
-    "viewAll": "Explore all services",
-    "backTo": "Back to"
+    "knowMore": "Know more"
   },
   "about": {
     "hero": {
@@ -174,7 +168,6 @@
     "page": "Page",
     "empty": "No photos here yet — try another company or category.",
     "playVideo": "Play video",
-    "loadMore": "Load more ",
     "prev": "Previous",
     "next": "Next",
     "of": "of"
@@ -254,7 +247,6 @@
   "footer": {
     "tagline": "Transport & Logistics Solutions in Jordan and the Middle East.",
     "explore": "Explore",
-    "services": "Services",
     "contact": "Contact",
     "rights": "All rights reserved."
   }

@@ -8,10 +8,26 @@
       "ctaSecondary": "See our fleet"
     },
     "stats": {
-      "years": { "value": 18, "suffix": "+", "label": "Years on the road" },
-      "trucks": { "value": 60, "suffix": "+", "label": "Trucks and trailers" },
-      "clients": { "value": 40, "suffix": "+", "label": "Regular shippers" },
-      "loads": { "value": 300, "suffix": "+", "label": "Loads a month" }
+      "years": {
+        "value": 18,
+        "suffix": "+",
+        "label": "Years on the road"
+      },
+      "trucks": {
+        "value": 60,
+        "suffix": "+",
+        "label": "Trucks and trailers"
+      },
+      "clients": {
+        "value": 40,
+        "suffix": "+",
+        "label": "Regular shippers"
+      },
+      "loads": {
+        "value": 300,
+        "suffix": "+",
+        "label": "Loads a month"
+      }
     },
     "highlights": {
       "eyebrow": "Why shippers use us",
@@ -61,10 +77,6 @@
           "body": "Curtain-sided and flatbed capacity for palletised goods, packaging, steel and finished products moving between plants, ports and distribution centres."
         }
       }
-    },
-    "clients": {
-      "eyebrow": "Trusted by",
-      "title": "The shippers who keep our trucks moving."
     },
     "gallery": {
       "eyebrow": "On the road",

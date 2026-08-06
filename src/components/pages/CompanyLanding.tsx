@@ -50,7 +50,7 @@ export default function CompanyLanding({ company, lang }: Props) {
     body: t(`${ns}.highlights.items.${key}.body`),
   }));
 
-  const { logos, isGroupSet } = logosFor(company);
+  const { logos } = logosFor(company);
 
   return (
     <>
@@ -199,9 +199,10 @@ export default function CompanyLanding({ company, lang }: Props) {
         <div className="container-page">
           <Reveal className="mb-8 text-center">
             <span className="eyebrow">{t('group.clients.eyebrow')}</span>
-            <h2 className="heading-lg mt-3">
-              {isGroupSet ? t('group.clients.title') : t(`${ns}.clients.title`)}
-            </h2>
+            {/* Always the group heading. The branch that used a per-company one only had
+                copy for transport, so raising any other company above the logo threshold
+                in clientLogos.ts would have rendered the raw key as an <h2>. */}
+            <h2 className="heading-lg mt-3">{t('group.clients.title')}</h2>
           </Reveal>
           <ClientSlider logos={logos} />
         </div>
