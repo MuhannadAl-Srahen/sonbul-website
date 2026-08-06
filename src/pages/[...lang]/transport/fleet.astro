@@ -11,5 +11,5 @@ const seo = dict[lang].transport.sections.fleet.seo;
 ---
 
 <BaseLayout title={seo.title} description={seo.description} path={Astro.url.pathname} lang={lang}>
-  <CompanySection company="transport" section="fleet" lang={lang} client:load />
+  <CompanySection company="transport" section="fleet" lang={lang} />
 </BaseLayout>

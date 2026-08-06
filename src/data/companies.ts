@@ -33,6 +33,11 @@ export interface Company {
    * share previews point at something real rather than a 404.
    */
   image: string;
+  /**
+   * Full-bleed background of this company's hero. Lives here rather than in
+   * companyChrome.ts so BaseLayout can preload it without importing a React module.
+   */
+  heroImage: string;
   /** Gallery categories whose photos belong to this company by default. */
   galleryCategories: GalleryCategory[];
   /** Client logo basenames under /assets/companies/. See logosFor() in clientLogos.ts. */
@@ -53,6 +58,7 @@ export const COMPANIES: Company[] = [
     base: '/transport',
     i18nKey: 'transport',
     image: '/assets/hero/hero.jpg',
+    heroImage: '/assets/hero/hero.jpg',
     galleryCategories: ['transport'],
     clientLogos: [
       'maraii', 'savola', 'pipsico', 'rajhi', 'krbonat', 'yascp', 'obekan', 'mondi',
@@ -73,6 +79,7 @@ export const COMPANIES: Company[] = [
     base: '/project-services',
     i18nKey: 'projectServices',
     image: '/assets/gallery/home-image.jpg',
+    heroImage: '/assets/gallery/camps/camps-01.webp',
     galleryCategories: ['camps', 'catering', 'equipment', 'projects'],
     clientLogos: ['adnoc', 'adnocc', 'wfp'],
     nav: [
@@ -88,6 +95,9 @@ export const COMPANIES: Company[] = [
     base: '/logistics',
     i18nKey: 'logisticsCo',
     image: '/assets/hero/hero.jpg',
+    // A gantry crane over a loaded trailer in a border yard — the one shot in the library
+    // that says what this company actually does.
+    heroImage: '/assets/gallery/equipment/equipment-02.webp',
     // No folder of its own; its photos are reassigned out of equipment/ and transport/
     // by the `company` override in the media manifest.
     galleryCategories: [],

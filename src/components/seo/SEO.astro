@@ -10,6 +10,7 @@ import type { Lang } from '../../i18n/types';
 import { dict } from '../../i18n/dictionaries';
 import { SITE_NAME } from '../../config/site';
 import type { Company } from '../../data/companies';
+import { serviceKeys } from '../../components/pages/companyChrome';
 import {
   companyGraph,
   groupGraph,
@@ -51,6 +52,12 @@ const abs = (p: string) => `${origin}${p.startsWith('/') ? p : `/${p}`}`;
 const t = dict[lang];
 const companyName = company ? t.companies[company.id].name : undefined;
 
+/** Service titles for the offer catalogue. English, because the entity nodes are. */
+function companyServiceNames(c: Company): string[] {
+  const items = dict.en[c.i18nKey].services.items as Record<string, { title: string }>;
+  return serviceKeys[c.id].map((k) => items[k]?.title).filter((s): s is string => Boolean(s));
+}
+
 // The suffix follows whichever entity owns the page. Hardcoding one company's name here
 // would be wrong on two thirds of the site.
 const suffix = companyName ?? SITE_NAME[lang];
@@ -61,26 +68,49 @@ const canonical = abs(path === '/' ? '' : path);
 const ogImage = abs(image ?? company?.image ?? '/assets/hero/hero.jpg');
 
 const enPath = lang === 'ar' ? path.replace(/^\/ar(?=\/|$)/, '') || '/' : path;
-const arPath = lang === 'ar' ? path : path === '/' ? '/ar' : `/ar${path}`;
+// Trailing slash matters: /ar and /ar/ are different URLs to a crawler, and the Arabic
+// home page's own canonical (and the sitemap) both say /ar/. Without it the two home
+// pages did not reciprocate and Search Console drops the pair.
+const arPath = lang === 'ar' ? path : path === '/' ? '/ar/' : `/ar${path}`;
 const enUrl = abs(enPath === '/' ? '' : enPath);
 const arUrl = abs(arPath);
 
 const ctx = { lang, origin, canonical, title: fullTitle, description, image: ogImage };
 
+// Derived from the path rather than taken from a prop. As a prop it was simply never
+// passed, so LocalBusiness, Person and Service markup existed in the codebase and on no
+// page. Deriving it means a new route cannot forget.
+const bare = enPath.replace(/\/$/, '') || '/';
+const kind =
+  schema !== 'auto'
+    ? schema
+    : bare === '/contact'
+      ? 'contact'
+      : person
+        ? 'person'
+        : 'auto';
+
 const graph =
-  schema === 'none'
+  kind === 'none'
     ? null
-    : schema === 'contact'
+    : kind === 'contact'
       ? localBusinessGraph(ctx)
-      : schema === 'person' && person
+      : kind === 'person' && person
         ? personGraph(ctx, person)
         : company
-          ? companyGraph(ctx, company, {
-              name: dict.en.companies[company.id].name,
-              altName: dict.ar.companies[company.id].name,
-              services: [],
-            })
-          : enPath === '/'
+          ? companyGraph(
+              ctx,
+              company,
+              {
+                name: dict.en.companies[company.id].name,
+                altName: dict.ar.companies[company.id].name,
+                // The services this company actually sells, so the offer catalogue is
+                // populated instead of being built and then thrown away.
+                services: companyServiceNames(company),
+              },
+              bare === company.base ? undefined : { name: title, path: bare },
+            )
+          : bare === '/'
             ? groupGraph(ctx)
             : sharedPageGraph(ctx);
 ---

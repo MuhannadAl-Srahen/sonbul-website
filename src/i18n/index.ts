@@ -42,4 +42,4 @@ export function useLocale(lang: Lang) {
   return instance;
 }
 
-export { localizedHref, stripLocale } from './href';
+export { localizedHref, stripLocale, trimSlash, withTrailingSlash } from './href';

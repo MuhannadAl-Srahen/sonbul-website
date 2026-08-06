@@ -5,6 +5,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.abusonbul-transporters.com',
   output: 'static',
+  // Matches the directory-style output and the canonicals the sitemap already emits, so
+  // internal links stop resolving through a redirect to a different URL than the canonical.
+  trailingSlash: 'always',
   integrations: [
     react(),
     sitemap({

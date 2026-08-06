@@ -127,11 +127,14 @@ export function companyGraph(
   ctx: Ctx,
   company: Company,
   names: { name: string; altName: string; services: string[] },
+  /** Extra crumb for the current page when it sits below the company root. */
+  leaf?: { name: string; path: string },
 ) {
   const id = companyOrgId(ctx.origin, company);
   const crumbs = breadcrumb(ctx, [
     { name: SITE_NAME.en, path: '/' },
     { name: names.name, path: company.base },
+    ...(leaf ? [leaf] : []),
   ]);
 
   return graph([
@@ -168,9 +171,15 @@ export function companyGraph(
   ]);
 }
 
-/** /about, /services, /gallery, /team — group-owned pages with no company of their own. */
+/**
+ * /about, /services, /gallery, /team — group-owned pages with no company of their own.
+ *
+ * The Organization node travels with them. Emitting only a WebPage left `isPartOf` and
+ * `about` pointing at `#website` and `#group` ids that existed on no page in that
+ * document's graph, so those pages carried no organisation markup at all.
+ */
 export function sharedPageGraph(ctx: Ctx) {
-  return graph([webPage(ctx, groupId(ctx.origin))]);
+  return graph([organization(ctx), website(ctx), webPage(ctx, groupId(ctx.origin))]);
 }
 
 /** /contact only — the one real physical place. */
