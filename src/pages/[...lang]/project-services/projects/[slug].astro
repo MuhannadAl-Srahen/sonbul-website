@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CompanyEntry from '../../../../components/pages/CompanyEntry';
+import { dict } from '../../../../i18n/dictionaries';
+import { localeSlugPaths, langOf } from '../../../../i18n/paths';
+import { PROJECT_SLUGS, getProject } from '../../../../data/projects';
+
+export const getStaticPaths = () => localeSlugPaths(PROJECT_SLUGS);
+
+const lang = langOf(Astro.params.lang as string | undefined);
+const { slug } = Astro.params;
+const project = getProject(slug!)!;
+const entry = dict[lang].projectServices.projects.items[
+  project.key as keyof typeof dict.en.projectServices.projects.items
+];
+---
+
+<BaseLayout
+  title={entry.name}
+  description={entry.short}
+  path={Astro.url.pathname}
+  lang={lang}
+>
+  <CompanyEntry collection="projects" slug={slug!} lang={lang} client:load />
+</BaseLayout>

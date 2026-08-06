@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CompanySection from '../../../components/pages/CompanySection';
+import { dict } from '../../../i18n/dictionaries';
+import { localePaths, langOf } from '../../../i18n/paths';
+
+export const getStaticPaths = localePaths;
+
+const lang = langOf(Astro.params.lang as string | undefined);
+const seo = dict[lang].transport.sections.routes.seo;
+---
+
+<BaseLayout title={seo.title} description={seo.description} path={Astro.url.pathname} lang={lang}>
+  <CompanySection company="transport" section="routes" lang={lang} client:load />
+</BaseLayout>

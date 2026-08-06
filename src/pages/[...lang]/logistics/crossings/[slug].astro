@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CompanyEntry from '../../../../components/pages/CompanyEntry';
+import { dict } from '../../../../i18n/dictionaries';
+import { localeSlugPaths, langOf } from '../../../../i18n/paths';
+import { CROSSING_SLUGS, getCrossing } from '../../../../data/crossings';
+
+export const getStaticPaths = () => localeSlugPaths(CROSSING_SLUGS);
+
+const lang = langOf(Astro.params.lang as string | undefined);
+const { slug } = Astro.params;
+const crossing = getCrossing(slug!)!;
+const entry = dict[lang].logisticsCo.crossings.items[
+  crossing.key as keyof typeof dict.en.logisticsCo.crossings.items
+];
+---
+
+<BaseLayout
+  title={`${entry.name} — ${entry.corridor}`}
+  description={entry.short}
+  path={Astro.url.pathname}
+  lang={lang}
+>
+  <CompanyEntry collection="crossings" slug={slug!} lang={lang} client:load />
+</BaseLayout>

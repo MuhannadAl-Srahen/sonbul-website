@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CompanyLanding from '../../../components/pages/CompanyLanding';
+import { dict } from '../../../i18n/dictionaries';
+import { localePaths, langOf } from '../../../i18n/paths';
+
+export const getStaticPaths = localePaths;
+
+const lang = langOf(Astro.params.lang as string | undefined);
+const t = dict[lang];
+---
+
+<BaseLayout
+  title={t.projectServices.seo.home.title}
+  description={t.projectServices.seo.home.description}
+  path={Astro.url.pathname}
+  lang={lang}
+>
+  <CompanyLanding company="project-services" lang={lang} client:load />
+</BaseLayout>
