@@ -95,6 +95,18 @@
   .nav-link {
     @apply relative text-sm font-medium text-ink/75 hover:text-primary transition-colors py-2;
   }
+
+  /* The floating-bar treatment from the header, shared so it stays one idea rather than
+     several near-misses. Translucency only reads over something with texture — use
+     `glass-dark` over a hero photo or a dark band, `glass` over a tinted surface. Over
+     plain white a translucent white panel is invisible, which is why `glass` carries a
+     faint tint of its own instead of being pure white. */
+  .glass {
+    @apply rounded-2xl border border-ink-100 bg-ink-50/75 shadow-card backdrop-blur-md;
+  }
+  .glass-dark {
+    @apply rounded-full border border-white/20 bg-white/10 shadow-card backdrop-blur-md;
+  }
 }
 
 /* Mirrors directional icons in RTL. Written as Tailwind's own transform chain rather than
@@ -213,7 +225,7 @@ html[dir='rtl'] .nav-micro {
 /* Keyboard users would otherwise tab the logo, switcher, five nav pills, the language
    link and the quote button before reaching content, on every one of the 99 pages. */
 .skip-link {
-  position: absolute;
+  position: fixed;
   inset-inline-start: 0.75rem;
   top: -4rem;
   z-index: 100;
@@ -255,9 +267,16 @@ html[dir='rtl'] .nav-micro {
 * {
   -webkit-tap-highlight-color: transparent;
 }
-/* Prevent horizontal overflow on small screens */
-html, body {
-  overflow-x: hidden;
+/* Prevent horizontal overflow on small screens.
+   `clip`, not `hidden`: overflow-x:hidden turns the element into a scroll container, and a
+   scroll container between a sticky/fixed element and the viewport stops it sticking. That
+   is why the header never stayed put. `clip` crops without creating one. */
+body {
+  overflow-x: clip;
+}
+/* Anchor targets clear the floating header instead of hiding underneath it. */
+html {
+  scroll-padding-top: 7rem;
 }
 /* Smooth momentum scrolling on iOS */
 .no-scrollbar, [data-scroll] {

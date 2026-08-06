@@ -26,8 +26,18 @@ export default function Header({ currentPath, lang }: Props) {
   const canHover = useCanHover();
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef(0);
+
+  // The bar sits over a dark hero at rest and over page content once you move, so it
+  // firms up as you scroll rather than staying the same translucency throughout.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Astro serves directory-style URLs, so the pathname carries a trailing slash while nav
   // hrefs do not. Both sides are normalised before any comparison.
@@ -101,8 +111,20 @@ export default function Header({ currentPath, lang }: Props) {
   const cancelClose = () => window.clearTimeout(closeTimer.current);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-ink-100">
-      <div className="container-page flex h-20 items-center gap-4">
+    /* Floating rather than pinned to the very top: a translucent bar inset from the edges,
+       riding over the hero instead of sitting in a white strip above it. Fixed, so it
+       stays put — see the overflow-x note in index.css for why `sticky` never worked. */
+    <header className="fixed inset-x-0 top-0 z-50 pt-3 lg:pt-4 3xl:pt-6">
+      <div className="container-page">
+        <div
+          className={clsx(
+            'flex items-center gap-3 rounded-2xl border px-3 lg:px-4 transition-all duration-300',
+            'h-14 sm:h-16 3xl:h-20',
+            scrolled
+              ? 'border-ink-100 bg-white/95 shadow-soft backdrop-blur-xl'
+              : 'border-white/50 bg-white/75 shadow-card backdrop-blur-xl',
+          )}
+        >
         <a href={localizedHref('/', lang)} aria-label={t('nav.groupHome')} className="flex-shrink-0">
           {/* Intrinsic size from the SVG viewBox (285 x 72.75), so `w-auto` does not
               resolve to 0 and shift the bar while the file loads. */}
@@ -111,7 +133,7 @@ export default function Header({ currentPath, lang }: Props) {
             alt={t('brand.group')}
             width={141}
             height={36}
-            className="h-9 w-auto object-contain"
+            className="h-8 w-auto object-contain 3xl:h-9"
           />
         </a>
 
@@ -212,15 +234,17 @@ export default function Header({ currentPath, lang }: Props) {
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
+        </div>
       </div>
 
-      {/* Mobile drawer — each company is a labelled group with its own sections listed. */}
+      {/* Mobile drawer — each company is a labelled group with its own sections listed.
+          Inside the container so it lines up with the floating bar above it. */}
       <div
         id="mobile-nav"
         inert={!open}
         className={clsx(
-          'lg:hidden overflow-y-auto overscroll-contain border-t bg-white transition-[max-height] duration-300 ease-in-out',
-          open ? 'max-h-[calc(100dvh-5rem)] border-ink-100' : 'max-h-0 border-transparent',
+          'container-page lg:hidden overflow-y-auto overscroll-contain rounded-2xl border bg-white/95 backdrop-blur-xl transition-[max-height,margin] duration-300 ease-in-out',
+          open ? 'mt-2 max-h-[calc(100dvh-7rem)] border-ink-100 shadow-soft' : 'max-h-0 border-transparent',
         )}
       >
         <div className="container-page py-4">

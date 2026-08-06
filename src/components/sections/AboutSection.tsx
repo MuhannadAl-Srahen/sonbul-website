@@ -28,16 +28,16 @@ export default function AboutSection({ lang }: Props) {
   const points = (t('about.founder.points', { returnObjects: true }) as string[]).slice(0, 4);
 
   return (
-    <section id="about" className="section scroll-mt-20 bg-white">
+    <section id="about" className="section scroll-mt-28 bg-white">
       <div className="container-page">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-5">
-            <span className="eyebrow">{t('about.story.eyebrow')}</span>
-            <h2 className="heading-lg mt-3">{t('about.story.title')}</h2>
-          </Reveal>
-          <Reveal delay={0.1} className="lg:col-span-7">
-            <p className="lead">{t('about.story.body')}</p>
-            <div className="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-4">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <span className="eyebrow justify-center">{t('about.story.eyebrow')}</span>
+          <h2 className="heading-lg mt-3">{t('about.story.title')}</h2>
+        </Reveal>
+        <div className="grid gap-12">
+          <Reveal delay={0.1} className="mx-auto max-w-4xl text-center">
+            <p className="lead mt-8">{t('about.story.body')}</p>
+            <div className="mt-12 grid grid-cols-2 gap-6 text-start lg:grid-cols-4">
               {stats.map((b) => (
                 <div key={b.k} className="border-s-2 border-primary ps-4">
                   <div className="text-2xl font-bold text-primary">{b.k}</div>

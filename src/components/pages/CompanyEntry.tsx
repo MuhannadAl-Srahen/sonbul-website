@@ -66,8 +66,8 @@ export default function CompanyEntry({ collection, slug, lang }: Props) {
 
       <section className={`section-tight ${chrome.surface}`}>
         <div className="container-page">
-          <Reveal className="mb-10 max-w-2xl">
-            <span className="eyebrow">{t(`${ns}.gallery.eyebrow`)}</span>
+          <Reveal className="mx-auto mb-10 max-w-2xl text-center">
+            <span className="eyebrow justify-center">{t(`${ns}.gallery.eyebrow`)}</span>
             <h2 className="heading-lg mt-3">{t(`${base}.name`)}</h2>
           </Reveal>
           {/* Falls back to the company's photos while the manifest is still untagged. */}

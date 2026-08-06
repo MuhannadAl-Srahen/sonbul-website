@@ -13,7 +13,7 @@ export default function NotFound({ lang }: Props) {
   const href = (path: string) => localizedHref(path, lang);
 
   return (
-    <section className="section">
+    <section className="section pt-32">
       <div className="container-page mx-auto max-w-3xl text-center">
         <div className="font-display text-7xl font-bold text-primary md:text-8xl">404</div>
         <h1 className="heading-lg mt-4">{t('notFound.title')}</h1>

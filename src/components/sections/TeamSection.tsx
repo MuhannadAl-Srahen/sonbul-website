@@ -35,7 +35,7 @@ export default function TeamSection({ lang }: Props) {
   const { t } = useLocale(lang);
 
   return (
-    <section id="team" className="section scroll-mt-20 bg-sand">
+    <section id="team" className="section scroll-mt-28 bg-sand">
       <div className="container-page">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">{t('team.hero.eyebrow')}</span>

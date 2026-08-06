@@ -40,9 +40,9 @@ export default function PageHero({
   children,
 }: Props) {
   return (
-    /* -mt-20 pulls this section behind the sticky header (h-20),
-       so the transparent/blur header sits on top of the dark hero — same effect as home page. */
-    <section className="relative overflow-hidden min-h-[46vh] sm:min-h-[58vh] flex flex-col justify-end bg-ink -mt-20">
+    /* The header is fixed and floats over this, so no negative margin is needed to pull
+       the hero underneath it — the padding below simply clears the bar. */
+    <section className="relative overflow-hidden min-h-[46vh] sm:min-h-[58vh] flex flex-col justify-end bg-ink">
       {/* Background */}
       {image ? (
         <div className="absolute inset-0">
@@ -70,7 +70,8 @@ export default function PageHero({
       {/* pt-44 = 20 (header) + 24 (original padding) = content sits exactly where it did before */}
       <div className="relative container-page pb-12 sm:pb-14 pt-28 sm:pt-44">
         <div className="animate-fade-in-up">
-          <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-primary-300 mb-4">
+          {/* Glass chip, echoing the floating header above it. */}
+          <span className="glass-dark inline-flex items-center gap-3 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-primary-200 mb-4">
             <span className="h-[2px] w-6 bg-primary inline-block" />
             {rule}
             {eyebrow}

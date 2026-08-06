@@ -112,7 +112,7 @@ export default function GallerySection({ lang }: Props) {
 
   return (
     <>
-      <section id="gallery" className="section scroll-mt-20 bg-white">
+      <section id="gallery" className="section scroll-mt-28 bg-white">
         <div className="container-page">
           <Reveal className="mb-10 text-center">
             <span className="eyebrow justify-center">
@@ -123,42 +123,48 @@ export default function GallerySection({ lang }: Props) {
             <p className="lead mx-auto mt-4 max-w-2xl">{t('gallery.hero.subtitle')}</p>
           </Reveal>
 
-          {/* Filters — company first, then category within it */}
-          <Reveal>
-            <div className="mb-4 flex flex-wrap justify-center gap-2">
-              <button onClick={() => selectCompany('all')} className={pillClass(company === 'all')}>
-                {t('gallery.allCompanies')}
-              </button>
-              {COMPANIES.map((c) => (
+          {/* Filters — company first, then category within it. Held in a floating glass
+              tray so the controls read as one panel rather than two loose rows. */}
+          <Reveal className="mb-10 flex justify-center">
+            <div className="glass w-full max-w-3xl p-3 sm:p-4">
+              <div className="flex flex-wrap justify-center gap-2">
                 <button
-                  key={c.id}
-                  onClick={() => selectCompany(c.id)}
-                  className={pillClass(company === c.id)}
+                  onClick={() => selectCompany('all')}
+                  className={pillClass(company === 'all')}
                 >
-                  {t(`companies.${c.id}.short`)}
+                  {t('gallery.allCompanies')}
                 </button>
-              ))}
-            </div>
-
-            {/* A single category is no choice at all, so the row only appears when there is one. */}
-            {categories.length > 1 && (
-              <div className="mb-10 flex flex-wrap justify-center gap-2">
-                {filters.map((f) => (
+                {COMPANIES.map((c) => (
                   <button
-                    key={f}
-                    onClick={() => selectFilter(f)}
-                    className={clsx(
-                      'rounded-full px-4 py-2 text-xs font-semibold transition-all',
-                      filter === f
-                        ? 'bg-ink text-white'
-                        : 'bg-transparent text-ink-500 hover:bg-ink/5 hover:text-ink',
-                    )}
+                    key={c.id}
+                    onClick={() => selectCompany(c.id)}
+                    className={pillClass(company === c.id)}
                   >
-                    {t(`gallery.filters.${f}`)}
+                    {t(`companies.${c.id}.short`)}
                   </button>
                 ))}
               </div>
-            )}
+
+              {/* A single category is no choice at all, so the row only appears when there is one. */}
+              {categories.length > 1 && (
+                <div className="mt-3 flex flex-wrap justify-center gap-2 border-t border-ink-100 pt-3">
+                  {filters.map((f) => (
+                    <button
+                      key={f}
+                      onClick={() => selectFilter(f)}
+                      className={clsx(
+                        'rounded-full px-4 py-2 text-xs font-semibold transition-all',
+                        filter === f
+                          ? 'bg-ink text-white'
+                          : 'bg-transparent text-ink-500 hover:bg-ink/5 hover:text-ink',
+                      )}
+                    >
+                      {t(`gallery.filters.${f}`)}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </Reveal>
 
           {filtered.length === 0 && (

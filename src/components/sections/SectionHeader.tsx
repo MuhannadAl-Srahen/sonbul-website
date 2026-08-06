@@ -5,6 +5,7 @@ interface Props {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  /** Centred by default so every section heading on the site reads the same way. */
   align?: 'start' | 'center';
   tone?: 'light' | 'dark';
   className?: string;
@@ -15,19 +16,14 @@ export default function SectionHeader({
   eyebrow,
   title,
   subtitle,
-  align = 'start',
+  align = 'center',
   tone = 'light',
   className,
 }: Props) {
+  const centered = align === 'center';
   return (
-    <Reveal
-      className={clsx(
-        'max-w-2xl',
-        align === 'center' && 'mx-auto text-center',
-        className,
-      )}
-    >
-      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+    <Reveal className={clsx('max-w-2xl', centered && 'mx-auto text-center', className)}>
+      {eyebrow && <span className={clsx('eyebrow', centered && 'justify-center')}>{eyebrow}</span>}
       <h2 className={clsx('heading-lg mt-3', tone === 'dark' && '!text-white')}>{title}</h2>
       {subtitle && (
         <p className={clsx('lead mt-4', tone === 'dark' && '!text-white/70')}>{subtitle}</p>

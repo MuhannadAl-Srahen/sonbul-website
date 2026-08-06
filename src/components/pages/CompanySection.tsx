@@ -72,8 +72,8 @@ export default function CompanySection({ company, section, lang }: Props) {
 
       <section className={`section-tight ${chrome.surface}`}>
         <div className="container-page">
-          <Reveal className="mb-10 max-w-2xl">
-            <span className="eyebrow">{t(`${c.i18nKey}.gallery.eyebrow`)}</span>
+          <Reveal className="mx-auto mb-10 max-w-2xl text-center">
+            <span className="eyebrow justify-center">{t(`${c.i18nKey}.gallery.eyebrow`)}</span>
             <h2 className="heading-lg mt-3">{t(`${ns}.eyebrow`)}</h2>
           </Reveal>
           <PhotoStrip
