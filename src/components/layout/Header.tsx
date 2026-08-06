@@ -112,9 +112,10 @@ export default function Header({ currentPath, lang }: Props) {
 
   return (
     /* Floating rather than pinned to the very top: a translucent bar inset from the edges,
-       riding over the hero instead of sitting in a white strip above it. Fixed, so it
-       stays put — see the overflow-x note in index.css for why `sticky` never worked. */
-    <header className="fixed inset-x-0 top-0 z-50 pt-1.5 lg:pt-2 3xl:pt-3">
+       riding over the hero instead of sitting in a white strip above it.
+       `absolute` below lg so it scrolls away on phones, `fixed` from lg up so it stays
+       put — see the overflow-x note in index.css for why `sticky` never worked. */
+    <header className="absolute lg:fixed inset-x-0 top-0 z-50 pt-1.5 lg:pt-2 3xl:pt-3">
       <div className="container-page">
         <div
           className={clsx(
@@ -163,12 +164,21 @@ export default function Header({ currentPath, lang }: Props) {
                     }
                   }}
                   className={clsx(
-                    'inline-flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors duration-200',
+                    'inline-flex items-center gap-2 rounded-lg px-2.5 2xl:px-3 py-2.5 text-sm font-semibold transition-colors duration-200',
                     current || expanded ? 'bg-primary text-white' : 'text-ink hover:bg-ink/5',
                   )}
                 >
                   <Icon className="h-4 w-4 flex-shrink-0" />
-                  <span className="whitespace-nowrap">{t(`companies.${company.id}.short`)}</span>
+                  {/* The full company name is the label, but three of them run to ~85
+                      characters and simply do not fit beside the logo, language link
+                      and quote button below 1280px — so that range keeps the short
+                      form rather than overflowing the bar. */}
+                  <span className="whitespace-nowrap xl:hidden">
+                    {t(`companies.${company.id}.short`)}
+                  </span>
+                  <span className="hidden whitespace-nowrap xl:inline">
+                    {t(`companies.${company.id}.name`)}
+                  </span>
                   <ChevronDown
                     className={clsx(
                       'h-3.5 w-3.5 flex-shrink-0 transition-transform duration-200',
@@ -184,7 +194,7 @@ export default function Header({ currentPath, lang }: Props) {
                     className="absolute top-full start-0 z-50 mt-1.5 w-72 rounded-2xl border border-ink-100 bg-white p-2 shadow-soft"
                   >
                     <p className="px-3 pb-1.5 pt-2 text-[11px] font-bold uppercase tracking-[0.16em] text-ink-400">
-                      {t(`companies.${company.id}.name`)}
+                      {t(`companies.${company.id}.short`)}
                     </p>
                     {company.nav.map((item) => (
                       <a
@@ -217,7 +227,9 @@ export default function Header({ currentPath, lang }: Props) {
             hrefLang={lang === 'ar' ? 'en' : 'ar'}
           >
             <Globe className="h-4 w-4 flex-shrink-0" />
-            <span className="hidden xl:inline">{t('lang.switchTo')}</span>
+            {/* Icon only until 2xl: xl is exactly where the nav switches to full company
+                names, and it needs every pixel of that row. */}
+            <span className="hidden 2xl:inline">{t('lang.switchTo')}</span>
           </a>
           <a href={quoteHref} className="btn-primary !py-2 !px-4 !text-sm">
             {t('nav.getQuote')}
@@ -243,11 +255,16 @@ export default function Header({ currentPath, lang }: Props) {
         id="mobile-nav"
         inert={!open}
         className={clsx(
-          'container-page lg:hidden overflow-y-auto overscroll-contain rounded-2xl border bg-white/95 backdrop-blur-xl transition-[max-height,margin] duration-300 ease-in-out',
-          open ? 'mt-2 max-h-[calc(100dvh-7rem)] border-ink-100 shadow-soft' : 'max-h-0 border-transparent',
+          'container-page lg:hidden overflow-y-auto overscroll-contain rounded-2xl backdrop-blur-xl transition-[max-height,margin] duration-300 ease-in-out',
+          open
+            ? 'mt-2 max-h-[calc(100dvh-7rem)] border border-ink-100 bg-white/95 shadow-soft'
+            : // No border and no background when closed. `max-h-0` only zeroes the
+              // content box, so a 1px border top and bottom with a background painted
+              // between them left a 2px strip permanently under the bar.
+              'max-h-0 border-0 bg-transparent',
         )}
       >
-        <div className="container-page py-4">
+        <div className="py-4">
           {COMPANIES.map((c) => {
             const Icon = companyIcons[c.id];
             return (

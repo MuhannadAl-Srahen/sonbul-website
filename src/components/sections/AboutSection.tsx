@@ -51,7 +51,9 @@ export default function AboutSection({ lang }: Props) {
         {/* Founder */}
         <div className="mt-20 grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <div className="aspect-[4/3] overflow-hidden rounded-3xl shadow-soft sm:aspect-[4/5]">
+            {/* Capped rather than filling the grid column: at half of a 1536px shell a
+                4:5 portrait rendered around 800px tall and dominated the section. */}
+            <div className="mx-auto aspect-[4/3] w-full max-w-[20rem] overflow-hidden rounded-3xl shadow-soft sm:aspect-[4/5] lg:mx-0">
               <img
                 src="/assets/people/raed-abu-sonbul.webp"
                 alt={t('about.founder.name')}

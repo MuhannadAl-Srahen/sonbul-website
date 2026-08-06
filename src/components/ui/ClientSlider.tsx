@@ -159,7 +159,7 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
         ref={ref}
         // Full-bleed and hard-edged. The previous version masked the strip to transparent
         // at both ends, which over a light section read as a grey smear, not a fade.
-        className="no-scrollbar flex cursor-grab gap-12 overflow-x-auto overscroll-x-contain px-14 py-3 active:cursor-grabbing"
+        className="no-scrollbar flex cursor-grab gap-12 overflow-x-auto overscroll-x-contain px-10 py-3 active:cursor-grabbing sm:px-14"
       >
         {[...logos, ...logos].map((src, i) => (
           <div
@@ -194,13 +194,13 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
           onClick={() => nudge(dir)}
           aria-label={dir === 1 ? t('gallery.next') : t('gallery.prev')}
           className={clsx(
-            'absolute top-1/2 z-10 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full',
+            'absolute top-1/2 z-10 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full sm:h-10 sm:w-10',
             'border border-ink-100 bg-white/85 text-ink-600 shadow-card backdrop-blur-sm',
             'transition-colors hover:bg-white hover:text-primary',
             side === 'start' ? 'start-0' : 'end-0',
           )}
         >
-          <Icon className="h-5 w-5 rtl-flip" />
+          <Icon className="h-4 w-4 rtl-flip sm:h-5 sm:w-5" />
         </button>
       ))}
     </div>
