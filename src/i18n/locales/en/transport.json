@@ -1,0 +1,184 @@
+{
+  "transport": {
+    "hero": {
+      "eyebrow": "Abu Sonbul Arab Transporters",
+      "title": "Moving Jordan forward, one shipment at a time.",
+      "subtitle": "Cross-border trucking between Jordan and Saudi Arabia, both directions — bulk commodities, project cargo and general freight on an owned fleet with trained drivers.",
+      "ctaPrimary": "Request a Quote",
+      "ctaSecondary": "See our fleet"
+    },
+    "stats": {
+      "years": { "value": 18, "suffix": "+", "label": "Years on the road" },
+      "trucks": { "value": 60, "suffix": "+", "label": "Trucks and trailers" },
+      "clients": { "value": 40, "suffix": "+", "label": "Regular shippers" },
+      "loads": { "value": 300, "suffix": "+", "label": "Loads a month" }
+    },
+    "highlights": {
+      "eyebrow": "Why shippers use us",
+      "title": "A carrier that treats your delivery date as the deliverable.",
+      "items": {
+        "reach": {
+          "title": "Jordan ⇄ Saudi Arabia, both ways",
+          "body": "Regular running between Amman, Aqaba and the Saudi industrial centres — and back loaded, not empty, which is what keeps our rates competitive."
+        },
+        "fleet": {
+          "title": "Owned fleet, in-house drivers",
+          "body": "Flatbeds, curtain-siders, tippers, tankers and lowbeds we own and maintain ourselves, driven by people on our payroll rather than spot-market subcontractors."
+        },
+        "cargo": {
+          "title": "Built for difficult loads",
+          "body": "Bulk carbonates and potash, chemicals, steel, cement, packaging and palletised FMCG — each on the trailer type it actually needs."
+        },
+        "control": {
+          "title": "One coordinator per shipment",
+          "body": "A named person who knows your load, tracks it across the border and calls you before you have to call us."
+        }
+      }
+    },
+    "services": {
+      "eyebrow": "What we haul",
+      "title": "Freight services",
+      "subtitle": "Four ways we move goods, all on the same fleet and the same coordination desk.",
+      "items": {
+        "crossBorder": {
+          "title": "Cross-border freight",
+          "short": "Jordan to Saudi Arabia and back, on schedule.",
+          "body": "Scheduled and on-demand trucking between Jordan and Saudi Arabia with the border formalities handled as part of the job, not as your problem."
+        },
+        "bulk": {
+          "title": "Bulk commodities",
+          "short": "Carbonates, potash, cement and minerals.",
+          "body": "Tipper and bulk trailers for mineral and chemical loads, with the loading and discharge coordination that bulk shippers need at both ends."
+        },
+        "projectCargo": {
+          "title": "Project & heavy cargo",
+          "short": "Lowbeds for plant, machinery and oversize loads.",
+          "body": "Lowbed and extendable trailers for machinery, plant and out-of-gauge pieces, including route planning and the permits an oversize move requires."
+        },
+        "general": {
+          "title": "General & palletised freight",
+          "short": "Curtain-siders for FMCG, packaging and steel.",
+          "body": "Curtain-sided and flatbed capacity for palletised goods, packaging, steel and finished products moving between plants, ports and distribution centres."
+        }
+      }
+    },
+    "clients": {
+      "eyebrow": "Trusted by",
+      "title": "The shippers who keep our trucks moving."
+    },
+    "gallery": {
+      "eyebrow": "On the road",
+      "title": "Our fleet at work.",
+      "seeAll": "See all photos"
+    },
+    "cta": {
+      "title": "Have a load to move?",
+      "subtitle": "Tell us the origin, the destination and what is on the pallet. We will come back with a rate and a date within one business day.",
+      "button": "Request a Quote"
+    },
+    "sections": {
+      "fleet": {
+        "eyebrow": "Our fleet",
+        "title": "The right trailer for the load, not the one that happened to be free.",
+        "subtitle": "We own and maintain our own equipment, so what turns up is what was booked.",
+        "intro": "A mixed fleet matters more than a big one. Sending bagged cement on a curtain-sider, or a transformer on a standard flatbed, costs more in delays and damage than the rate ever saves. These are the trailer types we run and what each one is for.",
+        "items": {
+          "flatbed": {
+            "title": "Flatbeds",
+            "body": "The workhorse for steel, pipe, machinery and anything crated. Loaded and secured from either side or from above, which makes them the fastest to turn around at a busy yard."
+          },
+          "curtainSider": {
+            "title": "Curtain-siders",
+            "body": "Weather protection with flatbed access. Used for palletised FMCG, packaging, paper and finished goods that need to stay dry but still load from the side."
+          },
+          "tippers": {
+            "title": "Tippers & bulk trailers",
+            "body": "For carbonates, potash, aggregates and other loose mineral loads, discharging by tipping rather than needing plant at the receiving end."
+          },
+          "lowbeds": {
+            "title": "Lowbeds & extendables",
+            "body": "For plant, machinery and out-of-gauge pieces that exceed normal height or length limits. Route surveys and permits are arranged as part of the move."
+          },
+          "tankers": {
+            "title": "Tankers",
+            "body": "For bulk liquid and chemical loads, cleaned and certified between products so there is no carry-over between consignments."
+          },
+          "maintenance": {
+            "title": "In-house maintenance",
+            "body": "Our own workshop and mechanics. A trailer that fails on the Saudi side is a week's delay, so preventive servicing is scheduled rather than reactive."
+          }
+        },
+        "seo": {
+          "title": "Truck & Trailer Fleet",
+          "description": "Flatbeds, curtain-siders, tippers, lowbeds and tankers owned and maintained in-house by Abu Sonbul Arab Transporters for cross-border freight between Jordan and Saudi Arabia."
+        }
+      },
+      "routes": {
+        "eyebrow": "Where we run",
+        "title": "Regular lanes, not one-off adventures.",
+        "subtitle": "Running the same corridors week in, week out is what makes schedules predictable and return legs loaded.",
+        "intro": "Rates and transit times get better the more often a carrier runs a lane. These are the corridors we work continuously, in both directions — which is why we can quote a return leg rather than charging you for an empty run home.",
+        "items": {
+          "central": {
+            "title": "Jordan ⇄ Riyadh and central Saudi Arabia",
+            "body": "Our busiest corridor, running through the Al-Omari crossing. Regular departures in both directions serving industrial and FMCG clients on each side."
+          },
+          "western": {
+            "title": "Jordan ⇄ Jeddah and the western region",
+            "body": "The long haul down the western side of the Kingdom, typically for building materials, packaging and project consignments."
+          },
+          "eastern": {
+            "title": "Jordan ⇄ Dammam, Jubail and the Eastern Province",
+            "body": "Serving the industrial and petrochemical belt, where the return leg is frequently bulk chemical or mineral product coming north."
+          },
+          "domestic": {
+            "title": "Inside Jordan and Aqaba port",
+            "body": "Port collections and deliveries at Aqaba, movements between plants and distribution centres, and runs out to project sites in the east and south."
+          }
+        },
+        "seo": {
+          "title": "Freight Routes Jordan to Saudi Arabia",
+          "description": "Regular loaded lanes between Jordan and Riyadh, Jeddah and Dammam via the Al-Omari crossing, plus Aqaba port and domestic Jordanian movements."
+        }
+      },
+      "cargo": {
+        "eyebrow": "What we carry",
+        "title": "Cargo we know how to handle.",
+        "subtitle": "Every category below is something we move regularly — not something we would be learning on your load.",
+        "intro": "Freight goes wrong in the details: how a load is secured, what it may not travel next to, what paperwork it needs at a border. These are the commodity groups we handle week to week, and the reasons each one needs treating differently.",
+        "items": {
+          "minerals": {
+            "title": "Carbonates, potash and minerals",
+            "body": "Bulk and bagged mineral product moving in both directions between Jordanian and Saudi processors. Weight-critical loads where axle compliance matters as much as the rate."
+          },
+          "chemicals": {
+            "title": "Chemicals and industrial liquids",
+            "body": "Handled with the documentation, segregation and trailer cleaning that chemical consignments require, in dedicated equipment."
+          },
+          "building": {
+            "title": "Steel, cement and building materials",
+            "body": "Heavy, dense and unforgiving of poor securing. Loaded to spread weight correctly and strapped for a two-day run rather than a two-hour one."
+          },
+          "fmcg": {
+            "title": "FMCG, food and packaging",
+            "body": "Palletised consumer goods and packaging materials for regional manufacturers and distributors, where the delivery window is usually the whole point."
+          },
+          "project": {
+            "title": "Project and out-of-gauge cargo",
+            "body": "Plant, machinery and pieces that will not fit a standard trailer, moved with route planning, permits and escorts where the load requires them."
+          }
+        },
+        "seo": {
+          "title": "Cargo Types We Haul",
+          "description": "Carbonates and potash, chemicals, steel and cement, palletised FMCG and out-of-gauge project cargo moved between Jordan and Saudi Arabia."
+        }
+      }
+    },
+    "seo": {
+      "home": {
+        "title": "Cross-Border Trucking Jordan & Saudi Arabia",
+        "description": "Abu Sonbul Arab Transporters moves bulk, project and general cargo between Jordan and Saudi Arabia on an owned fleet with in-house drivers. Established in Jordan since 2008."
+      }
+    }
+  }
+}

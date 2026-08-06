@@ -1,0 +1,192 @@
+{
+  "logisticsCo": {
+    "hero": {
+      "eyebrow": "Abu Sonbul For Logistic Services",
+      "title": "We get your goods across the border.",
+      "subtitle": "Trained handling crews, forklifts and lifting equipment stationed at Jordan's main crossings — with the truck and customs paperwork handled alongside.",
+      "ctaPrimary": "Talk to our border desk",
+      "ctaSecondary": "See the crossings"
+    },
+    "stats": {
+      "crossings": { "value": 4, "suffix": "", "label": "Border crossings covered" },
+      "forklifts": { "value": 12, "suffix": "+", "label": "Forklifts on station" },
+      "capacity": { "value": 25, "suffix": "t", "label": "Lifting capacity" },
+      "hours": { "value": 24, "suffix": "/7", "label": "Crews on call" }
+    },
+    "highlights": {
+      "eyebrow": "Why it works",
+      "title": "The border stops being the slow part.",
+      "items": {
+        "coverage": {
+          "title": "Four crossings, one operator",
+          "body": "Jaber, Tarbil, Al-Karamah and Al-Omari — the same crew standards, the same equipment and the same single point of contact at every one."
+        },
+        "equipment": {
+          "title": "Equipment already on site",
+          "body": "Forklifts in multiple capacities plus winches and lifting gear kept at the crossing, so your cargo moves instead of waiting on a machine to arrive."
+        },
+        "crews": {
+          "title": "Crews who have done it before",
+          "body": "Experienced teams handling palletised, bagged, drummed, bulk and oversized cargo quickly and without damage."
+        },
+        "paperwork": {
+          "title": "Paperwork moving in parallel",
+          "body": "Truck and customs documentation prepared and followed through while the cargo is handled, so nothing waits on a signature."
+        }
+      }
+    },
+    "services": {
+      "eyebrow": "What we do",
+      "title": "Border logistics services",
+      "subtitle": "Four services that together get a loaded truck from one side of a crossing to the other.",
+      "items": {
+        "crossBorder": {
+          "title": "Cross-border cargo handling",
+          "short": "Your goods, moved across the crossing.",
+          "body": "Handling crews and equipment stationed at the crossing to move your cargo across quickly and get it back on the road on the far side."
+        },
+        "lifting": {
+          "title": "Lifting & heavy handling",
+          "short": "Winches, cranes and heavy lifting gear.",
+          "body": "Winches and lifting equipment for heavy, awkward and out-of-gauge pieces that a standard forklift cannot safely take."
+        },
+        "clearance": {
+          "title": "Documentation & clearance support",
+          "short": "The paperwork, prepared and followed through.",
+          "body": "Preparation and follow-through of truck and customs documentation so your shipment clears without avoidable delay."
+        },
+        "coordination": {
+          "title": "Truck coordination",
+          "short": "Both sides of the crossing, arranged.",
+          "body": "Arranging and sequencing the trucks on each side so arrival, handling and departure line up instead of queuing."
+        }
+      }
+    },
+    "crossings": {
+      "eyebrow": "Where we operate",
+      "title": "Jordan's border crossings",
+      "subtitle": "We are present at all four of the crossings that matter for regional freight.",
+      "seeAll": "See all crossings",
+      "items": {
+        "jaber": {
+          "name": "Jaber",
+          "nameLocal": "حدود جابر",
+          "corridor": "Syria ⇄ Jordan",
+          "short": "The northern gateway, on the Amman–Damascus corridor.",
+          "body": "Our crews and forklifts at Jaber handle northbound and southbound cargo on the main Syria–Jordan corridor, with documentation support running alongside."
+        },
+        "tarbil": {
+          "name": "Tarbil",
+          "nameLocal": "طربيل",
+          "corridor": "Iraq ⇄ Jordan",
+          "short": "The eastern desert route into Iraq.",
+          "body": "Handling and lifting capability on the long desert route east, where equipment on station is the difference between a same-day turnaround and an overnight wait."
+        },
+        "alKaramah": {
+          "name": "Al-Karamah",
+          "nameLocal": "الكرامة",
+          "corridor": "Iraq ⇄ Jordan",
+          "short": "Jordan's main Iraqi freight crossing.",
+          "body": "Cross-border cargo handling and truck coordination at the busiest Jordan–Iraq freight point, with crews sized to the volume."
+        },
+        "alOmari": {
+          "name": "Al-Omari",
+          "nameLocal": "العمري",
+          "corridor": "Saudi Arabia ⇄ Jordan",
+          "short": "The southern gateway to the Gulf.",
+          "body": "The crossing most of our Saudi-bound and Saudi-origin freight passes through, with forklifts and lifting gear kept permanently on site."
+        }
+      }
+    },
+    "gallery": {
+      "eyebrow": "At the crossings",
+      "title": "Equipment and crews at work.",
+      "seeAll": "See all photos"
+    },
+    "cta": {
+      "title": "Goods waiting at a border?",
+      "subtitle": "Tell us the crossing and what is on the truck. We will tell you what it takes to get it moving.",
+      "button": "Talk to our border desk"
+    },
+    "sections": {
+      "equipment": {
+        "eyebrow": "Equipment",
+        "title": "Machines waiting at the crossing, not on their way to it.",
+        "subtitle": "Forklifts, cranes and lifting gear kept on station, with the crews to operate them.",
+        "intro": "The slowest part of a border move is usually waiting for a machine to arrive. We keep ours at the crossings, in a range of capacities, so a shipment is handled when it turns up rather than when equipment becomes free.",
+        "items": {
+          "forklifts": {
+            "title": "Forklifts in multiple capacities",
+            "body": "From light units for palletised goods up to heavy-capacity machines for dense industrial loads, so nothing is handled by a machine that is straining at it."
+          },
+          "cranes": {
+            "title": "Mobile and gantry cranes",
+            "body": "For pieces beyond forklift reach or weight — machinery, structural sections and anything that has to come off the top rather than the side."
+          },
+          "winches": {
+            "title": "Winches and recovery gear",
+            "body": "For shifted loads, awkward positioning and cargo that needs to be drawn rather than lifted."
+          },
+          "attachments": {
+            "title": "Attachments and handling gear",
+            "body": "Slings, spreaders, clamps and drum handlers, so bagged, drummed and irregular cargo is picked up the way it is designed to be picked up."
+          },
+          "crews": {
+            "title": "Certified operators",
+            "body": "The equipment comes with people who use it every day. Damage at a border is expensive to argue about and slow to resolve."
+          },
+          "maintenance": {
+            "title": "Maintained in-house",
+            "body": "Our own workshop services the fleet on a schedule, because a forklift out of action at a crossing stops more than one shipment."
+          }
+        },
+        "seo": {
+          "title": "Forklifts, Cranes & Lifting Equipment",
+          "description": "Forklifts in multiple capacities, mobile and gantry cranes, winches and handling gear stationed at Jordan's border crossings with certified operators."
+        }
+      },
+      "customs": {
+        "eyebrow": "Documentation & clearance",
+        "title": "The paperwork moves while the cargo does.",
+        "subtitle": "Truck and customs documentation prepared, submitted and followed through.",
+        "intro": "A shipment sitting complete but unsigned is still a shipment that has not arrived. We run the documentation alongside the physical handling so the two finish together, and we tell you where things stand rather than waiting to be asked.",
+        "items": {
+          "intake": {
+            "title": "Intake and checks",
+            "body": "We take the consignment details up front and check the paperwork is complete before the truck is anywhere near the crossing."
+          },
+          "documents": {
+            "title": "Document preparation",
+            "body": "Manifests, permits and supporting documents prepared to what the crossing actually expects, which is not always what the guidance says."
+          },
+          "submission": {
+            "title": "Submission and follow-through",
+            "body": "Filed with the relevant authorities and chased. Someone whose job is your file, rather than a queue number."
+          },
+          "coordination": {
+            "title": "Truck coordination",
+            "body": "Arrival, handling and departure sequenced on both sides so the trucks are not waiting on each other."
+          },
+          "release": {
+            "title": "Release and onward dispatch",
+            "body": "Cleared cargo handed to the onward carrier — often our own transport company — with the documentation that travels with it."
+          },
+          "updates": {
+            "title": "Status you do not have to chase",
+            "body": "A named contact who calls when something changes, including when it changes for the worse."
+          }
+        },
+        "seo": {
+          "title": "Customs Documentation & Clearance Support",
+          "description": "Truck and customs documentation prepared, submitted and followed through at the Jaber, Tarbil, Al-Karamah and Al-Omari crossings in Jordan."
+        }
+      }
+    },
+    "seo": {
+      "home": {
+        "title": "Border Cargo Handling & Clearance in Jordan",
+        "description": "Abu Sonbul For Logistic Services moves goods across the Jaber, Tarbil, Al-Karamah and Al-Omari crossings with forklifts, lifting equipment, trained crews and documentation support."
+      }
+    }
+  }
+}

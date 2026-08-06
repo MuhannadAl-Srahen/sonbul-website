@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import i18next from 'i18next';
-import en from './locales/en.json';
-import ar from './locales/ar.json';
+import { en, ar } from './dictionaries';
+import type { Lang } from './types';
 
-export type Lang = 'en' | 'ar';
+export type { Lang } from './types';
 
 const resources = {
   en: { translation: en },
@@ -42,8 +42,4 @@ export function useLocale(lang: Lang) {
   return instance;
 }
 
-/** Prefixes an internal path with /ar when lang is Arabic, leaves it alone otherwise. */
-export function localizedHref(path: string, lang: Lang) {
-  if (lang !== 'ar') return path;
-  return path === '/' ? '/ar' : `/ar${path}`;
-}
+export { localizedHref, stripLocale } from './href';

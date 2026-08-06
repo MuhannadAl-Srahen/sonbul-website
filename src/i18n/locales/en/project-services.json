@@ -1,0 +1,196 @@
+{
+  "projectServices": {
+    "hero": {
+      "eyebrow": "Raed Abu Sonbul & Partner",
+      "title": "Everything your project needs, before it needs it.",
+      "subtitle": "Manpower, camps, power, water, catering, housekeeping, machinery and site transport — delivered as one package so your team can get on with the actual work.",
+      "ctaPrimary": "Discuss your project",
+      "ctaSecondary": "See our projects"
+    },
+    "badge": "Trusted by ADNOC, ARGAS and other international operators.",
+    "stats": {
+      "workforce": { "value": 600, "suffix": "+", "label": "Workforce at peak" },
+      "camps": { "value": 4, "suffix": "", "label": "Camps built and run" },
+      "meals": { "value": 1800, "suffix": "+", "label": "Meals served daily" },
+      "years": { "value": 3, "suffix": "+", "label": "Years on major programmes" }
+    },
+    "highlights": {
+      "eyebrow": "How we work",
+      "title": "One contract instead of eleven.",
+      "items": {
+        "endToEnd": {
+          "title": "Everything under one roof",
+          "body": "Accommodation, food, power, water, communications, machinery and transport come from one supplier with one point of contact and one invoice."
+        },
+        "mobilise": {
+          "title": "Built for remote sites",
+          "body": "We have stood up full camps in Azraq, Sarhan and Al-Jaffr, where the nearest town is an hour away and nothing arrives unless we bring it."
+        },
+        "manufacture": {
+          "title": "We build our own caravans",
+          "body": "Accommodation, office, kitchen and ablution units manufactured in-house, so specification changes do not mean waiting on an importer."
+        },
+        "scale": {
+          "title": "Scales to 600 people",
+          "body": "The ARGAS programme peaked at a 600-strong workforce fed, housed and moved daily. We size up and down with the project."
+        }
+      }
+    },
+    "services": {
+      "eyebrow": "What we provide",
+      "title": "Project services",
+      "subtitle": "Take the whole package or just the parts you are missing.",
+      "items": {
+        "manpower": {
+          "title": "Manpower",
+          "short": "Skilled and general labour, mobilised and managed.",
+          "body": "Recruiting, mobilising, housing and supervising the workforce a project needs, from general labour to trade-qualified crews."
+        },
+        "camps": {
+          "title": "Camp construction",
+          "short": "Full project camps, built and ready to operate.",
+          "body": "Turnkey accommodation camps for energy, defence and infrastructure projects — from site preparation and levelling to handover of a running camp."
+        },
+        "infrastructure": {
+          "title": "Site infrastructure",
+          "short": "Power, water and communications on bare ground.",
+          "body": "Generators and distribution, water supply and storage, waste handling and communications — the services that make a remote site habitable."
+        },
+        "catering": {
+          "title": "Catering & housekeeping",
+          "short": "Three meals a day. Clean facilities. Happy crews.",
+          "body": "On-site kitchens, catering teams and housekeeping services that keep camps running comfortably around the clock."
+        },
+        "caravans": {
+          "title": "Caravan manufacturing",
+          "short": "Accommodation, office and kitchen units, built in-house.",
+          "body": "We manufacture our own caravan units, so specifications can be adapted to a project instead of a project being adapted to a catalogue."
+        },
+        "equipment": {
+          "title": "Heavy equipment",
+          "short": "Machinery on site, with operators.",
+          "body": "A maintained fleet of heavy equipment available for short and long-term project hire, supplied with trained operators."
+        },
+        "siteTransport": {
+          "title": "Site transport",
+          "short": "4x4s, buses and trucks for crew and materials.",
+          "body": "Daily crew movement, materials runs and supply from town, on vehicles suited to the terrain the project actually sits on."
+        },
+        "operations": {
+          "title": "Project operations",
+          "short": "Day-to-day camp and site management.",
+          "body": "End-to-end operations management so our clients can focus on their core scope while we run the ground."
+        }
+      }
+    },
+    "projects": {
+      "eyebrow": "Track record",
+      "title": "Programmes we have delivered",
+      "subtitle": "Two flagship energy programmes in the Jordanian desert, back to back.",
+      "items": {
+        "argas": {
+          "name": "ARGAS — Al-Jaffr",
+          "meta": "Seismic exploration · ~1 year · 600 workforce",
+          "short": "Camp, catering and cross-border transport for a 600-person seismic survey programme.",
+          "body": "ARGAS, the Saudi geophysical and surveying company, ran a seismic exploration programme in southern Jordan to locate oil-bearing structures. We built and operated the Al-Jaffr camp for a workforce that peaked at 600, handled the cross-border freight from Saudi Arabia, and ran catering and housekeeping for the duration of the programme."
+        },
+        "adnoc": {
+          "name": "ADNOC — Azraq & Sarhan",
+          "meta": "Drilling & extraction · 2+ years",
+          "short": "Two camps, UAE-to-Jordan transport and full site services across a multi-year drilling programme.",
+          "body": "Following the exploration work, ADNOC moved in to drill and extract from the structures that had been identified. We constructed and operated the Azraq and Sarhan camps over more than two years, moved equipment and supplies from the UAE into Jordan, and provided catering, housekeeping and day-to-day site operations throughout."
+        }
+      }
+    },
+    "gallery": {
+      "eyebrow": "On site",
+      "title": "Camps, kitchens and crews.",
+      "seeAll": "See all photos"
+    },
+    "cta": {
+      "title": "Planning a project in the field?",
+      "subtitle": "Tell us where the site is and how many people you need to house and feed. We will come back with a scope and a schedule.",
+      "button": "Start a conversation"
+    },
+    "sections": {
+      "camps": {
+        "eyebrow": "Camps & accommodation",
+        "title": "A camp is a small town you have to build before the work starts.",
+        "subtitle": "Site preparation through to a running camp, handed over ready to occupy.",
+        "intro": "On a remote site there is nothing until you bring it — no power, no water, no beds, no kitchen. We have built and run camps in Azraq, Sarhan and Al-Jaffr, and the pattern below is how each of them came together.",
+        "items": {
+          "sitePrep": {
+            "title": "Site preparation",
+            "body": "Levelling, compaction, drainage and access roads. The unglamorous stage that decides whether the camp still works after the first winter rain."
+          },
+          "accommodation": {
+            "title": "Accommodation units",
+            "body": "Sleeping units sized to the workforce and the length of the programme, insulated and air-conditioned for a Jordanian summer and a desert winter."
+          },
+          "utilities": {
+            "title": "Power, water and communications",
+            "body": "Generators with redundancy, fuel storage, potable and grey water systems, waste handling, and connectivity so the site is not cut off."
+          },
+          "facilities": {
+            "title": "Messes, ablutions and welfare",
+            "body": "Dining halls, kitchens, ablution blocks, laundry and recreation space. Crew retention on a long programme comes down to these more than to the pay."
+          },
+          "offices": {
+            "title": "Offices and stores",
+            "body": "Site offices, meeting space, medical rooms and secure stores, laid out so the client's own team can work from day one."
+          },
+          "handover": {
+            "title": "Handover or full operation",
+            "body": "Take the keys to a finished camp, or leave it with us to run — catering, housekeeping, maintenance and day-to-day site management included."
+          }
+        },
+        "seo": {
+          "title": "Project Camp Construction in Jordan",
+          "description": "Turnkey accommodation camps for energy, defence and infrastructure projects in Jordan — site preparation, accommodation, power, water, messes and full operation."
+        }
+      },
+      "catering": {
+        "eyebrow": "Catering & housekeeping",
+        "title": "Three meals a day, a thousand kilometres from a supermarket.",
+        "subtitle": "On-site kitchens, catering crews and housekeeping that keep a camp comfortable around the clock.",
+        "intro": "Feeding a workforce in the desert is a supply chain problem before it is a cooking problem. Our own trucks bring the food in, our own kitchens cook it, and our own housekeeping teams keep the place fit to come back to at the end of a shift.",
+        "items": {
+          "kitchens": {
+            "title": "On-site kitchens",
+            "body": "Fully equipped kitchens built into the camp, staffed by cooks who live on site rather than commuting from the nearest town."
+          },
+          "menus": {
+            "title": "Menus that suit the crew",
+            "body": "Rotating menus built around who is actually on site, with dietary and cultural requirements handled as normal practice rather than as exceptions."
+          },
+          "supply": {
+            "title": "Cold chain and supply",
+            "body": "Refrigerated storage on site and regular resupply runs on our own vehicles, so a remote camp is not living off whatever keeps."
+          },
+          "housekeeping": {
+            "title": "Housekeeping",
+            "body": "Daily cleaning of accommodation, offices and communal areas, with linen and laundry on a fixed rotation."
+          },
+          "hygiene": {
+            "title": "Hygiene and food safety",
+            "body": "Documented cleaning schedules, temperature logs and waste handling — the things an audit asks for, kept up when nobody is auditing."
+          },
+          "shifts": {
+            "title": "Around-the-clock service",
+            "body": "Night shifts eat too. Meal service and support run to the site's actual shift pattern, not to office hours."
+          }
+        },
+        "seo": {
+          "title": "Camp Catering & Housekeeping in Jordan",
+          "description": "On-site kitchens, catering crews, cold-chain supply, housekeeping and laundry for remote project camps in Jordan. Delivered for ADNOC and ARGAS."
+        }
+      }
+    },
+    "seo": {
+      "home": {
+        "title": "Project Camps, Catering & Manpower in Jordan",
+        "description": "Raed Abu Sonbul & Partner supplies manpower, camps, site infrastructure, catering, housekeeping and equipment for remote projects in Jordan. Delivered for ADNOC and ARGAS."
+      }
+    }
+  }
+}

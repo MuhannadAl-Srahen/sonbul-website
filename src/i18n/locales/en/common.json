@@ -1,0 +1,256 @@
+{
+  "brand": {
+    "name": "Abu Sonbul",
+    "full": "Abu Sonbul Arab Transporters",
+    "group": "Abu Sonbul Group",
+    "tagline": "Transport & Logistics Solutions in Jordan and the Middle East"
+  },
+  "companies": {
+    "transport": {
+      "name": "Abu Sonbul Arab Transporters",
+      "short": "Transport",
+      "tagline": "Cross-border trucking between Jordan and Saudi Arabia.",
+      "nav": {
+        "overview": "Overview",
+        "services": "Services",
+        "fleet": "Fleet",
+        "routes": "Routes",
+        "cargo": "Cargo"
+      }
+    },
+    "project-services": {
+      "name": "Raed Abu Sonbul & Partner",
+      "short": "Project Services",
+      "tagline": "Manpower, camps, catering and equipment for remote projects.",
+      "nav": {
+        "overview": "Overview",
+        "services": "Services",
+        "camps": "Camps",
+        "catering": "Catering",
+        "projects": "Projects"
+      }
+    },
+    "logistics": {
+      "name": "Abu Sonbul For Logistic Services",
+      "short": "Logistic Services",
+      "tagline": "Getting your goods across Jordan's border crossings.",
+      "nav": {
+        "overview": "Overview",
+        "services": "Services",
+        "crossings": "Border Crossings",
+        "equipment": "Equipment",
+        "customs": "Customs"
+      }
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "logistics": "Logistics",
+    "equipment": "Heavy Equipment",
+    "gallery": "Gallery",
+    "team": "Team",
+    "contact": "Contact",
+    "getQuote": "Get a Quote",
+    "ourCompanies": "Our companies",
+    "youAreHere": "You are here",
+    "groupHome": "Group home",
+    "explore": "Explore"
+  },
+  "lang": {
+    "switchTo": "العربية"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist or was moved. Try one of our three companies instead.",
+    "home": "Go to the group home"
+  },
+  "common": {
+    "knowMore": "Know more",
+    "viewAll": "Explore all services",
+    "backTo": "Back to"
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About Abu Sonbul",
+      "title": "Built in Jordan. Trusted across the region.",
+      "subtitle": "A Jordanian group of three companies — cross-border transport, project services and border logistics — founded by one family and run to one standard."
+    },
+    "story": {
+      "eyebrow": "Our story",
+      "title": "From a single transport license in 2008 to a group of three companies.",
+      "body": "Abu Sonbul was established in Jordan in 2008 by Mr. Raed Abdel Fatah Abu Sonbul, on one transport licence. As the work grew it separated into three companies rather than one sprawling one: Abu Sonbul Arab Transporters for cross-border freight, Raed Abu Sonbul & Partner for everything a remote project needs to operate, and Abu Sonbul For Logistic Services for moving goods through Jordan's border crossings. Each stands on its own, with its own fleet, crews and clients — and together they cover a shipment from the loading bay to the far side of the border and out to the site.",
+      "stats": [
+        {
+          "k": "2008",
+          "v": "Founded in Amman"
+        },
+        {
+          "k": "30+",
+          "v": "Years of leadership experience"
+        },
+        {
+          "k": "3",
+          "v": "Companies in the group"
+        },
+        {
+          "k": "80+",
+          "v": "People on our payroll"
+        }
+      ]
+    },
+    "companies": {
+      "eyebrow": "Group structure",
+      "title": "Three companies, one owner.",
+      "subtitle": "Separating the businesses means each one is judged on its own work — and it means you deal with specialists rather than a generalist."
+    },
+    "founder": {
+      "eyebrow": "Founder & General Manager",
+      "name": "Mr. Raed Abdel Fatah Abu Sonbul",
+      "videoCaption": "A message from our founder.",
+      "points": [
+        "Over 30 years of experience in logistics, transport and project management.",
+        "Strong leadership in executing large-scale projects in Jordan.",
+        "Visionary approach in growing the Abu Sonbul group into new markets.",
+        "Committed to delivering excellence and building long-term partnerships.",
+        "Personally directed the ADNOC Azraq and Sarhan camp programmes — 2+ years of full-service delivery including camp construction, cross-border transport from the UAE, catering and housekeeping.",
+        "Led the ARGAS Al-Jaffr project in southern Jordan, overseeing cross-border freight from Saudi Arabia, full camp construction and daily site operations.",
+        "Built and scaled a team of over 80 professionals across six specialised departments.",
+        "Established long-term partnerships with major energy sector operators including ADNOC, ARGAS and government entities."
+      ]
+    },
+    "values": {
+      "eyebrow": "Our values",
+      "title": "What we stand for",
+      "subtitle": "The principles that guide every decision we make — from the smallest shipment to the largest camp project.",
+      "items": {
+        "integrity": {
+          "title": "Integrity",
+          "body": "We honour our commitments — to clients, to our team and to the communities we operate in."
+        },
+        "safety": {
+          "title": "Safety first",
+          "body": "Every shipment, camp and worksite is run with strict safety standards."
+        },
+        "excellence": {
+          "title": "Operational excellence",
+          "body": "We invest in people, equipment and process so that delivery is predictable."
+        },
+        "partnership": {
+          "title": "Long-term partnership",
+          "body": "We measure success by the years our clients stay with us."
+        }
+      }
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Our services",
+      "title": "Every service, across three companies.",
+      "subtitle": "Sixteen services in total. Each one belongs to the company that actually delivers it, so you deal with the people doing the work rather than a middle layer."
+    },
+    "allFrom": "All services from"
+  },
+  "gallery": {
+    "hero": {
+      "eyebrow": "Gallery",
+      "title": "On the ground, across the region.",
+      "subtitle": "A look at our fleet, equipment, camps and project sites."
+    },
+    "filters": {
+      "all": "All",
+      "transport": "Transportation & Fleet",
+      "equipment": "Heavy Equipment",
+      "camps": "Camps & Accommodation",
+      "catering": "Catering & Housekeeping",
+      "projects": "Project Sites"
+    },
+    "allCompanies": "All companies",
+    "empty": "No photos here yet — try another company or category.",
+    "playVideo": "Play video",
+    "loadMore": "Load more ",
+    "prev": "Previous",
+    "next": "Next",
+    "of": "of"
+  },
+  "team": {
+    "hero": {
+      "eyebrow": "Our team",
+      "title": "The people behind every shipment.",
+      "subtitle": "A multidisciplinary team running transport, logistics, operations, maintenance, sales and finance under one roof."
+    },
+    "leadership": "Leadership",
+    "leadershipTitle": "Leadership team",
+    "leadershipSubtitle": "Experienced leaders who have built Abu Sonbul into Jordan's most trusted logistics group.",
+    "departments": "Departments",
+    "departmentsTitle": "Departments & specialists",
+    "departmentsSubtitle": "Dedicated teams covering every aspect of logistics, transport and project operations.",
+    "roles": {
+      "gm": "General Manager",
+      "vp": "Vice President",
+      "ceo": "CEO",
+      "operations": "Operations Lead",
+      "transportation": "Dispatcher Team",
+      "logistics": "Logistics Team",
+      "ops": "Operations Team",
+      "maintenance": "Maintenance Team",
+      "sales": "Sales Team",
+      "finance": "Finance Team"
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Let's plan your next move.",
+      "subtitle": "Tell us about your project. We will get back within one business day."
+    },
+    "oneDesk": {
+      "eyebrow": "One number for all three",
+      "title": "One office. One team. Whichever company you need.",
+      "body": "You do not have to work out which of our companies to approach. The same people answer for all three, from the same office in Amman — tell us what you need and it gets to the right crew from there."
+    },
+    "getInTouch": "Get in touch",
+    "quoteSubject": "Quote request",
+    "mapTitle": "Find us in Amman",
+    "labels": {
+      "office": "Office",
+      "email": "Email",
+      "phone": "Phone",
+      "hours": "Working hours"
+    },
+    "form": {
+      "name": "Full name",
+      "email": "Email address",
+      "phone": "Phone (optional)",
+      "subject": "Subject",
+      "message": "How can we help?",
+      "send": "Send message",
+      "sending": "Sending...",
+      "success": "Thanks — your message has been sent. We'll be in touch shortly.",
+      "error": "Something went wrong. Please email us directly at info@abusonbul-transporters.com."
+    },
+    "info": {
+      "address": "Jordan, Amman, Sahab, Al-Faisaliah",
+      "email": "info@abusonbul-transporters.com",
+      "phone": "+962 79 570 0658",
+      "phone2": "+962 79 912 8641",
+      "hours": "Sat – Thu · 8:00 – 16:00"
+    }
+  },
+  "teamMember": {
+    "profileTitle": "Profile & Responsibilities",
+    "idTitle": "Digital ID",
+    "scanLabel": "Scan to view profile",
+    "backToTeam": "Back to Team",
+    "viewProfile": "View Profile",
+    "downloadId": "Download ID"
+  },
+  "footer": {
+    "tagline": "Transport & Logistics Solutions in Jordan and the Middle East.",
+    "explore": "Explore",
+    "services": "Services",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  }
+}

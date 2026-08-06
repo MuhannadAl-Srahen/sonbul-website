@@ -1,0 +1,88 @@
+{
+  "group": {
+    "hero": {
+      "eyebrow": "Established in Jordan since 2008",
+      "title": "Three companies. One standard on the ground.",
+      "subtitle": "Abu Sonbul covers the road, the site and the border — cross-border trucking, everything a remote project needs to run, and getting goods through Jordan's crossings. Whichever you need, it comes from people who answer to the same name.",
+      "ctaPrimary": "Get a Quote",
+      "ctaSecondary": "Meet the companies"
+    },
+    "stats": {
+      "years": "Years in business",
+      "projects": "Major projects",
+      "clients": "Trusted clients",
+      "team": "Team members"
+    },
+    "companies": {
+      "eyebrow": "Our companies",
+      "title": "Three businesses, built around what Jordan actually moves.",
+      "subtitle": "Each one stands on its own, with its own fleet, crews and clients. Together they cover a shipment from the loading bay to the far side of the border and out to the site.",
+      "items": {
+        "transport": {
+          "body": "Cross-border trucking between Jordan and Saudi Arabia, both directions. Bulk carbonates and potash, chemicals, steel, cement and palletised goods, on an owned fleet with in-house drivers."
+        },
+        "project-services": {
+          "body": "Everything a remote project needs to operate: manpower, camps, power and water, catering, housekeeping, machinery and site transport. Delivered for ADNOC and ARGAS in the Jordanian desert."
+        },
+        "logistics": {
+          "body": "Getting goods across the Jaber, Tarbil, Al-Karamah and Al-Omari crossings, with forklifts and lifting equipment on station and the paperwork moving in parallel."
+        }
+      }
+    },
+    "why": {
+      "eyebrow": "Why Abu Sonbul",
+      "title": "The operator international companies trust in Jordan.",
+      "badge": "Trusted by ADNOC, ARGAS and other international operators.",
+      "items": {
+        "experience": {
+          "title": "Three decades of leadership",
+          "body": "Founded in 2008 and led by a team whose transport and project experience goes back thirty years."
+        },
+        "integrated": {
+          "title": "One group, three specialisms",
+          "body": "Road freight, project services and border logistics under one owner — so the handover between them is an internal matter, not your problem."
+        },
+        "regional": {
+          "title": "Working across four borders",
+          "body": "Daily operations in Jordan with freight and crews moving to and from Saudi Arabia, Iraq, Syria and the UAE."
+        },
+        "people": {
+          "title": "Owned assets, employed people",
+          "body": "Trucks, forklifts and heavy equipment we own and maintain, operated by a workforce of more than eighty on our own payroll."
+        }
+      }
+    },
+    "video": {
+      "eyebrow": "From the Founder",
+      "title": "A word from our General Manager",
+      "subtitle": "Mr. Raed Abu Sonbul shares his vision for the group and what drives our team every day.",
+      "play": "Watch video",
+      "attribution": "Mr. Raed Abdel Fatah Abu Sonbul — Founder & General Manager"
+    },
+    "clients": {
+      "eyebrow": "Trusted by",
+      "title": "Companies that rely on Abu Sonbul."
+    },
+    "headOffice": {
+      "eyebrow": "Where we are",
+      "title": "Head Office — Amman",
+      "points": [
+        "Fully equipped offices with management, operations and support teams",
+        "Strategic location for serving projects across Jordan",
+        "Direct access to main highways for transport and logistics",
+        "Central coordination for all three companies and every project site"
+      ]
+    },
+    "cta": {
+      "title": "Have a project in Jordan?",
+      "subtitle": "Tell us what you need to move, build or get across a border. One team covers all three companies, and we respond within one business day.",
+      "button": "Start a conversation"
+    },
+    "seo": {
+      "home": {
+        "title": "Transport, Project Services & Border Logistics in Jordan",
+        "description": "Abu Sonbul is a Jordanian group of three companies: cross-border trucking to Saudi Arabia, full services for remote project sites, and cargo handling at Jordan's border crossings. Established 2008."
+      }
+    }
+  }
+}
