@@ -95,7 +95,16 @@
   }
 }
 
-html[dir='rtl'] .rtl-flip { transform: scaleX(-1); }
+/* Mirrors directional icons in RTL. Written as Tailwind's own transform chain rather than
+   a bare `transform: scaleX(-1)` so it COMPOSES with utilities on the same element instead
+   of replacing them — a plain declaration silently discarded `rotate-180` (making every
+   "back" arrow point forward in Arabic) and every `group-hover:translate-x-*` slide. */
+html[dir='rtl'] .rtl-flip {
+  --tw-scale-x: -1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+    skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+    scaleY(var(--tw-scale-y));
+}
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -222,6 +231,25 @@ html[dir='rtl'] .hatch {
 /* Arabic needs more x-height than the 10-11px Latin nav micro-labels allow */
 html[dir='rtl'] .nav-micro {
   font-size: 0.75rem;
+}
+
+/* Keyboard users would otherwise tab the logo, switcher, five nav pills, the language
+   link and the quote button before reaching content, on every one of the 99 pages. */
+.skip-link {
+  position: absolute;
+  inset-inline-start: 0.75rem;
+  top: -4rem;
+  z-index: 100;
+  border-radius: 0.5rem;
+  background: #c8102e;
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: top 0.15s ease-out;
+}
+.skip-link:focus {
+  top: 0.75rem;
 }
 
 /* ── Motion ─────────────────────────────────────────── */

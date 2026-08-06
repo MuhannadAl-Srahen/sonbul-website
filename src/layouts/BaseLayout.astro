@@ -3,6 +3,7 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer.astro';
 import SEO from '../components/seo/SEO.astro';
 import type { Lang } from '../i18n/types';
+import { dict } from '../i18n/dictionaries';
 import { companyFromPath } from '../data/companies';
 import '../index.css';
 
@@ -18,6 +19,12 @@ interface Props {
 }
 
 const { title, description, path, lang, image, schema, person, noindex } = Astro.props;
+
+// The group hub uses the shared hero; every company page uses its own. Both are the
+// largest paint on their page.
+const isHome = path === '/' || path === '/ar/';
+const preloadImage =
+  companyFromPath(path)?.heroImage ?? (isHome ? '/assets/hero/hero.jpg' : undefined);
 
 // Resolved once and shared with both the header and the structured data, so the visible
 // navigation can never disagree with the page's schema about which company we are in.
@@ -49,15 +56,24 @@ const company = companyFromPath(path);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    {/* Playfair Display used to be requested here. Nothing referenced it — `font-display`
+        maps to Inter in tailwind.config.js — so it was a render-blocking request for a
+        font that never rendered. */}
+
+    {/* The LCP image on most pages. The preload scanner only finds it after parsing the
+        page and both stylesheets, which is too late on a slow connection. */}
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
 
     <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col">
+    <a href="#main" class="skip-link">{dict[lang].nav.skipToContent}</a>
     <Header currentPath={path} lang={lang} companyId={company?.id} client:load />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer lang={lang} />
@@ -92,9 +108,14 @@ const company = companyFromPath(path);
         Array.prototype.forEach.call(els, function (el) {
           io.observe(el);
         });
-        // Safety net: anything the observer never reported still becomes visible.
+        // Safety net for an observer that never fires. Deliberately limited to what is
+        // actually on screen: revealing everything would switch the scroll animation off
+        // for the whole page after 1.5s, which is what an earlier version did.
         setTimeout(function () {
-          Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), show);
+          Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), function (el) {
+            var r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) show(el);
+          });
         }, 1500);
       })();
     </script>

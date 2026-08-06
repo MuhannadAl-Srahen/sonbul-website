@@ -21,7 +21,7 @@ export default function CTABand({ title, subtitle, cta, badge }: Props) {
               {cta.label}
               <ArrowRight className="h-4 w-4 rtl-flip" />
             </a>
-            {badge && <p className="mt-6 text-xs uppercase tracking-wider text-white/40">{badge}</p>}
+            {badge && <p className="mt-6 text-xs uppercase tracking-wider text-white/60">{badge}</p>}
           </div>
         </Reveal>
       </div>

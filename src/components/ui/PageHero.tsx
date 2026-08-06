@@ -10,7 +10,7 @@ export type HeroOverlay = 'sweep' | 'lift' | 'diagonal';
 
 const overlays: Record<HeroOverlay, string> = {
   // Motion along a road — the incumbent treatment.
-  sweep: 'bg-gradient-to-r rtl:bg-gradient-to-l from-ink/90 via-ink/72 to-ink/35',
+  sweep: 'bg-gradient-to-r rtl:bg-gradient-to-l from-ink/90 via-ink/75 to-ink/35',
   // Settled ground, a camp on a site.
   lift: 'bg-gradient-to-t from-ink via-ink/80 to-ink/35',
   // Heavy iron in a border yard. primary-900 at 55% is near-black with a red bias.

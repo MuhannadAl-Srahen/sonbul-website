@@ -38,7 +38,7 @@ export default function StatStrip({ items, className }: Props) {
             <div className="text-3xl md:text-4xl font-bold tabular-nums">
               <StatCounter end={s.end} suffix={s.suffix} />
             </div>
-            <p className="mt-1 text-xs text-white/75 uppercase tracking-wider">{s.label}</p>
+            <p className="mt-1 text-xs text-white/90 uppercase tracking-wider">{s.label}</p>
           </Reveal>
         ))}
       </div>
