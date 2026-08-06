@@ -1,0 +1,125 @@
+---
+/**
+ * Everything that goes in <head> except the fonts and the favicon.
+ *
+ * Extracted out of BaseLayout because the JSON-LD graph's *shape* depends on the page
+ * type (group hub / company / contact / person / shared), and that branching does not
+ * belong in a layout whose job is header-main-footer.
+ */
+import type { Lang } from '../../i18n/types';
+import { dict } from '../../i18n/dictionaries';
+import { SITE_NAME } from '../../config/site';
+import type { Company } from '../../data/companies';
+import {
+  companyGraph,
+  groupGraph,
+  localBusinessGraph,
+  personGraph,
+  sharedPageGraph,
+} from '../../lib/jsonld';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  lang: Lang;
+  image?: string;
+  company?: Company;
+  /** Structured data to emit instead of the type inferred from `path`. */
+  schema?: 'auto' | 'contact' | 'person' | 'none';
+  person?: { name: string; jobTitle: string; image?: string };
+  /** 404s and the like: no index, and no canonical/hreflang claiming to be a real page. */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path,
+  lang,
+  image,
+  company,
+  schema = 'auto',
+  person,
+  noindex = false,
+} = Astro.props;
+
+// `site` in astro.config.mjs is the single source of truth for the origin.
+const origin = Astro.site!.href.replace(/\/$/, '');
+const abs = (p: string) => `${origin}${p.startsWith('/') ? p : `/${p}`}`;
+
+const t = dict[lang];
+const companyName = company ? t.companies[company.id].name : undefined;
+
+// The suffix follows whichever entity owns the page. Hardcoding one company's name here
+// would be wrong on two thirds of the site.
+const suffix = companyName ?? SITE_NAME[lang];
+const fullTitle = title === suffix ? title : `${title} — ${suffix}`;
+
+const canonical = abs(path === '/' ? '' : path);
+// TODO(phase 9): swap the fallback for purpose-made 1200x630 OG art.
+const ogImage = abs(image ?? company?.image ?? '/assets/hero/hero.jpg');
+
+const enPath = lang === 'ar' ? path.replace(/^\/ar(?=\/|$)/, '') || '/' : path;
+const arPath = lang === 'ar' ? path : path === '/' ? '/ar' : `/ar${path}`;
+const enUrl = abs(enPath === '/' ? '' : enPath);
+const arUrl = abs(arPath);
+
+const ctx = { lang, origin, canonical, title: fullTitle, description, image: ogImage };
+
+const graph =
+  schema === 'none'
+    ? null
+    : schema === 'contact'
+      ? localBusinessGraph(ctx)
+      : schema === 'person' && person
+        ? personGraph(ctx, person)
+        : company
+          ? companyGraph(ctx, company, {
+              name: dict.en.companies[company.id].name,
+              altName: dict.ar.companies[company.id].name,
+              services: [],
+            })
+          : enPath === '/'
+            ? groupGraph(ctx)
+            : sharedPageGraph(ctx);
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta
+  name="robots"
+  content={noindex
+    ? 'noindex,follow'
+    : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'}
+/>
+
+{
+  !noindex && (
+    <>
+      <link rel="canonical" href={canonical} />
+      <link rel="alternate" hreflang="en" href={enUrl} />
+      <link rel="alternate" hreflang="ar" href={arUrl} />
+      <link rel="alternate" hreflang="x-default" href={enUrl} />
+    </>
+  )
+}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITE_NAME[lang]} />
+<meta property="og:locale" content={lang === 'ar' ? 'ar_JO' : 'en_US'} />
+<meta property="og:locale:alternate" content={lang === 'ar' ? 'en_US' : 'ar_JO'} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={title} />
+{/* og:image:width/height go back once phase 9 ships real 1200x630 art — declaring
+    dimensions the stand-in does not have would just mislead crawlers. */}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{graph && <script type="application/ld+json" is:inline set:html={JSON.stringify(graph)} />}

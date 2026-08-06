@@ -16,6 +16,23 @@ RewriteRule ^contact-ar\.html$ /ar/contact [R=301,L]
 RewriteRule ^service\.html$ /services [R=301,L]
 RewriteRule ^service-ar\.html$ /ar/services [R=301,L]
 
+# /ar exists, so people and bots guess at /en too
+RewriteRule ^en/?$ / [R=301,L]
+RewriteRule ^en/(.*)$ /$1 [R=301,L]
+
+# Short aliases for print material and QR codes. Keep in step with vercel.json and web.config.
+RewriteRule ^(ar/)?transportation/?$ /$1transport [R=301,L]
+RewriteRule ^(ar/)?fleet/?$ /$1transport/fleet [R=301,L]
+RewriteRule ^(ar/)?routes/?$ /$1transport/routes [R=301,L]
+RewriteRule ^(ar/)?cargo/?$ /$1transport/cargo [R=301,L]
+RewriteRule ^(ar/)?projects/?$ /$1project-services/projects [R=301,L]
+RewriteRule ^(ar/)?camps/?$ /$1project-services/camps [R=301,L]
+RewriteRule ^(ar/)?catering/?$ /$1project-services/catering [R=301,L]
+RewriteRule ^(ar/)?(borders|crossings)/?$ /$1logistics/crossings [R=301,L]
+RewriteRule ^(ar/)?customs/?$ /$1logistics/customs [R=301,L]
+# Ambiguous between two companies, so it lands on the group index that lists both.
+RewriteRule ^(ar/)?equipment/?$ /$1services [R=301,L]
+
 ErrorDocument 404 /404.html
 
 <IfModule mod_headers.c>

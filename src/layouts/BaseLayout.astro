@@ -1,7 +1,9 @@
 ---
 import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
-import type { Lang } from '../i18n';
+import Footer from '../components/layout/Footer.astro';
+import SEO from '../components/seo/SEO.astro';
+import type { Lang } from '../i18n/types';
+import { companyFromPath } from '../data/companies';
 import '../index.css';
 
 interface Props {
@@ -10,19 +12,16 @@ interface Props {
   path: string;
   lang: Lang;
   image?: string;
+  schema?: 'auto' | 'contact' | 'person' | 'none';
+  person?: { name: string; jobTitle: string; image?: string };
+  noindex?: boolean;
 }
 
-const { title, description, path, lang, image = '/assets/logo/logo.png' } = Astro.props;
+const { title, description, path, lang, image, schema, person, noindex } = Astro.props;
 
-const SITE_URL = 'https://www.abusonbul-transporters.com';
-const fullTitle = `${title} — Abu Sonbul Arab Transporters`;
-const canonical = `${SITE_URL}${path === '/' ? '' : path}`;
-
-// path is always the current (possibly /ar-prefixed) URL — derive the sibling URL in the other language.
-const enPath = lang === 'ar' ? (path.replace(/^\/ar/, '') || '/') : path;
-const arPath = lang === 'ar' ? path : (path === '/' ? '/ar' : `/ar${path}`);
-const enUrl = `${SITE_URL}${enPath === '/' ? '' : enPath}`;
-const arUrl = `${SITE_URL}${arPath}`;
+// Resolved once and shared with both the header and the structured data, so the visible
+// navigation can never disagree with the page's schema about which company we are in.
+const company = companyFromPath(path);
 ---
 
 <!doctype html>
@@ -34,16 +33,18 @@ const arUrl = `${SITE_URL}${arPath}`;
     <link rel="apple-touch-icon" href="/ficon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#C8102E" />
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href={enUrl} />
-    <link rel="alternate" hreflang="ar" href={arUrl} />
-    <link rel="alternate" hreflang="x-default" href={enUrl} />
-    <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:type" content="website" />
+
+    <SEO
+      title={title}
+      description={description}
+      path={path}
+      lang={lang}
+      image={image}
+      company={company}
+      schema={schema}
+      person={person}
+      noindex={noindex}
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -52,13 +53,58 @@ const arUrl = `${SITE_URL}${arPath}`;
       rel="stylesheet"
     />
 
-    <title>{fullTitle}</title>
+    <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col">
-    <Header currentPath={path} lang={lang} client:load />
+    <Header currentPath={path} lang={lang} companyId={company?.id} client:load />
     <main class="flex-1">
       <slot />
     </main>
-    <Footer lang={lang} client:load />
+    <Footer lang={lang} />
+
+    {/* Drives every [data-reveal] on the page. Lives here rather than inside the Reveal
+        component so a failed island can never leave a section stranded at opacity 0. */}
+    <script is:inline>
+      (function () {
+        // Inline styles rather than a class: React owns `className` and `data-*` on these
+        // nodes and would drop a class we added on its next render, but it never removes
+        // style properties that were not in its own style prop.
+        var show = function (el) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        };
+        var els = document.querySelectorAll('[data-reveal]');
+        if (!('IntersectionObserver' in window)) {
+          Array.prototype.forEach.call(els, show);
+          return;
+        }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                show(e.target);
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.05, rootMargin: '0px 0px -40px 0px' },
+        );
+        Array.prototype.forEach.call(els, function (el) {
+          io.observe(el);
+        });
+        // Safety net: anything the observer never reported still becomes visible.
+        setTimeout(function () {
+          Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), show);
+        }, 1500);
+      })();
+    </script>
+    <noscript>
+      <style>
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
   </body>
 </html>
