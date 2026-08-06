@@ -32,3 +32,5 @@ DEPLOY.md
 # Source media originals — only the optimized derivatives in public/assets are committed.
 # Re-runnable via `node scripts/build-media.mjs`.
 media-src/
+
+website-renovation-files
