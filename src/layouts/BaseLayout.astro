@@ -89,9 +89,11 @@ const company = companyFromPath(path);
           el.style.opacity = '1';
           el.style.transform = 'none';
         };
-        var els = document.querySelectorAll('[data-reveal]');
+        var all = function () {
+          return document.querySelectorAll('[data-reveal]');
+        };
         if (!('IntersectionObserver' in window)) {
-          Array.prototype.forEach.call(els, show);
+          Array.prototype.forEach.call(all(), show);
           return;
         }
         var io = new IntersectionObserver(
@@ -105,14 +107,41 @@ const company = companyFromPath(path);
           },
           { threshold: 0.05, rootMargin: '0px 0px -40px 0px' },
         );
-        Array.prototype.forEach.call(els, function (el) {
-          io.observe(el);
-        });
+        // Tracked so a rescan cannot re-observe something already revealed and
+        // unobserved, which would restart its animation.
+        var seen = new WeakSet();
+        var scan = function () {
+          Array.prototype.forEach.call(all(), function (el) {
+            if (seen.has(el)) return;
+            seen.add(el);
+            io.observe(el);
+          });
+        };
+        scan();
+
+        // A page is one big island, and when an island fails to hydrate React recovers
+        // by throwing away the server markup and rebuilding the subtree from scratch.
+        // The replacements are not the nodes we observed, the originals were already
+        // unobserved as they revealed, and the timeout below has long since fired — so
+        // without this rescan every section stays at opacity 0 and the page reads as
+        // blank. That has happened twice: once on /contact, once on the landing page.
+        if ('MutationObserver' in window) {
+          var queued = false;
+          new MutationObserver(function () {
+            if (queued) return;
+            queued = true;
+            requestAnimationFrame(function () {
+              queued = false;
+              scan();
+            });
+          }).observe(document.body, { childList: true, subtree: true });
+        }
+
         // Safety net for an observer that never fires. Deliberately limited to what is
         // actually on screen: revealing everything would switch the scroll animation off
         // for the whole page after 1.5s, which is what an earlier version did.
         setTimeout(function () {
-          Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), function (el) {
+          Array.prototype.forEach.call(all(), function (el) {
             var r = el.getBoundingClientRect();
             if (r.top < window.innerHeight && r.bottom > 0) show(el);
           });
