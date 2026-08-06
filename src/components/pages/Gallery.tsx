@@ -8,10 +8,13 @@ import PageHero from '../ui/PageHero';
 import Reveal from '../ui/Reveal';
 import { useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
-import { galleryItems, GALLERY_CATEGORIES } from '../../data/galleryItems';
-import type { GalleryCategory } from '../../data/galleryItems';
+import { galleryItems } from '../../data/galleryItems';
+import { categoriesFor, type GalleryCategory, type MediaTag } from '../../data/media';
+import { COMPANIES, type CompanyId } from '../../data/companies';
+import { useQueryParam } from '../../hooks/useQueryParam';
 
 type Filter = 'all' | GalleryCategory;
+type CompanyFilter = 'all' | CompanyId;
 
 const PAGE_SIZE = 16;
 
@@ -19,9 +22,14 @@ interface Props {
   lang: Lang;
 }
 
+interface Selection {
+  company: CompanyFilter;
+  filter: Filter;
+  tag: MediaTag | null;
+}
+
 export default function Gallery({ lang }: Props) {
   const { t } = useLocale(lang);
-  const [filter, setFilter] = useState<Filter>('all');
   const [page, setPage] = useState(0);
   const [openIndex, setOpenIndex] = useState(-1);
   // Track which images failed to load so they are hidden
@@ -31,10 +39,34 @@ export default function Gallery({ lang }: Props) {
     setBrokenSrcs((prev) => new Set(prev).add(src));
   }, []);
 
+  // The deep link seeds the filters; a click replaces them wholesale. Holding the whole
+  // selection in one piece of state keeps "changing company clears the category" honest.
+  const paramCompany = useQueryParam('company');
+  const paramCategory = useQueryParam('category');
+  const paramTag = useQueryParam('tag');
+  const [selection, setSelection] = useState<Selection | null>(null);
+
+  const { company, filter, tag } = selection ?? {
+    company: COMPANIES.some((c) => c.id === paramCompany) ? (paramCompany as CompanyId) : 'all',
+    filter: (paramCategory as Filter) ?? 'all',
+    tag: (paramTag as MediaTag) ?? null,
+  };
+
   const filtered = useMemo(() => {
-    const base = filter === 'all' ? galleryItems : galleryItems.filter((i) => i.category === filter);
+    let base = galleryItems;
+    if (company !== 'all') base = base.filter((i) => i.company === company);
+    if (filter !== 'all') base = base.filter((i) => i.category === filter);
+    // A tag that matches nothing is ignored rather than emptying the grid — the library
+    // is only fully tagged in the final pass.
+    if (tag) {
+      const tagged = base.filter((i) => i.tags.includes(tag));
+      if (tagged.length) base = tagged;
+    }
     return base.filter((i) => !brokenSrcs.has(i.thumb));
-  }, [filter, brokenSrcs]);
+  }, [company, filter, tag, brokenSrcs]);
+
+  // Only the categories the selected company actually has photos in.
+  const categories = useMemo(() => categoriesFor(company), [company]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages - 1);
@@ -59,13 +91,25 @@ export default function Gallery({ lang }: Props) {
     [filtered],
   );
 
-  const selectFilter = (f: Filter) => { setFilter(f); setPage(0); };
+  const selectFilter = (f: Filter) => { setSelection({ company, filter: f, tag: null }); setPage(0); };
+
+  // Switching company clears the category, which may not exist for the new one.
+  const selectCompany = (c: CompanyFilter) => { setSelection({ company: c, filter: 'all', tag: null }); setPage(0); };
 
   const goToPage = (p: number) => {
     setPage(p);
   };
 
-  const filters: Filter[] = ['all', ...GALLERY_CATEGORIES];
+  const filters: Filter[] = ['all', ...categories];
+
+  const pillClass = (active: boolean) =>
+    clsx(
+      'rounded-full px-5 py-2.5 text-sm font-semibold transition-all',
+      active ? 'bg-primary text-white shadow-sm' : 'bg-ink/5 text-ink hover:bg-ink/10',
+    );
+
+  const altFor = (item: (typeof galleryItems)[number]) =>
+    item.alt?.[lang] ?? `${t(`companies.${item.company}.short`)} — ${t(`gallery.filters.${item.category}`)}`;
 
   return (
     <>
@@ -87,38 +131,64 @@ export default function Gallery({ lang }: Props) {
             <p className="lead">{t('gallery.hero.subtitle')}</p>
           </Reveal>
 
-          {/* Filters */}
+          {/* Filters — company first, then category within it */}
           <Reveal>
-            <div className="flex flex-wrap gap-2 mb-10 justify-center">
-              {filters.map((f) => (
+            <div className="mb-4 flex flex-wrap justify-center gap-2">
+              <button onClick={() => selectCompany('all')} className={pillClass(company === 'all')}>
+                {t('gallery.allCompanies')}
+              </button>
+              {COMPANIES.map((c) => (
                 <button
-                  key={f}
-                  onClick={() => selectFilter(f)}
-                  className={clsx(
-                    'rounded-full px-5 py-2.5 text-sm font-semibold transition-all',
-                    filter === f
-                      ? 'bg-primary text-white shadow-sm'
-                      : 'bg-ink/5 text-ink hover:bg-ink/10',
-                  )}
+                  key={c.id}
+                  onClick={() => selectCompany(c.id)}
+                  className={pillClass(company === c.id)}
                 >
-                  {t(`gallery.filters.${f}`)}
+                  {t(`companies.${c.id}.short`)}
                 </button>
               ))}
             </div>
+
+            {/* A single category is no choice at all, so the row only appears when there is one. */}
+            {categories.length > 1 && (
+              <div className="mb-10 flex flex-wrap justify-center gap-2">
+                {filters.map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => selectFilter(f)}
+                    className={clsx(
+                      'rounded-full px-4 py-2 text-xs font-semibold transition-all',
+                      filter === f
+                        ? 'bg-ink text-white'
+                        : 'bg-transparent text-ink-500 hover:bg-ink/5 hover:text-ink',
+                    )}
+                  >
+                    {t(`gallery.filters.${f}`)}
+                  </button>
+                ))}
+              </div>
+            )}
           </Reveal>
+
+          {filtered.length === 0 && (
+            <Reveal>
+              <p className="rounded-2xl bg-ink-50 py-16 text-center text-sm text-ink-500">
+                {t('gallery.empty')}
+              </p>
+            </Reveal>
+          )}
 
           {/* Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
             {shown.map((item, idx) => (
               <button
-                key={`${filter}-${item.thumb}`}
+                key={`${company}-${filter}-${item.thumb}`}
                 onClick={() => setOpenIndex(pageStart + idx)}
-                aria-label={item.kind === 'video' ? t('gallery.playVideo') : t(`gallery.filters.${item.category}`)}
+                aria-label={item.kind === 'video' ? t('gallery.playVideo') : altFor(item)}
                 className="group relative block w-full overflow-hidden rounded-2xl bg-ink-100 aspect-square focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <img
                   src={item.thumb}
-                  alt={t(`gallery.filters.${item.category}`)}
+                  alt={altFor(item)}
                   width={600}
                   height={600}
                   loading="lazy"

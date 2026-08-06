@@ -1,13 +1,22 @@
 import { useState } from 'react';
 import type { SubmitEvent } from 'react';
 import emailjs from '@emailjs/browser';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, Truck, HardHat, Container } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import PageHero from '../ui/PageHero';
 import Reveal from '../ui/Reveal';
 import { useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
+import { COMPANIES, type CompanyId } from '../../data/companies';
+import { useQueryParam } from '../../hooks/useQueryParam';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
+
+const companyIcons: Record<CompanyId, LucideIcon> = {
+  transport: Truck,
+  'project-services': HardHat,
+  logistics: Container,
+};
 
 interface Props {
   lang: Lang;
@@ -16,10 +25,14 @@ interface Props {
 export default function Contact({ lang }: Props) {
   const { t } = useLocale(lang);
   const [status, setStatus] = useState<Status>('idle');
-  // When arriving via the "Get a Quote" button (/contact?subject=quote),
-  // pre-fill the subject so the user lands on a quote request.
-  const isQuote = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('subject') === 'quote';
-  const defaultSubject = isQuote ? t('contact.quoteSubject') : '';
+  // Arriving via "Get a Quote" (/contact?subject=quote) pre-fills the subject. Read
+  // through the hook rather than off `window` during render — an inline read makes the
+  // client's first paint disagree with the pre-rendered HTML.
+  const defaultSubject = useQueryParam('subject') === 'quote' ? t('contact.quoteSubject') : '';
+
+  // Which company page the visitor arrived from, carried through as context on the email.
+  const paramCompany = useQueryParam('company');
+  const company = COMPANIES.some((c) => c.id === paramCompany) ? (paramCompany as CompanyId) : '';
 
   const onSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,6 +43,9 @@ export default function Contact({ lang }: Props) {
     const phone = String(data.get('phone') || '');
     const subject = String(data.get('subject') || '');
     const message = String(data.get('message') || '');
+    const companyId = String(data.get('company') || '');
+    // Send the readable name, not the slug — this lands in an inbox, not a database.
+    const companyName = companyId ? t(`companies.${companyId}.name`) : '';
 
     setStatus('sending');
     try {
@@ -41,7 +57,8 @@ export default function Contact({ lang }: Props) {
           email,
           phone,
           subject,
-          title: subject,
+          title: companyName ? `${subject} — ${companyName}` : subject,
+          company: companyName,
           message,
           from_name: name,
           from_email: email,
@@ -63,6 +80,38 @@ export default function Contact({ lang }: Props) {
         title={t('contact.hero.title')}
         subtitle={t('contact.hero.subtitle')}
       />
+
+      {/* One desk answers for all three companies — say so before the form, so nobody
+          wonders whether they are writing to the wrong part of the group. */}
+      <section className="section-tight bg-sand">
+        <div className="container-page">
+          <Reveal className="max-w-2xl">
+            <span className="eyebrow">{t('contact.oneDesk.eyebrow')}</span>
+            <h2 className="heading-lg mt-3">{t('contact.oneDesk.title')}</h2>
+            <p className="lead mt-4">{t('contact.oneDesk.body')}</p>
+          </Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {COMPANIES.map((c, i) => {
+              const Icon = companyIcons[c.id];
+              return (
+                <Reveal key={c.id} delay={i * 0.08}>
+                  <div className="flex h-full items-start gap-4 rounded-2xl border border-ink-100 bg-white p-5">
+                    <span className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="text-sm font-bold text-ink">{t(`companies.${c.id}.name`)}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-ink-500">
+                        {t(`companies.${c.id}.tagline`)}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       <section className="section">
         <div className="container-page grid lg:grid-cols-5 gap-10">
@@ -133,8 +182,20 @@ export default function Contact({ lang }: Props) {
               </div>
               <div className="grid sm:grid-cols-2 gap-5">
                 <Field name="phone" label={t('contact.form.phone')} />
-                <Field name="subject" label={t('contact.form.subject')} defaultValue={defaultSubject} required />
+                {/* `key` remounts the uncontrolled input once the query param resolves —
+                    defaultValue alone would never reach an already-mounted field. */}
+                <Field
+                  key={defaultSubject}
+                  name="subject"
+                  label={t('contact.form.subject')}
+                  defaultValue={defaultSubject}
+                  required
+                />
               </div>
+              {/* Which company's page the enquiry came from. Useful context for whoever
+                  picks it up; not a choice we make the visitor take, because one team
+                  answers for all three. */}
+              <input type="hidden" name="company" value={company} />
               <div>
                 <label className="block text-sm font-medium text-ink mb-1.5">
                   {t('contact.form.message')}

@@ -2,16 +2,11 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import TeamMember from '../../../components/pages/TeamMember';
 import { profiles, getProfile } from '../../../data/teamProfiles';
-import type { Lang } from '../../../i18n';
+import { localeSlugPaths, langOf } from '../../../i18n/paths';
 
-export function getStaticPaths() {
-  return profiles.flatMap((p) => [
-    { params: { lang: undefined, slug: p.slug } },
-    { params: { lang: 'ar', slug: p.slug } },
-  ]);
-}
+export const getStaticPaths = () => localeSlugPaths(profiles.map((p) => p.slug));
 
-const lang = ((Astro.params.lang as string | undefined) ?? 'en') as Lang;
+const lang = langOf(Astro.params.lang as string | undefined);
 const { slug } = Astro.params;
 const profile = getProfile(slug!)!;
 const description = lang === 'ar' && profile.arBio ? profile.arBio[0] : profile.bio[0];

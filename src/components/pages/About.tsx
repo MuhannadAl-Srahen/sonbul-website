@@ -1,8 +1,19 @@
-import { ShieldCheck, HardHat, Sparkles, Handshake, CheckCircle2 } from 'lucide-react';
+import {
+  ArrowRight,
+  Container,
+  ShieldCheck,
+  HardHat,
+  Sparkles,
+  Handshake,
+  CheckCircle2,
+  Truck,
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import PageHero from '../ui/PageHero';
 import Reveal from '../ui/Reveal';
-import { useLocale } from '../../i18n';
+import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
+import { COMPANIES, type CompanyId } from '../../data/companies';
 
 const valueIcons = {
   integrity: ShieldCheck,
@@ -11,12 +22,19 @@ const valueIcons = {
   partnership: Handshake,
 } as const;
 
+const companyIcons: Record<CompanyId, LucideIcon> = {
+  transport: Truck,
+  'project-services': HardHat,
+  logistics: Container,
+};
+
 interface Props {
   lang: Lang;
 }
 
 export default function About({ lang }: Props) {
   const { t } = useLocale(lang);
+  const href = (path: string) => localizedHref(path, lang);
   const founderPoints = t('about.founder.points', { returnObjects: true }) as string[];
 
   return (
@@ -36,7 +54,7 @@ export default function About({ lang }: Props) {
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-7">
             <p className="lead">{t('about.story.body')}</p>
-            <div className="mt-10 grid sm:grid-cols-3 gap-6">
+            <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-6">
               {(t('about.story.stats', { returnObjects: true }) as { k: string; v: string }[]).map((b) => (
                 <div key={b.k} className="border-s-2 border-primary ps-4">
                   <div className="text-2xl font-bold text-primary">{b.k}</div>
@@ -45,6 +63,44 @@ export default function About({ lang }: Props) {
               ))}
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Group structure — the three companies, stated plainly */}
+      <section className="section bg-ink text-white">
+        <div className="container-page">
+          <Reveal className="max-w-2xl">
+            <span className="eyebrow !text-primary-300">{t('about.companies.eyebrow')}</span>
+            <h2 className="heading-lg !text-white mt-3">{t('about.companies.title')}</h2>
+            <p className="lead !text-white/60 mt-4">{t('about.companies.subtitle')}</p>
+          </Reveal>
+          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+            {COMPANIES.map((c, i) => {
+              const Icon = companyIcons[c.id];
+              return (
+                <Reveal key={c.id} delay={i * 0.08}>
+                  <a
+                    href={href(c.base)}
+                    className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-7 transition-colors duration-300 hover:border-primary/50 hover:bg-white/8"
+                  >
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white">
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <h3 className="mt-5 text-lg font-bold text-white">
+                      {t(`companies.${c.id}.name`)}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">
+                      {t(`companies.${c.id}.tagline`)}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-300 transition-all group-hover:gap-3">
+                      {t('common.knowMore')}
+                      <ArrowRight className="h-4 w-4 rtl-flip" />
+                    </span>
+                  </a>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
