@@ -71,7 +71,7 @@ export default function CompanyServices({ company, lang }: Props) {
             lang={lang}
             altPrefix={t(`companies.${company}.name`)}
             seeAllLabel={t(`${ns}.gallery.seeAll`)}
-            seeAllHref={href(`/gallery?company=${company}`)}
+            seeAllHref={`${href('/')}?company=${company}#gallery`}
           />
         </div>
       </section>
@@ -81,7 +81,7 @@ export default function CompanyServices({ company, lang }: Props) {
         subtitle={t(`${ns}.cta.subtitle`)}
         cta={{
           label: t(`${ns}.cta.button`),
-          href: href(`/contact?subject=quote&company=${company}`),
+          href: `${href('/')}#contact`,
         }}
       />
 

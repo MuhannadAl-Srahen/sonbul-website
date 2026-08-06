@@ -54,8 +54,10 @@
 }
 
 @layer components {
+  /* Grows past 1280px on large monitors instead of leaving huge empty margins. Prose
+     blocks keep their own max-w so the reading measure does not grow with the shell. */
   .container-page {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 2xl:max-w-8xl 3xl:max-w-9xl 3xl:px-12 4xl:max-w-10xl 4xl:px-16;
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 whitespace-nowrap;
@@ -182,35 +184,10 @@ footer a {
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-/* ── Infinite logo marquee ──────────────────────────── */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.marquee-track {
-  animation: marquee 45s linear infinite;
-  will-change: transform;
-}
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-/* Arabic still reads the motion right-to-left; the layout below stays LTR so the
-   maths behind translateX is identical in both locales. */
-html[dir='rtl'] .marquee-track {
-  animation-direction: reverse;
-}
-.marquee-fade {
-  /* Forced LTR, and not cosmetic. Under dir=rtl an overflowing flex row starts at the
-     container's right edge and spills leftwards, so translateX(-50%) drags the whole
-     track thousands of pixels clear of the visible window — the strip sat blank for
-     most of a cycle, then slid back into view and appeared to restart. Pinning the
-     track to LTR keeps the overflow origin on the left in both languages, which is
-     what the keyframes assume. */
-  direction: ltr;
-  /* Symmetric, so it needs no RTL counterpart. */
-  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-}
+/* The logo marquee used to be a CSS transform animation masked to transparent at both
+   ends. The mask read as a grey smear rather than a fade, and a transform cannot be
+   dragged, so ClientSlider is now a real scroll container driven from JS. Nothing here
+   is needed for it. */
 
 /* Red-tinted hatch, the logistics company's counterpart to .grain */
 .hatch {

@@ -76,7 +76,7 @@ export default function CompanyEntry({ collection, slug, lang }: Props) {
             lang={lang}
             altPrefix={t(`${base}.name`)}
             seeAllLabel={t(`${ns}.gallery.seeAll`)}
-            seeAllHref={href(`/gallery?company=${company}&tag=${entry.tags[0]}`)}
+            seeAllHref={`${href('/')}?company=${company}&tag=${entry.tags[0]}#gallery`}
           />
         </div>
       </section>
@@ -86,7 +86,7 @@ export default function CompanyEntry({ collection, slug, lang }: Props) {
         subtitle={t(`${ns}.cta.subtitle`)}
         cta={{
           label: t(`${ns}.cta.button`),
-          href: href(`/contact?subject=quote&company=${company}`),
+          href: `${href('/')}#contact`,
         }}
       />
 

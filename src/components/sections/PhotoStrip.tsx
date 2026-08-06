@@ -25,7 +25,7 @@ export default function PhotoStrip({ query, lang, altPrefix, seeAllLabel, seeAll
 
   return (
     <Reveal>
-      <div className="marquee-fade no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
+      <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
         {items.map((item) => (
           <figure
             key={item.id}

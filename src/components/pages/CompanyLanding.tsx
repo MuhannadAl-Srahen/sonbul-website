@@ -64,7 +64,7 @@ export default function CompanyLanding({ company, lang }: Props) {
         rule={<EyebrowRule company={company} />}
       >
         <div className="flex flex-wrap gap-3">
-          <a href={href(`/contact?subject=quote&company=${company}`)} className="btn-primary">
+          <a href={`${href('/')}#contact`} className="btn-primary">
             {t(`${ns}.hero.ctaPrimary`)}
             <ArrowRight className="h-4 w-4 rtl-flip" />
           </a>
@@ -189,7 +189,7 @@ export default function CompanyLanding({ company, lang }: Props) {
             lang={lang}
             altPrefix={t(`companies.${company}.name`)}
             seeAllLabel={t(`${ns}.gallery.seeAll`)}
-            seeAllHref={href(`/gallery?company=${company}`)}
+            seeAllHref={`${href('/')}?company=${company}#gallery`}
           />
         </div>
       </section>
@@ -213,7 +213,7 @@ export default function CompanyLanding({ company, lang }: Props) {
         subtitle={t(`${ns}.cta.subtitle`)}
         cta={{
           label: t(`${ns}.cta.button`),
-          href: href(`/contact?subject=quote&company=${company}`),
+          href: `${href('/')}#contact`,
         }}
         badge={company === 'project-services' ? t(`${ns}.badge`) : undefined}
       />

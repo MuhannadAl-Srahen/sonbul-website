@@ -81,7 +81,7 @@ export default function CompanyCollection({ collection, lang }: Props) {
         subtitle={t(`${ns}.cta.subtitle`)}
         cta={{
           label: t(`${ns}.cta.button`),
-          href: href(`/contact?subject=quote&company=${company}`),
+          href: `${href('/')}#contact`,
         }}
       />
     </>

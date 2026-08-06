@@ -2,7 +2,6 @@ import { useState } from 'react';
 import type { SubmitEvent } from 'react';
 import emailjs from '@emailjs/browser';
 import { CheckCircle2, Clock, Mail, MapPin, Phone, Send } from 'lucide-react';
-import PageHero from '../ui/PageHero';
 import Reveal from '../ui/Reveal';
 import { useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
@@ -18,7 +17,7 @@ interface Props {
   lang: Lang;
 }
 
-export default function Contact({ lang }: Props) {
+export default function ContactSection({ lang }: Props) {
   const { t } = useLocale(lang);
   const [status, setStatus] = useState<Status>('idle');
   // Arriving via "Get a Quote" (/contact?subject=quote) pre-fills the subject. Read
@@ -49,38 +48,49 @@ export default function Contact({ lang }: Props) {
         EMAILJS.serviceId,
         EMAILJS.templateId,
         {
+          // EmailJS only substitutes variables the template actually references, and the
+          // template is edited in their dashboard rather than here. Sending the same
+          // values under every common variable name means a template written against any
+          // of the usual conventions is populated instead of arriving blank.
           name,
+          from_name: name,
+          user_name: name,
           email,
+          from_email: email,
+          user_email: email,
+          reply_to: email,
           phone,
+          user_phone: phone,
           subject,
           title: companyName ? `${subject} — ${companyName}` : subject,
           company: companyName,
           message,
-          from_name: name,
-          from_email: email,
+          user_message: message,
           submitted_at: new Date().toLocaleString('en-GB', { timeZone: 'Asia/Amman' }),
         },
         { publicKey: EMAILJS.publicKey },
       );
       setStatus('success');
       form.reset();
-    } catch {
+    } catch (err) {
+      // EmailJS rejects with { status, text }. Swallowing it silently meant a
+      // misconfigured template looked identical to a network failure.
+      console.error('[contact] EmailJS send failed:', err);
       setStatus('error');
     }
   };
 
   return (
     <>
-      <PageHero
-        eyebrow={t('contact.hero.eyebrow')}
-        title={t('contact.hero.title')}
-        subtitle={t('contact.hero.subtitle')}
-      />
-
       {/* One desk answers for all three companies — say so before the form, so nobody
           wonders whether they are writing to the wrong part of the group. */}
-      <section className="section-tight bg-sand">
+      <section id="contact" className="section-tight scroll-mt-20 bg-sand">
         <div className="container-page">
+          <Reveal className="mb-10 max-w-2xl">
+            <span className="eyebrow">{t('contact.hero.eyebrow')}</span>
+            <h2 className="heading-lg mt-3">{t('contact.hero.title')}</h2>
+            <p className="lead mt-4">{t('contact.hero.subtitle')}</p>
+          </Reveal>
           <Reveal className="max-w-2xl">
             <span className="eyebrow">{t('contact.oneDesk.eyebrow')}</span>
             <h2 className="heading-lg mt-3">{t('contact.oneDesk.title')}</h2>

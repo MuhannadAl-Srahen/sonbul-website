@@ -43,7 +43,7 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/6
       </a>
       <p class="mt-5 text-sm text-white/55 leading-relaxed max-w-xs">{t.footer.tagline}</p>
       <a
-        href={href('/contact?subject=quote')}
+        href={`${href('/')}#contact`}
         class="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-primary-300 hover:text-primary-200 transition-colors"
       >
         {t.nav.getQuote}
@@ -71,11 +71,10 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/6
     <div>
       <h3 class={headingClass}>{t.footer.explore}</h3>
       <ul class="space-y-3 text-sm">
-        <li><a href={href('/about')} class={linkClass}>{t.nav.about}</a></li>
-        <li><a href={href('/services')} class={linkClass}>{t.nav.services}</a></li>
-        <li><a href={href('/team')} class={linkClass}>{t.nav.team}</a></li>
-        <li><a href={href('/gallery')} class={linkClass}>{t.nav.gallery}</a></li>
-        <li><a href={href('/contact')} class={linkClass}>{t.nav.contact}</a></li>
+        <li><a href={`${href('/')}#about`} class={linkClass}>{t.nav.about}</a></li>
+        <li><a href={`${href('/')}#team`} class={linkClass}>{t.nav.team}</a></li>
+        <li><a href={`${href('/')}#gallery`} class={linkClass}>{t.nav.gallery}</a></li>
+        <li><a href={`${href('/')}#contact`} class={linkClass}>{t.nav.contact}</a></li>
       </ul>
     </div>
 

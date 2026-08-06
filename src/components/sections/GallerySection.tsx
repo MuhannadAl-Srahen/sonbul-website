@@ -4,7 +4,6 @@ import Video from 'yet-another-react-lightbox/plugins/video';
 import 'yet-another-react-lightbox/styles.css';
 import { ChevronLeft, ChevronRight, Images, Play } from 'lucide-react';
 import clsx from 'clsx';
-import PageHero from '../ui/PageHero';
 import Reveal from '../ui/Reveal';
 import { useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
@@ -28,7 +27,7 @@ interface Selection {
   tag: MediaTag | null;
 }
 
-export default function Gallery({ lang }: Props) {
+export default function GallerySection({ lang }: Props) {
   const { t } = useLocale(lang);
   const [page, setPage] = useState(0);
   const [openIndex, setOpenIndex] = useState(-1);
@@ -113,23 +112,15 @@ export default function Gallery({ lang }: Props) {
 
   return (
     <>
-      <PageHero
-        eyebrow={t('gallery.hero.eyebrow')}
-        title={t('gallery.hero.title')}
-        subtitle={t('gallery.hero.subtitle')}
-      />
-
-      <section className="section">
+      <section id="gallery" className="section scroll-mt-20 bg-white">
         <div className="container-page">
-
-          {/* The hero already carries the eyebrow, title and subtitle directly above this;
-              repeating them here printed the same sentence twice in a row. This heading
-              labels the filters and the grid, which otherwise had none. */}
-          <Reveal className="mb-8 text-center">
-            <h2 className="heading-lg inline-flex items-center gap-3">
-              <Images className="h-6 w-6 text-primary" />
-              {t('gallery.browse')}
-            </h2>
+          <Reveal className="mb-10 text-center">
+            <span className="eyebrow justify-center">
+              <Images className="h-4 w-4" />
+              {t('gallery.hero.eyebrow')}
+            </span>
+            <h2 className="heading-lg mt-3">{t('gallery.hero.title')}</h2>
+            <p className="lead mx-auto mt-4 max-w-2xl">{t('gallery.hero.subtitle')}</p>
           </Reveal>
 
           {/* Filters — company first, then category within it */}

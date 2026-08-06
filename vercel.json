@@ -1,49 +1,248 @@
 {
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/index-2.html", "destination": "/", "permanent": true },
-    { "source": "/index-ar.html", "destination": "/ar/", "permanent": true },
-    { "source": "/index-2-ar.html", "destination": "/ar/", "permanent": true },
-    { "source": "/about.html", "destination": "/about/", "permanent": true },
-    { "source": "/about-ar.html", "destination": "/ar/about/", "permanent": true },
-    { "source": "/contact.html", "destination": "/contact/", "permanent": true },
-    { "source": "/contact-ar.html", "destination": "/ar/contact/", "permanent": true },
-    { "source": "/service.html", "destination": "/services/", "permanent": true },
-    { "source": "/service-ar.html", "destination": "/ar/services/", "permanent": true },
-
-    { "source": "/en", "destination": "/", "permanent": true },
-    { "source": "/en/:path*", "destination": "/:path*", "permanent": true },
-
-    { "source": "/transportation", "destination": "/transport/", "permanent": true },
-    { "source": "/fleet", "destination": "/transport/fleet/", "permanent": true },
-    { "source": "/routes", "destination": "/transport/routes/", "permanent": true },
-    { "source": "/cargo", "destination": "/transport/cargo/", "permanent": true },
-    { "source": "/projects", "destination": "/project-services/projects/", "permanent": true },
-    { "source": "/camps", "destination": "/project-services/camps/", "permanent": true },
-    { "source": "/catering", "destination": "/project-services/catering/", "permanent": true },
-    { "source": "/borders", "destination": "/logistics/crossings/", "permanent": true },
-    { "source": "/crossings", "destination": "/logistics/crossings/", "permanent": true },
-    { "source": "/customs", "destination": "/logistics/customs/", "permanent": true },
-    { "source": "/equipment", "destination": "/services/", "permanent": true },
-
-    { "source": "/ar/transportation", "destination": "/ar/transport/", "permanent": true },
-    { "source": "/ar/fleet", "destination": "/ar/transport/fleet/", "permanent": true },
-    { "source": "/ar/routes", "destination": "/ar/transport/routes/", "permanent": true },
-    { "source": "/ar/cargo", "destination": "/ar/transport/cargo/", "permanent": true },
-    { "source": "/ar/projects", "destination": "/ar/project-services/projects/", "permanent": true },
-    { "source": "/ar/camps", "destination": "/ar/project-services/camps/", "permanent": true },
-    { "source": "/ar/catering", "destination": "/ar/project-services/catering/", "permanent": true },
-    { "source": "/ar/borders", "destination": "/ar/logistics/crossings/", "permanent": true },
-    { "source": "/ar/crossings", "destination": "/ar/logistics/crossings/", "permanent": true },
-    { "source": "/ar/customs", "destination": "/ar/logistics/customs/", "permanent": true },
-    { "source": "/ar/equipment", "destination": "/ar/services/", "permanent": true }
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index-2.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index-ar.html",
+      "destination": "/ar/",
+      "permanent": true
+    },
+    {
+      "source": "/index-2-ar.html",
+      "destination": "/ar/",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/about-ar.html",
+      "destination": "/ar/#about",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-ar.html",
+      "destination": "/ar/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/service.html",
+      "destination": "/#companies",
+      "permanent": true
+    },
+    {
+      "source": "/service-ar.html",
+      "destination": "/ar/#companies",
+      "permanent": true
+    },
+    {
+      "source": "/en",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/transportation",
+      "destination": "/transport/",
+      "permanent": true
+    },
+    {
+      "source": "/fleet",
+      "destination": "/transport/fleet/",
+      "permanent": true
+    },
+    {
+      "source": "/routes",
+      "destination": "/transport/routes/",
+      "permanent": true
+    },
+    {
+      "source": "/cargo",
+      "destination": "/transport/cargo/",
+      "permanent": true
+    },
+    {
+      "source": "/projects",
+      "destination": "/project-services/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/camps",
+      "destination": "/project-services/camps/",
+      "permanent": true
+    },
+    {
+      "source": "/catering",
+      "destination": "/project-services/catering/",
+      "permanent": true
+    },
+    {
+      "source": "/borders",
+      "destination": "/logistics/crossings/",
+      "permanent": true
+    },
+    {
+      "source": "/crossings",
+      "destination": "/logistics/crossings/",
+      "permanent": true
+    },
+    {
+      "source": "/customs",
+      "destination": "/logistics/customs/",
+      "permanent": true
+    },
+    {
+      "source": "/equipment",
+      "destination": "/#companies",
+      "permanent": true
+    },
+    {
+      "source": "/ar/transportation",
+      "destination": "/ar/transport/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/fleet",
+      "destination": "/ar/transport/fleet/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/routes",
+      "destination": "/ar/transport/routes/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/cargo",
+      "destination": "/ar/transport/cargo/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/projects",
+      "destination": "/ar/project-services/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/camps",
+      "destination": "/ar/project-services/camps/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/catering",
+      "destination": "/ar/project-services/catering/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/borders",
+      "destination": "/ar/logistics/crossings/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/crossings",
+      "destination": "/ar/logistics/crossings/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/customs",
+      "destination": "/ar/logistics/customs/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/equipment",
+      "destination": "/ar/#companies",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/ar/about",
+      "destination": "/ar/#about",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/#companies",
+      "permanent": true
+    },
+    {
+      "source": "/ar/services",
+      "destination": "/ar/#companies",
+      "permanent": true
+    },
+    {
+      "source": "/gallery",
+      "destination": "/#gallery",
+      "permanent": true
+    },
+    {
+      "source": "/ar/gallery",
+      "destination": "/ar/#gallery",
+      "permanent": true
+    },
+    {
+      "source": "/team",
+      "destination": "/#team",
+      "permanent": true
+    },
+    {
+      "source": "/ar/team",
+      "destination": "/ar/#team",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/ar/contact",
+      "destination": "/ar/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/team/:slug",
+      "destination": "/#team",
+      "permanent": true
+    },
+    {
+      "source": "/ar/team/:slug",
+      "destination": "/ar/#team",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
   ]

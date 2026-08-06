@@ -110,9 +110,20 @@ function breadcrumb(ctx: Ctx, trail: { name: string; path: string }[]) {
 
 const graph = (nodes: object[]) => ({ '@context': 'https://schema.org', '@graph': nodes });
 
-/** The group hub at / and /ar. */
+/**
+ * The group hub at / and /ar.
+ *
+ * The contact details are a section of this page now rather than a route of their own, so
+ * the single LocalBusiness node lives here too. Still exactly one — three separately
+ * marked local businesses at one Amman address reads as a spam signal.
+ */
 export function groupGraph(ctx: Ctx) {
-  return graph([organization(ctx), website(ctx), webPage(ctx, groupId(ctx.origin))]);
+  return graph([
+    organization(ctx),
+    website(ctx),
+    localBusiness(ctx),
+    webPage(ctx, groupId(ctx.origin)),
+  ]);
 }
 
 /**
@@ -182,33 +193,34 @@ export function sharedPageGraph(ctx: Ctx) {
   return graph([organization(ctx), website(ctx), webPage(ctx, groupId(ctx.origin))]);
 }
 
-/** /contact only — the one real physical place. */
-export function localBusinessGraph(ctx: Ctx) {
-  return graph([
-    {
-      '@type': 'LocalBusiness',
-      '@id': `${ctx.origin}/contact#localbusiness`,
-      name: SITE_NAME.en,
-      alternateName: SITE_NAME.ar,
-      parentOrganization: { '@id': groupId(ctx.origin) },
-      url: `${ctx.origin}/contact`,
-      image: ctx.image,
-      email: EMAIL,
-      telephone: PHONES[0],
-      address: postalAddress(),
-      geo: { '@type': 'GeoCoordinates', ...GEO },
-      areaServed: areaServed(),
-      openingHoursSpecification: [
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
-          opens: '08:00',
-          closes: '16:00',
-        },
-      ],
-    },
-    webPage(ctx, `${ctx.origin}/contact#localbusiness`),
-  ]);
+/**
+ * The head office. Exactly one, on the home page, since that is where the contact
+ * section now lives. The @id stays English-canonical so both locales resolve to the
+ * same place rather than two competing listings.
+ */
+function localBusiness(ctx: Ctx) {
+  return {
+    '@type': 'LocalBusiness',
+    '@id': `${ctx.origin}/#localbusiness`,
+    name: SITE_NAME.en,
+    alternateName: SITE_NAME.ar,
+    parentOrganization: { '@id': groupId(ctx.origin) },
+    url: `${ctx.origin}/`,
+    image: ctx.image,
+    email: EMAIL,
+    telephone: PHONES[0],
+    address: postalAddress(),
+    geo: { '@type': 'GeoCoordinates', ...GEO },
+    areaServed: areaServed(),
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+        opens: '08:00',
+        closes: '16:00',
+      },
+    ],
+  };
 }
 
 /** /team/<slug> — previously carried no structured data at all. */

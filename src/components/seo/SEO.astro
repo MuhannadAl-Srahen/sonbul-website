@@ -14,7 +14,6 @@ import { serviceKeys } from '../../components/pages/companyChrome';
 import {
   companyGraph,
   groupGraph,
-  localBusinessGraph,
   personGraph,
   sharedPageGraph,
 } from '../../lib/jsonld';
@@ -81,24 +80,14 @@ const ctx = { lang, origin, canonical, title: fullTitle, description, image: ogI
 // passed, so LocalBusiness, Person and Service markup existed in the codebase and on no
 // page. Deriving it means a new route cannot forget.
 const bare = enPath.replace(/\/$/, '') || '/';
-const kind =
-  schema !== 'auto'
-    ? schema
-    : bare === '/contact'
-      ? 'contact'
-      : person
-        ? 'person'
-        : 'auto';
 
 const graph =
-  kind === 'none'
+  schema === 'none'
     ? null
-    : kind === 'contact'
-      ? localBusinessGraph(ctx)
-      : kind === 'person' && person
-        ? personGraph(ctx, person)
-        : company
-          ? companyGraph(
+    : schema === 'person' && person
+      ? personGraph(ctx, person)
+      : company
+        ? companyGraph(
               ctx,
               company,
               {
@@ -107,12 +96,12 @@ const graph =
                 // The services this company actually sells, so the offer catalogue is
                 // populated instead of being built and then thrown away.
                 services: companyServiceNames(company),
-              },
-              bare === company.base ? undefined : { name: title, path: bare },
-            )
-          : bare === '/'
-            ? groupGraph(ctx)
-            : sharedPageGraph(ctx);
+            },
+            bare === company.base ? undefined : { name: title, path: bare },
+          )
+        : bare === '/'
+          ? groupGraph(ctx)
+          : sharedPageGraph(ctx);
 ---
 
 <title>{fullTitle}</title>

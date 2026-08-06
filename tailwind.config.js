@@ -41,8 +41,16 @@ export default {
         arabic: ['Cairo', 'Tajawal', 'sans-serif'],
         display: ['Inter', 'system-ui', 'sans-serif'],
       },
+      // Above 1536px the default 7xl container left very wide empty margins on a 2K or
+      // 4K monitor. These steps let the shell grow while body copy keeps its own cap.
+      screens: {
+        '3xl': '1920px',
+        '4xl': '2560px',
+      },
       maxWidth: {
         '8xl': '88rem',
+        '9xl': '96rem',
+        '10xl': '112rem',
       },
       boxShadow: {
         soft: '0 10px 40px -10px rgba(0,0,0,0.15)',

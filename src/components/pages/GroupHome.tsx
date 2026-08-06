@@ -7,6 +7,10 @@ import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
 import { COMPANIES } from '../../data/companies';
 import { companyChrome } from './companyChrome';
+import AboutSection from '../sections/AboutSection';
+import TeamSection from '../sections/TeamSection';
+import GallerySection from '../sections/GallerySection';
+import ContactSection from '../sections/ContactSection';
 import { companyIcons } from '../ui/companyIcons';
 
 const whyIcons = {
@@ -76,7 +80,7 @@ export default function GroupHome({ lang }: Props) {
             </p>
             <div className="mt-11 flex flex-wrap gap-4">
               <a
-                href={href('/contact?subject=quote')}
+                href={`${href('/')}#contact`}
                 className="btn bg-primary text-white hover:bg-primary-600 shadow-lg hover:shadow-xl active:scale-[0.98] !px-8 !py-4 !text-base"
               >
                 {t('group.hero.ctaPrimary')}
@@ -203,7 +207,7 @@ export default function GroupHome({ lang }: Props) {
             </div>
             <Reveal delay={0.35}>
               <a
-                href={href('/about')}
+                href={`${href('/')}#about`}
                 className="btn bg-white text-ink hover:bg-primary hover:text-white mt-8"
               >
                 {t('nav.about')}
@@ -285,19 +289,28 @@ export default function GroupHome({ lang }: Props) {
       </section>
 
       {/* ══════════════════════════════════════════
-          CLIENTS — logo slider
+          CLIENTS — draggable logo strip
       ══════════════════════════════════════════ */}
       <section className="section-tight bg-white border-y border-ink-100">
         <div className="container-page text-center mb-10">
           <Reveal>
-            <span className="eyebrow">{t('group.clients.eyebrow')}</span>
+            <span className="eyebrow justify-center">{t('group.clients.eyebrow')}</span>
             <h2 className="text-2xl sm:text-3xl font-bold mt-3 text-ink">
               {t('group.clients.title')}
             </h2>
           </Reveal>
         </div>
+        {/* Full-bleed: the strip runs off both edges rather than being masked to
+            transparent, which read as a grey smear over a light section. */}
         <ClientSlider />
       </section>
+
+      {/* The standalone /about, /team, /gallery and /contact pages were folded into this
+          one, so the landing page is now the whole group story end to end. */}
+      <AboutSection lang={lang} />
+      <TeamSection lang={lang} />
+      <GallerySection lang={lang} />
+      <ContactSection lang={lang} />
 
       {/* ══════════════════════════════════════════
           CTA — dark box with red accent
@@ -328,7 +341,7 @@ export default function GroupHome({ lang }: Props) {
                   {t('group.cta.subtitle')}
                 </p>
                 <a
-                  href={href('/contact')}
+                  href={`${href('/')}#contact`}
                   className="btn bg-primary text-white hover:bg-primary-600 shadow-lg hover:shadow-xl mt-8 !px-8 !py-4 !text-base active:scale-[0.98]"
                 >
                   {t('group.cta.button')}
