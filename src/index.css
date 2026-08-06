@@ -185,16 +185,22 @@ footer a {
 .marquee-track:hover {
   animation-play-state: paused;
 }
+/* Arabic still reads the motion right-to-left; the layout below stays LTR so the
+   maths behind translateX is identical in both locales. */
 html[dir='rtl'] .marquee-track {
   animation-direction: reverse;
 }
 .marquee-fade {
+  /* Forced LTR, and not cosmetic. Under dir=rtl an overflowing flex row starts at the
+     container's right edge and spills leftwards, so translateX(-50%) drags the whole
+     track thousands of pixels clear of the visible window — the strip sat blank for
+     most of a cycle, then slid back into view and appeared to restart. Pinning the
+     track to LTR keeps the overflow origin on the left in both languages, which is
+     what the keyframes assume. */
+  direction: ltr;
+  /* Symmetric, so it needs no RTL counterpart. */
   mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-}
-html[dir='rtl'] .marquee-fade {
-  mask-image: linear-gradient(to left, transparent, black 6%, black 94%, transparent);
-  -webkit-mask-image: linear-gradient(to left, transparent, black 6%, black 94%, transparent);
 }
 
 /* Red-tinted hatch, the logistics company's counterpart to .grain */
