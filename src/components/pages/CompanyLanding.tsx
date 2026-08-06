@@ -96,19 +96,20 @@ export default function CompanyLanding({ company, lang }: Props) {
       {/* Services mosaic */}
       <section className="section bg-white">
         <div className="container-page">
-          <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <SectionHeader
-              eyebrow={t(`${ns}.services.eyebrow`)}
-              title={t(`${ns}.services.title`)}
-              subtitle={t(`${ns}.services.subtitle`)}
-            />
-            <Reveal delay={0.2}>
-              <a href={href(`${c.base}/services`)} className="btn-outline shrink-0">
-                {t('common.knowMore')}
-                <ArrowRight className="h-4 w-4 rtl-flip" />
-              </a>
-            </Reveal>
-          </div>
+          {/* Centred, with the button below rather than pushed to the side, so this
+              heading reads the same as every other section heading on the site. */}
+          <SectionHeader
+            eyebrow={t(`${ns}.services.eyebrow`)}
+            title={t(`${ns}.services.title`)}
+            subtitle={t(`${ns}.services.subtitle`)}
+            className="mb-10"
+          />
+          <Reveal delay={0.2} className="mb-12 flex justify-center">
+            <a href={href(`${c.base}/services`)} className="btn-outline">
+              {t('common.knowMore')}
+              <ArrowRight className="h-4 w-4 rtl-flip" />
+            </a>
+          </Reveal>
           <ServiceGrid items={services} moreLabel={t('common.knowMore')} />
         </div>
       </section>
@@ -204,7 +205,7 @@ export default function CompanyLanding({ company, lang }: Props) {
                 in clientLogos.ts would have rendered the raw key as an <h2>. */}
             <h2 className="heading-lg mt-3">{t('group.clients.title')}</h2>
           </Reveal>
-          <ClientSlider logos={logos} />
+          <ClientSlider lang={lang} logos={logos} />
         </div>
       </section>
 

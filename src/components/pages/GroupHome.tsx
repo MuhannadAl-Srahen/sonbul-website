@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Award, CheckCircle2, Globe2, Layers, Play, Quote, Users } from 'lucide-react';
+import { ArrowRight, Award, Globe2, Layers, Play, Quote, Users } from 'lucide-react';
 import Reveal from '../ui/Reveal';
 import ClientSlider from '../ui/ClientSlider';
 import StatStrip, { type Stat } from '../sections/StatStrip';
@@ -48,7 +48,7 @@ export default function GroupHome({ lang }: Props) {
       {/* ══════════════════════════════════════════
           HERO — full-screen, transparent header overlay
       ══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden -mt-20 min-h-screen flex flex-col bg-ink">
+      <section className="relative overflow-hidden min-h-[100svh] flex flex-col bg-ink">
         <div className="absolute inset-0">
           <img
             src="/assets/hero/hero.jpg"
@@ -68,7 +68,7 @@ export default function GroupHome({ lang }: Props) {
 
         <div className="relative flex-1 container-page flex flex-col justify-center pt-28 sm:pt-36 pb-8">
           <div className="animate-fade-in-up-hero max-w-3xl">
-            <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-primary-200 mb-6 hero-text-shadow">
+            <span className="glass-dark inline-flex items-center gap-3 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-primary-200 mb-6">
               <span className="h-[2px] w-8 bg-primary inline-block" />
               {t('group.hero.eyebrow')}
             </span>
@@ -102,10 +102,10 @@ export default function GroupHome({ lang }: Props) {
       {/* ══════════════════════════════════════════
           COMPANIES — the group's reason to exist
       ══════════════════════════════════════════ */}
-      <section id="companies" className="section bg-white scroll-mt-20">
+      <section id="companies" className="section bg-white scroll-mt-28">
         <div className="container-page">
-          <Reveal className="max-w-2xl mb-14">
-            <span className="eyebrow">{t('group.companies.eyebrow')}</span>
+          <Reveal className="mx-auto mb-14 max-w-2xl text-center">
+            <span className="eyebrow justify-center">{t('group.companies.eyebrow')}</span>
             <h2 className="heading-lg mt-3">{t('group.companies.title')}</h2>
             <p className="lead mt-4">{t('group.companies.subtitle')}</p>
           </Reveal>
@@ -302,7 +302,7 @@ export default function GroupHome({ lang }: Props) {
         </div>
         {/* Full-bleed: the strip runs off both edges rather than being masked to
             transparent, which read as a grey smear over a light section. */}
-        <ClientSlider />
+        <ClientSlider lang={lang} />
       </section>
 
       {/* The standalone /about, /team, /gallery and /contact pages were folded into this
@@ -312,46 +312,6 @@ export default function GroupHome({ lang }: Props) {
       <GallerySection lang={lang} />
       <ContactSection lang={lang} />
 
-      {/* ══════════════════════════════════════════
-          CTA — dark box with red accent
-      ══════════════════════════════════════════ */}
-      <section className="section bg-white">
-        <div className="container-page">
-          <Reveal>
-            <div className="relative overflow-hidden bg-ink rounded-2xl px-8 py-16 md:px-16 md:py-20 text-white">
-              <div className="absolute start-0 top-0 bottom-0 w-1.5 bg-primary rounded-s-2xl" />
-              <div
-                className="absolute -top-16 -end-16 h-80 w-80 rounded-full bg-primary/15 blur-3xl pointer-events-none"
-                aria-hidden
-              />
-              <div
-                className="absolute bottom-0 end-32 h-48 w-48 rounded-full bg-primary/10 blur-2xl pointer-events-none"
-                aria-hidden
-              />
-
-              <div className="relative max-w-2xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary-300">
-                    {t('group.why.badge')}
-                  </span>
-                </div>
-                <h2 className="heading-lg !text-white">{t('group.cta.title')}</h2>
-                <p className="mt-4 text-white/65 text-lg leading-relaxed">
-                  {t('group.cta.subtitle')}
-                </p>
-                <a
-                  href={`${href('/')}#contact`}
-                  className="btn bg-primary text-white hover:bg-primary-600 shadow-lg hover:shadow-xl mt-8 !px-8 !py-4 !text-base active:scale-[0.98]"
-                >
-                  {t('group.cta.button')}
-                  <ArrowRight className="h-5 w-5 rtl-flip" />
-                </a>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
     </>
   );
 }

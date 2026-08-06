@@ -84,38 +84,57 @@ export default function ContactSection({ lang }: Props) {
     <>
       {/* One desk answers for all three companies — say so before the form, so nobody
           wonders whether they are writing to the wrong part of the group. */}
-      <section id="contact" className="section-tight scroll-mt-20 bg-sand">
+      {/* The page used to end with a dark call-to-action that only scrolled you back up to
+          this form. Its treatment — the dark panel, the red edge, the soft glow — moved
+          here instead, so the section it was pointing at is the one that carries it. */}
+      <section id="contact" className="section-tight scroll-mt-28 bg-sand">
         <div className="container-page">
-          <Reveal className="mb-10 max-w-2xl">
-            <span className="eyebrow">{t('contact.hero.eyebrow')}</span>
-            <h2 className="heading-lg mt-3">{t('contact.hero.title')}</h2>
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl bg-ink px-6 py-14 text-center text-white sm:px-12">
+              <div className="absolute start-0 top-0 bottom-0 w-1.5 rounded-s-3xl bg-primary" />
+              <div
+                className="pointer-events-none absolute -top-20 -end-20 h-80 w-80 rounded-full bg-primary/20 blur-3xl"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -bottom-24 start-10 h-64 w-64 rounded-full bg-primary/10 blur-3xl"
+                aria-hidden
+              />
+              <div className="grain absolute inset-0 opacity-10" aria-hidden />
+
+              <div className="relative mx-auto max-w-2xl">
+                <span className="eyebrow justify-center !text-primary-300">
+                  {t('contact.hero.eyebrow')}
+                </span>
+                <h2 className="heading-lg mt-3 !text-white">{t('contact.oneDesk.title')}</h2>
+                <p className="lead mt-4 !text-white/70">{t('contact.oneDesk.body')}</p>
+              </div>
+
+              <div className="relative mx-auto mt-10 grid max-w-4xl gap-3 sm:grid-cols-3">
+                {COMPANIES.map((c, i) => {
+                  const Icon = companyIcons[c.id];
+                  return (
+                    <Reveal key={c.id} delay={i * 0.08}>
+                      <div className="flex h-full items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-start backdrop-blur-sm">
+                        <span className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-primary text-white">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <p className="text-xs font-semibold leading-snug text-white/90">
+                          {t(`companies.${c.id}.name`)}
+                        </p>
+                      </div>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal className="mx-auto mt-16 max-w-2xl text-center">
+            <h3 className="heading-lg">{t('contact.hero.title')}</h3>
             <p className="lead mt-4">{t('contact.hero.subtitle')}</p>
           </Reveal>
-          <Reveal className="max-w-2xl">
-            <span className="eyebrow">{t('contact.oneDesk.eyebrow')}</span>
-            <h2 className="heading-lg mt-3">{t('contact.oneDesk.title')}</h2>
-            <p className="lead mt-4">{t('contact.oneDesk.body')}</p>
-          </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {COMPANIES.map((c, i) => {
-              const Icon = companyIcons[c.id];
-              return (
-                <Reveal key={c.id} delay={i * 0.08}>
-                  <div className="flex h-full items-start gap-4 rounded-2xl border border-ink-100 bg-white p-5">
-                    <span className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <p className="text-sm font-bold text-ink">{t(`companies.${c.id}.name`)}</p>
-                      <p className="mt-1 text-xs leading-relaxed text-ink-500">
-                        {t(`companies.${c.id}.tagline`)}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
+
         </div>
       </section>
 
