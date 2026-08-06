@@ -1,22 +1,18 @@
 import { useState } from 'react';
 import type { SubmitEvent } from 'react';
 import emailjs from '@emailjs/browser';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, Truck, HardHat, Container } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { CheckCircle2, Clock, Mail, MapPin, Phone, Send } from 'lucide-react';
 import PageHero from '../ui/PageHero';
 import Reveal from '../ui/Reveal';
 import { useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
 import { COMPANIES, type CompanyId } from '../../data/companies';
 import { useQueryParam } from '../../hooks/useQueryParam';
+import { companyIcons } from '../ui/companyIcons';
+import { EMAILJS } from '../../config/emailjs';
+import { EMAIL, PHONES } from '../../config/site';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
-
-const companyIcons: Record<CompanyId, LucideIcon> = {
-  transport: Truck,
-  'project-services': HardHat,
-  logistics: Container,
-};
 
 interface Props {
   lang: Lang;
@@ -50,8 +46,8 @@ export default function Contact({ lang }: Props) {
     setStatus('sending');
     try {
       await emailjs.send(
-        import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
-        import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
+        EMAILJS.serviceId,
+        EMAILJS.templateId,
         {
           name,
           email,
@@ -64,7 +60,7 @@ export default function Contact({ lang }: Props) {
           from_email: email,
           submitted_at: new Date().toLocaleString('en-GB', { timeZone: 'Asia/Amman' }),
         },
-        { publicKey: import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY },
+        { publicKey: EMAILJS.publicKey },
       );
       setStatus('success');
       form.reset();
@@ -136,10 +132,10 @@ export default function Contact({ lang }: Props) {
                   <div>
                     <p className="text-xs uppercase tracking-wider text-white/50">{t('contact.labels.email')}</p>
                     <a
-                      href="mailto:info@abusonbul-transporters.com"
+                      href={`mailto:${EMAIL}`}
                       className="font-medium mt-1 block hover:text-primary-300 break-all"
                     >
-                      info@abusonbul-transporters.com
+                      {EMAIL}
                     </a>
                   </div>
                 </li>
@@ -149,10 +145,10 @@ export default function Contact({ lang }: Props) {
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-wider text-white/50">{t('contact.labels.phone')}</p>
-                    <a href="tel:+962795700658" className="font-medium mt-1 block hover:text-primary-300 transition-colors" dir="ltr">
+                    <a href={`tel:${PHONES[0]}`} className="font-medium mt-1 block hover:text-primary-300 transition-colors" dir="ltr">
                       {t('contact.info.phone')}
                     </a>
-                    <a href="tel:+962799128641" className="font-medium mt-0.5 block hover:text-primary-300 transition-colors" dir="ltr">
+                    <a href={`tel:${PHONES[1]}`} className="font-medium mt-0.5 block hover:text-primary-300 transition-colors" dir="ltr">
                       {t('contact.info.phone2')}
                     </a>
                   </div>
@@ -177,11 +173,24 @@ export default function Contact({ lang }: Props) {
               className="card p-8 md:p-10 space-y-5"
             >
               <div className="grid sm:grid-cols-2 gap-5">
-                <Field name="name" label={t('contact.form.name')} required />
-                <Field name="email" type="email" label={t('contact.form.email')} required />
+                <Field name="name" label={t('contact.form.name')} required autoComplete="name" />
+                <Field
+                  name="email"
+                  type="email"
+                  label={t('contact.form.email')}
+                  required
+                  autoComplete="email"
+                  inputMode="email"
+                />
               </div>
               <div className="grid sm:grid-cols-2 gap-5">
-                <Field name="phone" label={t('contact.form.phone')} />
+                <Field
+                  name="phone"
+                  type="tel"
+                  label={t('contact.form.phone')}
+                  autoComplete="tel"
+                  inputMode="tel"
+                />
                 {/* `key` remounts the uncontrolled input once the query param resolves —
                     defaultValue alone would never reach an already-mounted field. */}
                 <Field
@@ -197,17 +206,20 @@ export default function Contact({ lang }: Props) {
                   answers for all three. */}
               <input type="hidden" name="company" value={company} />
               <div>
-                <label className="block text-sm font-medium text-ink mb-1.5">
+                <label htmlFor="message" className="block text-sm font-medium text-ink mb-1.5">
                   {t('contact.form.message')}
                 </label>
                 <textarea
+                  id="message"
                   name="message"
                   rows={5}
                   required
                   className="w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition"
                 />
               </div>
-              <div className="pt-2 space-y-3">
+              {/* aria-live so a screen reader hears the outcome; without it the form
+                  appears to do nothing on submit. */}
+              <div className="pt-2 space-y-3" aria-live="polite">
                 {status === 'success' && (
                   <p className="text-sm text-green-600 flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
@@ -262,23 +274,38 @@ function Field({
   type = 'text',
   required,
   defaultValue,
+  autoComplete,
+  inputMode,
 }: {
   name: string;
   label: string;
   type?: string;
   required?: boolean;
   defaultValue?: string;
+  autoComplete?: string;
+  inputMode?: 'text' | 'tel' | 'email';
 }) {
+  // `name` is unique per form, so it doubles as the id that ties the label to the input.
+  // Without htmlFor/id a screen reader announces every field as "edit, blank", and tapping
+  // the label does not focus the input.
   return (
     <div>
-      <label className="block text-sm font-medium text-ink mb-1.5">
-        {label}{required && <span className="text-primary"> *</span>}
+      <label htmlFor={name} className="block text-sm font-medium text-ink mb-1.5">
+        {label}
+        {required && (
+          <span className="text-primary" aria-hidden>
+            {' *'}
+          </span>
+        )}
       </label>
       <input
+        id={name}
         name={name}
         type={type}
         required={required}
         defaultValue={defaultValue}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
         className="w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition"
       />
     </div>

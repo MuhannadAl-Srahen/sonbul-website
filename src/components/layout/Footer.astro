@@ -10,7 +10,7 @@ import type { Lang } from '../../i18n/types';
 import { dict } from '../../i18n/dictionaries';
 import { localizedHref } from '../../i18n/href';
 import { COMPANIES } from '../../data/companies';
-import { EMAIL } from '../../config/site';
+import { EMAIL, PHONES } from '../../config/site';
 
 interface Props {
   lang: Lang;
@@ -22,7 +22,7 @@ const href = (path: string) => localizedHref(path, lang);
 const year = new Date().getFullYear();
 
 const linkClass = 'text-white/70 hover:text-primary-300 transition-colors';
-const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-6';
+const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/60 mb-6';
 ---
 
 <footer class="bg-ink text-white">
@@ -36,6 +36,8 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/4
         <img
           src="/assets/logo/main-logo.svg"
           alt={t.brand.group}
+          width={157}
+          height={40}
           class="h-10 w-auto object-contain"
         />
       </a>
@@ -51,7 +53,7 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/4
 
     {/* The three companies — the footer is the one place all of them are always listed. */}
     <div>
-      <h4 class={headingClass}>{t.nav.ourCompanies}</h4>
+      <h3 class={headingClass}>{t.nav.ourCompanies}</h3>
       <ul class="space-y-3 text-sm">
         {
           COMPANIES.map((c) => (
@@ -67,7 +69,7 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/4
 
     {/* Explore */}
     <div>
-      <h4 class={headingClass}>{t.footer.explore}</h4>
+      <h3 class={headingClass}>{t.footer.explore}</h3>
       <ul class="space-y-3 text-sm">
         <li><a href={href('/about')} class={linkClass}>{t.nav.about}</a></li>
         <li><a href={href('/services')} class={linkClass}>{t.nav.services}</a></li>
@@ -79,7 +81,7 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/4
 
     {/* Contact */}
     <div>
-      <h4 class={headingClass}>{t.footer.contact}</h4>
+      <h3 class={headingClass}>{t.footer.contact}</h3>
       <ul class="space-y-4 text-sm">
         <li class="flex items-start gap-3">
           <MapPin className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
@@ -92,13 +94,13 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/4
           </a>
         </li>
         <li>
-          <a href="tel:+962795700658" class={`flex items-start gap-3 ${linkClass}`}>
+          <a href={`tel:${PHONES[0]}`} class={`flex items-start gap-3 ${linkClass}`}>
             <Phone className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
             <span dir="ltr">{t.contact.info.phone}</span>
           </a>
         </li>
         <li>
-          <a href="tel:+962799128641" class={`flex items-start gap-3 ${linkClass}`}>
+          <a href={`tel:${PHONES[1]}`} class={`flex items-start gap-3 ${linkClass}`}>
             <Phone className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
             <span dir="ltr">{t.contact.info.phone2}</span>
           </a>
@@ -107,12 +109,12 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/4
     </div>
   </div>
 
-  <div class="border-t border-white/8">
+  <div class="border-t border-white/10">
     <div
-      class="container-page py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35"
+      class="container-page py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/60"
     >
       <p>© {year} {t.brand.group}. {t.footer.rights}</p>
-      <p class="text-white/25">{t.brand.tagline}</p>
+      <p class="text-white/55">{t.brand.tagline}</p>
     </div>
   </div>
 </footer>

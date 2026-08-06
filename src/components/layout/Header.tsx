@@ -1,19 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Menu, X, Globe, ArrowRight, ChevronDown, Truck, HardHat, Container } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { ArrowRight, ChevronDown, Container, Globe, Menu, X } from 'lucide-react';
 import clsx from 'clsx';
 import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
 import { COMPANIES } from '../../data/companies';
 import type { Company, CompanyId } from '../../data/companies';
-
-// Kept out of companies.ts so that data file stays importable from .astro without
-// dragging lucide-react into the Astro server module graph.
-const companyIcons: Record<CompanyId, LucideIcon> = {
-  transport: Truck,
-  'project-services': HardHat,
-  logistics: Container,
-};
+import { companyIcons } from '../ui/companyIcons';
 
 // Shown in the bar when no company owns the route, and in the switcher panel always.
 const groupNav = [
@@ -57,7 +49,7 @@ function CompanyCard({
       aria-current={active ? 'true' : undefined}
       className={clsx(
         'group relative flex gap-3.5 rounded-xl p-3.5 transition-colors duration-200',
-        active ? 'bg-primary/6' : 'hover:bg-ink-50',
+        active ? 'bg-primary/10' : 'hover:bg-ink-50',
         className,
       )}
     >
@@ -118,10 +110,15 @@ export default function Header({ currentPath, lang, companyId }: Props) {
     return here === href || here.startsWith(`${href}/`);
   };
 
+  // The 404 is built once, in English, and served for every unmatched path — so there is
+  // no Arabic sibling to switch to. Send the toggle to the other locale's home instead of
+  // a URL that would only 404 again.
   const altHref =
-    lang === 'ar'
-      ? currentPath.replace(/^\/ar(?=\/|$)/, '') || '/'
-      : localizedHref(currentPath, 'ar');
+    here === '/404'
+      ? localizedHref('/', lang === 'ar' ? 'en' : 'ar')
+      : lang === 'ar'
+        ? currentPath.replace(/^\/ar(?=\/|$)/, '') || '/'
+        : localizedHref(currentPath, 'ar');
 
   const quoteHref = localizedHref(
     company ? `/contact?subject=quote&company=${company.id}` : '/contact?subject=quote',
@@ -147,13 +144,21 @@ export default function Header({ currentPath, lang, companyId }: Props) {
     };
   }, [switcherOpen]);
 
-  // The drawer is now nearly full-height, so stop the page behind it from scrolling.
+  // The drawer is nearly full-height, so stop the page behind it from scrolling. The
+  // resize listener matters: the drawer is xl:hidden, so rotating a tablet into landscape
+  // with it open used to hide the drawer AND the hamburger while leaving the page locked,
+  // with no way to unlock it.
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    const onResize = () => {
+      if (window.matchMedia('(min-width: 1280px)').matches) setOpen(false);
+    };
+    window.addEventListener('resize', onResize);
     return () => {
       document.body.style.overflow = prev;
+      window.removeEventListener('resize', onResize);
     };
   }, [open]);
 
@@ -164,16 +169,20 @@ export default function Header({ currentPath, lang, companyId }: Props) {
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
       <div className="container-page flex h-20 items-center gap-3">
         <a href={localizedHref('/', lang)} aria-label={t('nav.groupHome')} className="flex-shrink-0">
+          {/* Intrinsic size from the SVG viewBox (285 x 72.75). Without it `w-auto`
+              resolves to 0 until the file loads and the whole bar jumps sideways. */}
           <img
             src="/assets/logo/main-logo.svg"
             alt={t('brand.group')}
+            width={141}
+            height={36}
             className="h-9 w-auto object-contain"
           />
         </a>
 
         {/* Company switcher. A disclosure, not a menu: hover panels are unusable on touch
             and the trigger has no destination of its own. */}
-        <div ref={switcherRef} className="relative hidden lg:block flex-shrink-0">
+        <div ref={switcherRef} className="relative hidden xl:block flex-shrink-0">
           <button
             ref={triggerRef}
             type="button"
@@ -182,13 +191,13 @@ export default function Header({ currentPath, lang, companyId }: Props) {
             aria-controls="company-switcher"
             className={clsx(
               'inline-flex items-center gap-2 rounded-lg py-2 ps-2 pe-2.5 text-sm font-semibold transition-colors duration-200',
-              switcherOpen ? 'bg-ink/8 text-ink' : 'text-ink hover:bg-ink/5',
+              switcherOpen ? 'bg-ink/10 text-ink' : 'text-ink hover:bg-ink/5',
             )}
           >
             <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-white">
               {ActiveIcon ? <ActiveIcon className="h-4 w-4" /> : <Container className="h-4 w-4" />}
             </span>
-            <span className="max-w-[8.5rem] truncate xl:max-w-none">
+            <span className="max-w-[9rem] truncate 2xl:max-w-none">
               {company ? t(`companies.${company.id}.short`) : t('nav.ourCompanies')}
             </span>
             <ChevronDown
@@ -240,12 +249,12 @@ export default function Header({ currentPath, lang, companyId }: Props) {
           )}
         </div>
 
-        <span className="hidden lg:block h-6 w-px flex-shrink-0 bg-ink-100" aria-hidden />
+        <span className="hidden xl:block h-6 w-px flex-shrink-0 bg-ink-100" aria-hidden />
 
         {/* Contextual nav — the current company's own sections, or the group's. */}
         <nav
           aria-label={company ? t(`companies.${company.id}.short`) : t('nav.explore')}
-          className="hidden lg:flex items-center gap-0.5 min-w-0"
+          className="hidden xl:flex items-center gap-0.5 min-w-0"
         >
           {navItems.map((item) => (
             <a
@@ -256,7 +265,7 @@ export default function Header({ currentPath, lang, companyId }: Props) {
                 'rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap',
                 isActive(item.to)
                   ? 'bg-primary text-white shadow-sm'
-                  : 'text-ink/75 hover:text-ink hover:bg-ink/6 active:bg-ink/10',
+                  : 'text-ink/75 hover:text-ink hover:bg-ink/5 active:bg-ink/10',
               )}
             >
               {navLabel(item.key)}
@@ -264,15 +273,15 @@ export default function Header({ currentPath, lang, companyId }: Props) {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-2 flex-shrink-0 ms-auto">
+        <div className="hidden xl:flex items-center gap-2 flex-shrink-0 ms-auto">
           <a
             href={altHref}
-            className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-ink/60 transition-all duration-200 hover:bg-ink/6 hover:text-ink xl:px-3"
-            aria-label="Switch language"
+            className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-ink/60 transition-all duration-200 hover:bg-ink/5 hover:text-ink 2xl:px-3"
+            aria-label={t('nav.switchLanguage')}
             hrefLang={lang === 'ar' ? 'en' : 'ar'}
           >
             <Globe className="h-4 w-4 flex-shrink-0" />
-            <span className="hidden xl:inline">{t('lang.switchTo')}</span>
+            <span className="hidden 2xl:inline">{t('lang.switchTo')}</span>
           </a>
           <a href={quoteHref} className="btn-primary !py-2 !px-4 !text-sm">
             {t('nav.getQuote')}
@@ -284,8 +293,8 @@ export default function Header({ currentPath, lang, companyId }: Props) {
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="lg:hidden ms-auto rounded-full p-2 text-ink transition-colors hover:bg-ink/5"
-          aria-label="Toggle menu"
+          className="xl:hidden ms-auto rounded-full p-2 text-ink transition-colors hover:bg-ink/5"
+          aria-label={t('nav.toggleMenu')}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -296,7 +305,7 @@ export default function Header({ currentPath, lang, companyId }: Props) {
         id="mobile-nav"
         inert={!open}
         className={clsx(
-          'lg:hidden overflow-y-auto overscroll-contain border-t bg-white transition-[max-height] duration-300 ease-in-out',
+          'xl:hidden overflow-y-auto overscroll-contain border-t bg-white transition-[max-height] duration-300 ease-in-out',
           open ? 'max-h-[calc(100dvh-5rem)] border-ink-100' : 'max-h-0 border-transparent',
         )}
       >
