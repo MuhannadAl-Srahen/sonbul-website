@@ -1,12 +1,12 @@
-const logos = [
-  'adnoc', 'adnocc', 'arabeeh', 'arrow', 'etihad', 'gig', 'golf', 'go-tech',
-  'jana', 'kemyan', 'kibar', 'krbonat', 'lion', 'maraii', 'mnaser',
-  'moasron', 'mondi', 'mr', 'nabd', 'obekan', 'pipsico', 'rabee',
-  'rajhi', 'safwa', 'savola', 'texofib', 'ucic', 'watad', 'wataneh',
-  'wfp', 'yascp', 'yousef',
-].map((n) => `/assets/companies/${n}.png`);
+import { ALL_LOGOS, logoSrc } from '../../data/clientLogos';
 
-export default function ClientSlider() {
+interface Props {
+  /** Logo basenames; defaults to the full group set. See logosFor() in clientLogos.ts. */
+  logos?: string[];
+}
+
+export default function ClientSlider({ logos: names = ALL_LOGOS }: Props) {
+  const logos = names.map(logoSrc);
   return (
     <div className="marquee-fade overflow-hidden">
       <div className="marquee-track flex gap-10 w-max py-3">

@@ -197,6 +197,48 @@ html[dir='rtl'] .marquee-fade {
   -webkit-mask-image: linear-gradient(to left, transparent, black 6%, black 94%, transparent);
 }
 
+/* Red-tinted hatch, the logistics company's counterpart to .grain */
+.hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(200, 16, 46, 0.05) 0 1px,
+    transparent 1px 9px
+  );
+}
+html[dir='rtl'] .hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(200, 16, 46, 0.05) 0 1px,
+    transparent 1px 9px
+  );
+}
+
+/* Arabic needs more x-height than the 10-11px Latin nav micro-labels allow */
+html[dir='rtl'] .nav-micro {
+  font-size: 0.75rem;
+}
+
+/* ── Motion ─────────────────────────────────────────── */
+/* Scroll-in reveal. The observer lives in one inline script in BaseLayout rather than in
+   the React component, so content is never dependent on an island hydrating. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 20px));
+  transition:
+    opacity 0.7s var(--reveal-delay, 0s) ease-out,
+    transform 0.7s var(--reveal-delay, 0s) ease-out;
+  will-change: opacity, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none !important;
+  }
+  .animate-fade-in-up,
+  .animate-fade-in-up-hero {
+    animation: none !important;
+  }
+}
+
 /* ── Mobile UX ──────────────────────────────────────── */
 /* Remove tap highlight flash on iOS */
 * {

@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -8,60 +7,20 @@ interface Props {
   className?: string;
 }
 
+/**
+ * Scroll-in wrapper.
+ *
+ * Deliberately ships no client JS of its own. The observer that adds `.is-visible` lives
+ * in a single inline script in BaseLayout, so the content still appears even if the
+ * island wrapping it fails to hydrate — previously one hydration error left every
+ * section on the page stuck at opacity 0 with no way back.
+ */
 export default function Reveal({ children, delay = 0, y = 20, className }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    // Respect reduced-motion / no observer support: show immediately, no animation.
-    const reduce =
-      typeof window !== 'undefined' &&
-      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || typeof IntersectionObserver === 'undefined') {
-      setVisible(true);
-      return;
-    }
-
-    // Anything already in (or above) the viewport on mount reveals right away.
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight) {
-      setVisible(true);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setVisible(true);
-            io.disconnect();
-          }
-        });
-      },
-      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' },
-    );
-    io.observe(el);
-    // Safety net: never leave content invisible even if the observer never fires.
-    const t = setTimeout(() => setVisible(true), 400);
-    return () => {
-      io.disconnect();
-      clearTimeout(t);
-    };
-  }, []);
-
   return (
     <div
-      ref={ref}
+      data-reveal
       className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : `translateY(${y}px)`,
-        transition: `opacity 0.7s ${delay}s ease-out, transform 0.7s ${delay}s ease-out`,
-        willChange: 'opacity, transform',
-      }}
+      style={{ '--reveal-delay': `${delay}s`, '--reveal-y': `${y}px` } as CSSProperties}
     >
       {children}
     </div>

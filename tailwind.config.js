@@ -31,6 +31,10 @@ export default {
           900: '#0D0D0D',
         },
         sand: '#F7F5F2',
+        // Cool counterpart to `sand`. Both are near-white section surfaces; the
+        // difference is felt across a page rather than seen in isolation, which is how
+        // the three companies read as distinct without a second brand hue.
+        steel: '#EEF0F2',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -49,6 +53,11 @@ export default {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        // Longer, further travel for the full-screen home hero only.
+        'fade-in-up-hero': {
+          '0%': { opacity: '0', transform: 'translateY(44px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
@@ -56,6 +65,7 @@ export default {
       },
       animation: {
         'fade-in-up': 'fade-in-up 0.6s ease-out',
+        'fade-in-up-hero': 'fade-in-up-hero 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         marquee: 'marquee 30s linear infinite',
       },
     },
