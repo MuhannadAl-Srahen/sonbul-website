@@ -28,7 +28,7 @@ export default function AboutSection({ lang }: Props) {
   const points = (t('about.founder.points', { returnObjects: true }) as string[]).slice(0, 4);
 
   return (
-    <section id="about" className="section scroll-mt-28 bg-white">
+    <section id="about" className="section bg-white">
       <div className="container-page">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">{t('about.story.eyebrow')}</span>

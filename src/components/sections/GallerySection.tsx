@@ -112,7 +112,7 @@ export default function GallerySection({ lang }: Props) {
 
   return (
     <>
-      <section id="gallery" className="section scroll-mt-28 bg-white">
+      <section id="gallery" className="section bg-white">
         <div className="container-page">
           <Reveal className="mb-10 text-center">
             <span className="eyebrow justify-center">

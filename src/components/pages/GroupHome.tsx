@@ -102,7 +102,7 @@ export default function GroupHome({ lang }: Props) {
       {/* ══════════════════════════════════════════
           COMPANIES — the group's reason to exist
       ══════════════════════════════════════════ */}
-      <section id="companies" className="section bg-white scroll-mt-28">
+      <section id="companies" className="section bg-white">
         <div className="container-page">
           <Reveal className="mx-auto mb-14 max-w-2xl text-center">
             <span className="eyebrow justify-center">{t('group.companies.eyebrow')}</span>

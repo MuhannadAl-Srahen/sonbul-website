@@ -114,7 +114,7 @@ export default function Header({ currentPath, lang }: Props) {
     /* Floating rather than pinned to the very top: a translucent bar inset from the edges,
        riding over the hero instead of sitting in a white strip above it. Fixed, so it
        stays put — see the overflow-x note in index.css for why `sticky` never worked. */
-    <header className="fixed inset-x-0 top-0 z-50 pt-3 lg:pt-4 3xl:pt-6">
+    <header className="fixed inset-x-0 top-0 z-50 pt-1.5 lg:pt-2 3xl:pt-3">
       <div className="container-page">
         <div
           className={clsx(

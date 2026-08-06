@@ -87,7 +87,7 @@ export default function ContactSection({ lang }: Props) {
       {/* The page used to end with a dark call-to-action that only scrolled you back up to
           this form. Its treatment — the dark panel, the red edge, the soft glow — moved
           here instead, so the section it was pointing at is the one that carries it. */}
-      <section id="contact" className="section-tight scroll-mt-28 bg-sand">
+      <section id="contact" className="section-tight bg-sand">
         <div className="container-page">
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl bg-ink px-6 py-14 text-center text-white sm:px-12">

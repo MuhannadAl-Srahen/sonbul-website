@@ -24,6 +24,9 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
   const { t } = useLocale(lang);
   const ref = useRef<HTMLDivElement>(null);
   const paused = useRef(false);
+  // Set by the effect below. The arrows have to move the same accumulated position the
+  // auto-advance owns, or the two fight over scrollLeft each frame.
+  const nudgeRef = useRef<((dir: 1 | -1) => void) | null>(null);
   const logos = names.map(logoSrc);
 
   const count = logos.length;
@@ -33,12 +36,13 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
     if (!el) return;
 
     const rtl = getComputedStyle(el).direction === 'rtl';
+    const sign = rtl ? -1 : 1;
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
     let raf = 0;
     let last = performance.now();
     // Deliberately slow — the strip should drift, not scroll past you.
-    const SPEED = 14; // px per second
+    const SPEED = 16; // px per second
 
     /**
      * Width of one copy of the list, which is the distance the strip can travel before
@@ -55,20 +59,48 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
         : el.scrollWidth / 2;
     };
 
+    /**
+     * The position has to be accumulated here rather than read back off the element
+     * every frame. `scrollLeft` snaps to whole pixels, and at this speed a frame is
+     * about a quarter of one — so `scrollLeft += 0.23` rounded straight back to where
+     * it started and the strip never moved at all. Keeping the real position in a
+     * float and writing it out lets the sub-pixel remainder survive between frames.
+     */
+    let pos = el.scrollLeft;
+    let written = pos;
+    // While an arrow's smooth scroll is in flight, leave the element alone — writing
+    // to scrollLeft would cancel it mid-animation.
+    let holdUntil = 0;
+
     const step = (now: number) => {
-      const dt = (now - last) / 1000;
+      // Clamped so a backgrounded tab does not return and jump the strip forwards.
+      const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
-      if (!paused.current) {
+      if (!paused.current && now >= holdUntil) {
+        // Adopt anything that moved the strip behind our back: a drag, a wheel, or an
+        // arrow whose smooth scroll has just settled.
+        if (Math.abs(el.scrollLeft - written) > 1) pos = el.scrollLeft;
+        pos += sign * SPEED * dt;
         const span = period();
-        el.scrollLeft += (rtl ? -1 : 1) * SPEED * dt;
+        // One copy back is pixel-identical, so the wrap is invisible.
         if (span > 0) {
-          if (!rtl && el.scrollLeft >= span) el.scrollLeft -= span;
-          if (rtl && Math.abs(el.scrollLeft) >= span) el.scrollLeft += span;
+          if (pos >= span) pos -= span;
+          if (pos <= -span) pos += span;
         }
+        el.scrollLeft = pos;
+        written = el.scrollLeft;
       }
       raf = requestAnimationFrame(step);
     };
     if (!reduce) raf = requestAnimationFrame(step);
+
+    // `dir` is logical (-1 = toward the start of the strip). `scrollTo` is physical, and
+    // under RTL the start of the strip is on the right, so the sign flips.
+    nudgeRef.current = (dir) => {
+      pos += dir * sign * 320;
+      el.scrollTo({ left: pos, behavior: 'smooth' });
+      holdUntil = performance.now() + 500;
+    };
 
     // Drag to scroll. Pointer events cover mouse, touch and pen with one path.
     let down = false;
@@ -107,6 +139,7 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
 
     return () => {
       cancelAnimationFrame(raf);
+      nudgeRef.current = null;
       el.removeEventListener('pointerdown', onDown);
       el.removeEventListener('pointermove', onMove);
       el.removeEventListener('pointerup', onUp);
@@ -118,14 +151,7 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
     };
   }, [count]);
 
-  // `dir` is logical (-1 = toward the start of the strip). `scrollBy` is physical, and
-  // under RTL the start of the strip is on the right, so the sign has to flip.
-  const nudge = (dir: 1 | -1) => {
-    const el = ref.current;
-    if (!el) return;
-    const rtl = getComputedStyle(el).direction === 'rtl';
-    el.scrollBy({ left: dir * (rtl ? -320 : 320), behavior: 'smooth' });
-  };
+  const nudge = (dir: 1 | -1) => nudgeRef.current?.(dir);
 
   return (
     <div className="relative">
