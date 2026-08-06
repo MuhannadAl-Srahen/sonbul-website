@@ -19,4 +19,15 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  // Build scripts and config files run in Node, not the browser. They were previously
+  // unlinted entirely, along with every .astro file — roughly half the codebase.
+  {
+    files: ['scripts/**/*.mjs', '*.config.{js,mjs}'],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      globals: globals.node,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
+  },
 ])

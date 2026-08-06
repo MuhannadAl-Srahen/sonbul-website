@@ -1,14 +1,8 @@
-import { ArrowRight, Container, HardHat, Truck } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
-import { COMPANIES, type CompanyId } from '../../data/companies';
-
-const companyIcons: Record<CompanyId, LucideIcon> = {
-  transport: Truck,
-  'project-services': HardHat,
-  logistics: Container,
-};
+import { COMPANIES } from '../../data/companies';
+import { companyIcons } from '../ui/companyIcons';
 
 interface Props {
   lang: Lang;

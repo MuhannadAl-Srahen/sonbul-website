@@ -1,19 +1,10 @@
-import {
-  ArrowRight,
-  Container,
-  ShieldCheck,
-  HardHat,
-  Sparkles,
-  Handshake,
-  CheckCircle2,
-  Truck,
-} from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Handshake, HardHat, ShieldCheck, Sparkles } from 'lucide-react';
 import PageHero from '../ui/PageHero';
 import Reveal from '../ui/Reveal';
 import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
-import { COMPANIES, type CompanyId } from '../../data/companies';
+import { COMPANIES } from '../../data/companies';
+import { companyIcons } from '../ui/companyIcons';
 
 const valueIcons = {
   integrity: ShieldCheck,
@@ -21,12 +12,6 @@ const valueIcons = {
   excellence: Sparkles,
   partnership: Handshake,
 } as const;
-
-const companyIcons: Record<CompanyId, LucideIcon> = {
-  transport: Truck,
-  'project-services': HardHat,
-  logistics: Container,
-};
 
 interface Props {
   lang: Lang;
@@ -81,7 +66,7 @@ export default function About({ lang }: Props) {
                 <Reveal key={c.id} delay={i * 0.08}>
                   <a
                     href={href(c.base)}
-                    className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-7 transition-colors duration-300 hover:border-primary/50 hover:bg-white/8"
+                    className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-7 transition-colors duration-300 hover:border-primary/50 hover:bg-white/10"
                   >
                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white">
                       <Icon className="h-6 w-6" />

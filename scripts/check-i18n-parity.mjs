@@ -10,9 +10,12 @@
  * Run via `npm run lint`.
  */
 import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+// fileURLToPath, not URL.pathname: the latter is percent-encoded, so a checkout under a
+// path containing a space would resolve to "My%20Projects" and die with ENOENT.
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const LOCALES = join(ROOT, 'src', 'i18n', 'locales');
 const LANGS = ['en', 'ar'];
 
@@ -33,10 +36,23 @@ function keyPaths(value, prefix = '') {
 
 const merged = {};
 
+// Files on disk are not automatically loaded: dictionaries.ts spreads an explicit list of
+// imports. A namespace added to locales/ but not to that list would pass every other check
+// here while every t() against it rendered the raw key.
+const dictSrc = readFileSync(join(ROOT, 'src', 'i18n', 'dictionaries.ts'), 'utf8');
+const wired = new Set([...dictSrc.matchAll(/\.\/locales\/(\w+)\/([\w-]+)\.json/g)].map((m) => `${m[1]}/${m[2]}`));
+
 for (const lang of LANGS) {
   const dir = join(LOCALES, lang);
   const files = readdirSync(dir).filter((f) => f.endsWith('.json')).sort();
   if (!files.length) errors.push(`${lang}/ has no locale files`);
+
+  for (const file of files) {
+    const key = `${lang}/${file.replace(/\.json$/, '')}`;
+    if (!wired.has(key)) {
+      errors.push(`${key}.json is not imported in src/i18n/dictionaries.ts — its copy never loads`);
+    }
+  }
 
   const owner = {};
   const tree = {};

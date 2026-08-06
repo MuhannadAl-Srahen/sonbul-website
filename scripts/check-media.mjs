@@ -6,9 +6,12 @@
  * half of the guard that needs `fs`. Run via `npm run lint`.
  */
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+// fileURLToPath, not URL.pathname: the latter is percent-encoded, so a checkout under a
+// path containing a space would resolve to "My%20Projects" and die with ENOENT.
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const GALLERY = join(ROOT, 'public', 'assets', 'gallery');
 
 const src = readFileSync(join(ROOT, 'src', 'data', 'media.ts'), 'utf8');

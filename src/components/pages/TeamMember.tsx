@@ -1,7 +1,8 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { ArrowLeft, CheckCircle2, Building2, Download } from 'lucide-react';
-import QRCode from 'qrcode';
-import html2canvas from 'html2canvas';
+// qrcode and html2canvas are imported dynamically below. Statically they landed in the
+// client:load chunk on all 44 profile pages — 239 KB, mostly html2canvas, eagerly loaded
+// so a visitor *might* press "Download ID". They now arrive when actually needed.
 import LogoBrand from '../ui/LogoBrand';
 import Reveal from '../ui/Reveal';
 import { getProfile } from '../../data/teamProfiles';
@@ -39,19 +40,33 @@ export default function TeamMember({ slug, lang }: Props) {
       ? window.location.href
       : `https://www.abusonbul-transporters.com/team/${slug}`;
 
-  // Generate QR code client-side (no CORS issues when downloading)
+  // Generated client-side so there are no CORS issues when the card is rasterised.
   useEffect(() => {
-    QRCode.toDataURL(profileUrl, {
-      width: 240,
-      margin: 1,
-      color: { dark: '#1A1A1A', light: '#FFFFFF' },
-    }).then(setQrDataUrl);
+    let cancelled = false;
+    import('qrcode')
+      .then(({ default: QRCode }) =>
+        QRCode.toDataURL(profileUrl, {
+          width: 240,
+          margin: 1,
+          color: { dark: '#1A1A1A', light: '#FFFFFF' },
+        }),
+      )
+      .then((url) => {
+        if (!cancelled) setQrDataUrl(url);
+      })
+      // Without this the download button stays disabled forever and the only signal is an
+      // unhandled rejection in the console.
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
   }, [profileUrl]);
 
   const handleDownload = useCallback(async () => {
     if (!cardRef.current) return;
     setDownloading(true);
     try {
+      const { default: html2canvas } = await import('html2canvas');
       const canvas = await html2canvas(cardRef.current, {
         useCORS: true,
         scale: 2,
@@ -88,7 +103,7 @@ export default function TeamMember({ slug, lang }: Props) {
         <div className="relative container-page pb-12 sm:pb-14 pt-28 sm:pt-44">
           <a
             href={href('/team')}
-            className="inline-flex items-center gap-2 text-white/45 hover:text-white/90 text-sm mb-10 transition-colors group"
+            className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-10 transition-colors group"
           >
             <ArrowLeft className="h-4 w-4 rtl-flip group-hover:-translate-x-1 transition-transform" />
             {t('nav.team')}
@@ -174,7 +189,7 @@ export default function TeamMember({ slug, lang }: Props) {
                   {/* Card top bar */}
                   <div className="bg-ink px-5 py-4 flex items-center justify-between">
                     <LogoBrand className="h-7 brightness-0 invert" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/30 flex-shrink-0">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60 flex-shrink-0">
                       Staff ID
                     </span>
                   </div>
@@ -206,7 +221,7 @@ export default function TeamMember({ slug, lang }: Props) {
                       <div className="text-primary text-sm font-semibold">
                         {t(`team.roles.${profile.roleKey}`)}
                       </div>
-                      <div className="text-white/35 text-xs">
+                      <div className="text-white/60 text-xs">
                         Abu Sonbul Arab Transporters
                       </div>
                     </div>
@@ -221,7 +236,7 @@ export default function TeamMember({ slug, lang }: Props) {
                             className="h-[130px] w-[130px] block"
                           />
                         </div>
-                        <p className="text-white/30 text-[10px] uppercase tracking-widest -mt-1">
+                        <p className="text-white/60 text-[10px] uppercase tracking-widest -mt-1">
                           {t('teamMember.scanLabel')}
                         </p>
                       </>
@@ -245,7 +260,7 @@ export default function TeamMember({ slug, lang }: Props) {
           <div className="mt-16 pt-8 border-t border-ink-100">
             <a
               href={href('/team')}
-              className="inline-flex items-center gap-2 text-ink/50 hover:text-primary font-semibold transition-colors group"
+              className="inline-flex items-center gap-2 text-ink-500 hover:text-primary font-semibold transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 rtl-flip group-hover:-translate-x-1 transition-transform" />
               {t('teamMember.backToTeam')}
