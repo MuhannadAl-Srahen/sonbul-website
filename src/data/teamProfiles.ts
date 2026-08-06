@@ -25,16 +25,16 @@ const arDispatcherBio: string[] = [
 
 const logisticsBio: string[] = [
   'Handles cargo operations at Jaber and Al-Karamah border crossings.',
-  'Operates forklifts and heavy handling equipment for loading and unloading trucks.',
+  'Operates forklifts and heavy handling equipment at the border crossings.',
   'Manages cross-border freight documentation and customs coordination.',
-  'Ensures safe, timely cargo transfers between trucks and storage areas.',
+  'Ensures cargo moves across the crossing safely and on time.',
   'Coordinates with dispatch and operations teams for end-to-end cargo tracking.',
 ];
 const arLogisticsBio: string[] = [
   'يتولى عمليات الشحن على معبرَي جابر والكرامة.',
-  'يُشغّل الرافعات الشوكية والمعدات الثقيلة لتحميل وتفريغ الشاحنات.',
+  'يُشغّل الرافعات الشوكية ومعدات المناولة الثقيلة على المعابر الحدودية.',
   'يُدير وثائق الشحن العابر للحدود وتنسيق الجمارك.',
-  'يضمن نقل البضائع بأمان وفي الوقت المحدد بين الشاحنات ومناطق التخزين.',
+  'يضمن عبور البضائع من المعبر بأمان وفي الوقت المحدد.',
   'يُنسّق مع فريقَي الإرسال والعمليات لتتبّع البضائع من البداية إلى النهاية.',
 ];
 
@@ -117,7 +117,7 @@ export const profiles: TeamMemberProfile[] = [
       'Committed to long-term partnerships, operational excellence and delivering on every promise made to clients.',
     ],
     arBio: [
-      'أسّس شركة أبو سنبل العرب للنقليات عام 2008، وطوّرها من ترخيص نقل واحد إلى مجموعة لوجستية متكاملة.',
+      'أسّس شركة ابو سنبل العرب للنقليات عام 2008، وطوّرها من ترخيص نقل واحد إلى مجموعة لوجستية متكاملة.',
       'يمتلك أكثر من 30 عامًا من الخبرة في النقل والخدمات اللوجستية وإدارة المشاريع في الأردن والشرق الأوسط.',
       'أشرف شخصيًا على مخيمَي أدنوك في الأزرق وسرحان — أكثر من سنتين من التسليم المتكامل شمل البناء والنقل من الإمارات والإعاشة والتدبير المنزلي.',
       'قاد مشروع أرغاس في الجفر جنوب الأردن، وأشرف على النقل من السعودية وبناء المخيم والإعاشة والعمليات اليومية.',
@@ -140,7 +140,7 @@ export const profiles: TeamMemberProfile[] = [
       'Works closely with the General Manager to align operational capacity with business growth.',
     ],
     arBio: [
-      'يُشرف على استراتيجية تطوير الأعمال وفرص الأسواق الجديدة لأبو سنبل.',
+      'يُشرف على استراتيجية تطوير الأعمال وفرص الأسواق الجديدة لابو سنبل.',
       'يُدير علاقات العملاء الرئيسية ويدعم مفاوضات العقود على المستوى العالي.',
       'يقود التنسيق متعدد الوظائف بين الأقسام لضمان سلاسة تقديم الخدمات.',
       'يقود تقييم خطوط الخدمات الجديدة وفرص التوسع الجغرافي.',
