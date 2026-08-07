@@ -48,7 +48,14 @@ export default function GroupHome({ lang }: Props) {
       {/* ══════════════════════════════════════════
           HERO: full-screen, transparent header overlay
       ══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden min-h-[100svh] flex flex-col bg-ink">
+      {/* Height is the viewport, with a floor, rather than "at least the viewport" as it
+          was. `min-h` let the copy grow the section, and the English heading wraps to
+          three lines where the Arabic wraps to two, so between roughly 770px and 830px of
+          window height the two heroes were different heights. `object-cover` scales to
+          the box it is given, so that showed up as the Arabic truck looking closer. The
+          floor is above either language's content, so nothing is clipped and the crop now
+          depends only on the window. */}
+      <section className="relative overflow-hidden flex flex-col bg-ink min-h-[100svh] lg:h-[100svh] lg:min-h-[54rem]">
         <div className="absolute inset-0">
           <img
             src={GROUP_HERO[lang]}
