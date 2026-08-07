@@ -34,6 +34,13 @@ export interface CompanyChrome {
   /** Alternating section surface. Warm, neutral and cool respectively. */
   surface: string;
   hero: string;
+  /**
+   * Crop anchor for that hero, when centring it loses the subject.
+   *
+   * The truck sits in the right third of its photo, so a phone, which crops the sides,
+   * shows nothing but blank trailer if this is left centred.
+   */
+  heroPosition?: string;
   serviceIcons: Record<string, LucideIcon>;
   /**
    * Where each service tile actually goes, relative to the company root.
@@ -55,6 +62,7 @@ export const companyChrome: Record<CompanyId, CompanyChrome> = {
     texture: 'grain',
     surface: 'bg-sand',
     hero: COMPANY_BY_ID.transport.heroImage,
+    heroPosition: 'object-[78%_center] rtl:object-[22%_center]',
     serviceIcons: { crossBorder: Truck, bulk: Ship, projectCargo: Layers, general: Package },
     serviceLinks: {
       crossBorder: '/routes',

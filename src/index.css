@@ -285,11 +285,12 @@ body {
    well, and scroll-padding on the container and scroll-margin on the target ADD, so
    every anchor landed a full extra 7rem high, with a third of the previous section still
    on screen. Sized to the bar itself: top inset + height + a little breathing room. */
-/* Below lg the header is `absolute` and scrolls away, so an anchor has nothing to
-   clear and only wants a little breathing room. From lg it is fixed and the offset
-   has to match the bar: top inset + height + a little room. */
+/* Sized to the bar at each of its three heights: top inset + height + a little room.
+   The phone value is reserved even though the bar hides on the way down, because it
+   comes back the moment you scroll up and would otherwise sit over the heading you
+   just jumped to. */
 html {
-  scroll-padding-top: 1rem;
+  scroll-padding-top: 4.75rem;
 }
 @media (min-width: 1024px) {
   html {

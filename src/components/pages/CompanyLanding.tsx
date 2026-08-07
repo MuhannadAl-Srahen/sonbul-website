@@ -59,6 +59,7 @@ export default function CompanyLanding({ company, lang }: Props) {
         title={t(`${ns}.hero.title`)}
         subtitle={t(`${ns}.hero.subtitle`)}
         image={heroImageFor(c, lang)}
+        imagePosition={cfg.heroPosition}
         overlay={cfg.overlay}
         texture={cfg.texture}
         rule={<EyebrowRule company={company} />}

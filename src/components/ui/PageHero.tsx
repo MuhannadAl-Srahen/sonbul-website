@@ -23,6 +23,14 @@ interface Props {
   subtitle?: string;
   image?: string;
   overlay?: HeroOverlay;
+  /**
+   * Where to anchor the crop, as a Tailwind object-position class.
+   *
+   * Only one axis is ever cropped, so the vertical half of this governs wide screens
+   * and the horizontal half governs phones. Companies whose hero has a subject off to
+   * one side set it; the rest centre.
+   */
+  imagePosition?: string;
   /** Extra glyphs after the eyebrow rule: the per-company eyebrow signature. */
   rule?: ReactNode;
   texture?: 'grain' | 'hatch' | 'none';
@@ -35,6 +43,7 @@ export default function PageHero({
   subtitle,
   image,
   overlay = 'sweep',
+  imagePosition = 'object-center',
   rule,
   texture = 'grain',
   children,
@@ -50,7 +59,7 @@ export default function PageHero({
             src={image}
             alt=""
             fetchPriority="high"
-            className="h-full w-full object-cover object-center"
+            className={clsx('h-full w-full object-cover', imagePosition)}
           />
           <div className={clsx('absolute inset-0', overlays[overlay])} />
         </div>

@@ -27,16 +27,50 @@ export default function Header({ currentPath, lang }: Props) {
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef(0);
 
-  // The bar sits over a dark hero at rest and over page content once you move, so it
-  // firms up as you scroll rather than staying the same translucency throughout.
+  /*
+   * Two things off one listener.
+   *
+   * `scrolled` firms the bar up: it sits over a dark hero at rest and over page content
+   * once you move. `hidden` drives the phone behaviour, where the bar gets out of the way
+   * going down the page and comes back the moment you head up, so a small screen is not
+   * permanently giving 62px to navigation.
+   *
+   * Reads are batched into a frame because scroll fires far faster than paint, and the
+   * 6px threshold keeps a trackpad flick or a rubber-band wobble from flipping it.
+   */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let last = window.scrollY;
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      const y = Math.max(0, window.scrollY);
+      setScrolled(y > 24);
+      // Always shown near the top, so an overscroll bounce cannot strand it off-screen
+      // with nothing left to scroll up through.
+      if (y < 96) {
+        setHidden(false);
+        last = y;
+      } else if (Math.abs(y - last) > 6) {
+        setHidden(y > last);
+        last = y;
+      }
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   // Astro serves directory-style URLs, so the pathname carries a trailing slash while nav
@@ -112,10 +146,17 @@ export default function Header({ currentPath, lang }: Props) {
 
   return (
     /* Floating rather than pinned to the very top: a translucent bar inset from the edges,
-       riding over the hero instead of sitting in a white strip above it.
-       `absolute` below lg so it scrolls away on phones, `fixed` from lg up so it stays
-       put. See the overflow-x note in index.css for why `sticky` never worked. */
-    <header className="absolute lg:fixed inset-x-0 top-0 z-50 pt-1.5 lg:pt-2 3xl:pt-3">
+       riding over the hero instead of sitting in a white strip above it. Fixed at every
+       size; see the overflow-x note in index.css for why `sticky` never worked.
+       On a phone it slides away as you read down and returns as soon as you scroll up.
+       Never while the drawer is open, which would take the drawer with it. */
+    <header
+      className={clsx(
+        'fixed inset-x-0 top-0 z-50 pt-1.5 lg:pt-2 3xl:pt-3',
+        'transition-transform duration-300 ease-out',
+        hidden && !open && '-translate-y-full lg:translate-y-0',
+      )}
+    >
       <div className="container-page">
         <div
           className={clsx(

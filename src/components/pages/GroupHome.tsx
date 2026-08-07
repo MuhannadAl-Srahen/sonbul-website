@@ -65,10 +65,15 @@ export default function GroupHome({ lang }: Props) {
             fetchPriority="high"
             /* Mirrored for Arabic by swapping the file, not by a CSS transform: the cab
                carries "ABU SONBUL" and "IVECO", and scaleX(-1) would reverse both. */
-            /* The crop anchor has to mirror with the file. `object-position` takes
-               physical keywords, so a bare `object-right-bottom` kept pinning the right
-               edge in Arabic, where the cab has moved to the left, and cropped it out. */
-            className="h-full w-full object-cover object-right-bottom rtl:object-left-bottom"
+            /* Only one axis is ever cropped: a wide window fills the image's width and
+               trims the top, a phone fills its height and trims the sides. So the
+               vertical anchor is what desktop sees and the horizontal anchor is what a
+               phone sees, and they can be set independently in one value.
+               78% rather than the right edge because pinning the edge sliced the cab down
+               the middle on a phone and gave a quarter of the screen to warehouse roof.
+               At 78% the whole cab front, the door lettering and the front wheel fit.
+               Mirrored for Arabic, where that point sits at 100-78. */
+            className="h-full w-full object-cover object-[78%_bottom] rtl:object-[22%_bottom]"
           />
           <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-ink via-ink/90 to-ink/20" />
           <div className="absolute inset-y-0 start-0 w-2/3 bg-gradient-to-r rtl:bg-gradient-to-l from-ink/60 to-transparent pointer-events-none" />
