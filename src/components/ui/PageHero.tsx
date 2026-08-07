@@ -34,6 +34,13 @@ interface Props {
   /** Extra glyphs after the eyebrow rule: the per-company eyebrow signature. */
   rule?: ReactNode;
   texture?: 'grain' | 'hatch' | 'none';
+  /**
+   * `full` matches the group landing page: a whole screen, and on a phone the photo runs
+   * in flow at its own proportions below the copy rather than being cropped to fill.
+   * A company landing is the same kind of page as the group one and looked wrong at half
+   * the height beside it. `compact` is for everything underneath them.
+   */
+  size?: 'full' | 'compact';
   children?: ReactNode;
 }
 
@@ -46,26 +53,51 @@ export default function PageHero({
   imagePosition = 'object-center',
   rule,
   texture = 'grain',
+  size = 'compact',
   children,
 }: Props) {
+  const full = size === 'full';
+
+  /* On a phone a `full` hero puts the photo in flow underneath the copy, so it shows
+     whole at its own proportions instead of being cropped to fill a tall narrow box.
+     From lg up, and for `compact` at every width, it is the full-bleed background. */
+  const media = image ? (
+    <div className={clsx('relative', full ? 'lg:absolute lg:inset-0' : 'absolute inset-0')}>
+      <img
+        src={image}
+        alt=""
+        width={1678}
+        height={937}
+        fetchPriority="high"
+        className={clsx(
+          full ? 'w-full lg:h-full lg:object-cover' : 'h-full w-full object-cover',
+          imagePosition,
+        )}
+      />
+      {full && (
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ink to-transparent lg:hidden"
+          aria-hidden
+        />
+      )}
+      <div className={clsx('absolute inset-0', full && 'hidden lg:block', overlays[overlay])} />
+    </div>
+  ) : (
+    <div className="absolute inset-0 bg-gradient-to-br from-ink via-ink-800 to-ink-700" />
+  );
+
   return (
     /* The header is fixed and floats over this, so no negative margin is needed to pull
        the hero underneath it. The padding below simply clears the bar. */
-    <section className="relative overflow-hidden min-h-[46vh] sm:min-h-[58vh] flex flex-col justify-end bg-ink">
-      {/* Background */}
-      {image ? (
-        <div className="absolute inset-0">
-          <img
-            src={image}
-            alt=""
-            fetchPriority="high"
-            className={clsx('h-full w-full object-cover', imagePosition)}
-          />
-          <div className={clsx('absolute inset-0', overlays[overlay])} />
-        </div>
-      ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-ink via-ink-800 to-ink-700" />
+    <section
+      className={clsx(
+        'relative overflow-hidden flex flex-col bg-ink',
+        full
+          ? 'min-h-[100svh] lg:h-[100svh] lg:min-h-[54rem] justify-center'
+          : 'min-h-[46vh] sm:min-h-[58vh] justify-end',
       )}
+    >
+      {!full && media}
       {texture !== 'none' && (
         <div
           className={clsx('absolute inset-0 pointer-events-none', texture, 'opacity-15')}
@@ -74,10 +106,15 @@ export default function PageHero({
       )}
 
       {/* Red accent line at the bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary z-10" />
 
       {/* pt-44 = 20 (header) + 24 (original padding) = content sits exactly where it did before */}
-      <div className="relative container-page pb-12 sm:pb-14 pt-28 sm:pt-44">
+      <div
+        className={clsx(
+          'relative z-10 container-page pb-12 sm:pb-14 pt-28 sm:pt-44',
+          full && 'flex-1 flex flex-col justify-center',
+        )}
+      >
         <div className="animate-fade-in-up">
           {/* Glass chip, echoing the floating header above it. */}
           <span className="glass-dark inline-flex items-center gap-3 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-primary-200 mb-4">
@@ -92,6 +129,10 @@ export default function PageHero({
           {children && <div className="mt-8">{children}</div>}
         </div>
       </div>
+
+      {/* After the copy in the DOM, so on a phone it lands below it without any ordering
+          tricks, and from lg up it goes back to being the background behind everything. */}
+      {full && media}
     </section>
   );
 }

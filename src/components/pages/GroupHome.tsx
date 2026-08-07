@@ -56,32 +56,9 @@ export default function GroupHome({ lang }: Props) {
           floor is above either language's content, so nothing is clipped and the crop now
           depends only on the window. */}
       <section className="relative overflow-hidden flex flex-col bg-ink min-h-[100svh] lg:h-[100svh] lg:min-h-[54rem]">
-        <div className="absolute inset-0">
-          <img
-            src={GROUP_HERO[lang]}
-            alt=""
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-            /* Mirrored for Arabic by swapping the file, not by a CSS transform: the cab
-               carries "ABU SONBUL" and "IVECO", and scaleX(-1) would reverse both. */
-            /* Only one axis is ever cropped: a wide window fills the image's width and
-               trims the top, a phone fills its height and trims the sides. So the
-               vertical anchor is what desktop sees and the horizontal anchor is what a
-               phone sees, and they can be set independently in one value.
-               78% rather than the right edge because pinning the edge sliced the cab down
-               the middle on a phone and gave a quarter of the screen to warehouse roof.
-               At 78% the whole cab front, the door lettering and the front wheel fit.
-               Mirrored for Arabic, where that point sits at 100-78. */
-            className="h-full w-full object-cover object-[78%_bottom] rtl:object-[22%_bottom]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-ink via-ink/90 to-ink/20" />
-          <div className="absolute inset-y-0 start-0 w-2/3 bg-gradient-to-r rtl:bg-gradient-to-l from-ink/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 grain opacity-15" aria-hidden />
-        </div>
+        <div className="pointer-events-none absolute inset-0 grain opacity-15" aria-hidden />
 
-        <div className="relative flex-1 container-page flex flex-col justify-center pt-28 sm:pt-36 pb-8">
+        <div className="relative z-10 flex-1 container-page flex flex-col justify-center pt-28 sm:pt-36 pb-8">
           <div className="animate-fade-in-up-hero max-w-3xl">
             <span className="glass-dark inline-flex items-center gap-3 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-primary-200 mb-6">
               <span className="h-[2px] w-8 bg-primary inline-block" />
@@ -111,7 +88,47 @@ export default function GroupHome({ lang }: Props) {
           </div>
         </div>
 
-        <StatStrip items={stats} className="relative" />
+        {/*
+         * The truck.
+         *
+         * In flow on a phone and full-bleed from lg up, which is one element rather than
+         * two so nothing is downloaded and thrown away. A phone is about 0.46 wide to
+         * tall against a 1.79 photo, so `object-cover` had to discard three quarters of
+         * the width and left a slice of cab filling the screen. Here it simply runs the
+         * full width at its own proportions: the whole vehicle, small, the way it reads
+         * on a desktop. Sitting after the copy in the DOM, it lands between the text and
+         * the stats without any ordering tricks.
+         *
+         * The width and height attributes are what reserve its space before it loads.
+         * `object-*` below only bites from lg, where there is a box to fit into.
+         */}
+        <div className="relative lg:absolute lg:inset-0">
+          <img
+            src={GROUP_HERO[lang]}
+            alt=""
+            width={1678}
+            height={937}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            /* Mirrored for Arabic by swapping the file, not by a CSS transform: the cab
+               carries "ABU SONBUL" and "IVECO", and scaleX(-1) would reverse both.
+               78% rather than the right edge so that when a narrower desktop window does
+               crop the sides, it keeps the cab whole. Arabic mirrors to 100-78. */
+            className="w-full object-[78%_bottom] rtl:object-[22%_bottom] lg:h-full lg:object-cover"
+          />
+          {/* Softens the top edge of the band into the section on a phone. */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ink to-transparent lg:hidden"
+            aria-hidden
+          />
+          <div className="absolute inset-0 hidden lg:block bg-gradient-to-r rtl:bg-gradient-to-l from-ink via-ink/90 to-ink/20" />
+          <div className="pointer-events-none absolute inset-y-0 start-0 w-2/3 hidden lg:block bg-gradient-to-r rtl:bg-gradient-to-l from-ink/60 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 hidden lg:block bg-gradient-to-b from-black/50 to-transparent" />
+          <div className="absolute inset-0 hidden lg:block grain opacity-15" aria-hidden />
+        </div>
+
+        <StatStrip items={stats} className="relative z-10" />
       </section>
 
       {/* ══════════════════════════════════════════

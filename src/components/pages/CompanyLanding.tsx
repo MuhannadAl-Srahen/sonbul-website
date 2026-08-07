@@ -9,7 +9,7 @@ import SectionHeader from '../sections/SectionHeader';
 import StatStrip, { type Stat } from '../sections/StatStrip';
 import ServiceGrid from '../sections/ServiceGrid';
 import FeatureGrid from '../sections/FeatureGrid';
-import PhotoStrip from '../sections/PhotoStrip';
+import GallerySection from '../sections/GallerySection';
 import CTABand from '../sections/CTABand';
 import { logosFor } from '../../data/clientLogos';
 import { PROJECTS } from '../../data/projects';
@@ -60,6 +60,7 @@ export default function CompanyLanding({ company, lang }: Props) {
         subtitle={t(`${ns}.hero.subtitle`)}
         image={heroImageFor(c, lang)}
         imagePosition={cfg.heroPosition}
+        size="full"
         overlay={cfg.overlay}
         texture={cfg.texture}
         rule={<EyebrowRule company={company} />}
@@ -178,23 +179,16 @@ export default function CompanyLanding({ company, lang }: Props) {
         </section>
       )}
 
-      {/* Photos */}
-      <section className="section-tight bg-white">
-        <div className="container-page">
-          <SectionHeader
-            eyebrow={t(`${ns}.gallery.eyebrow`)}
-            title={t(`${ns}.gallery.title`)}
-            className="mb-10"
-          />
-          <PhotoStrip
-            query={cfg.photos}
-            lang={lang}
-            altPrefix={t(`companies.${company}.name`)}
-            seeAllLabel={t(`${ns}.gallery.seeAll`)}
-            seeAllHref={`${href('/')}?company=${company}#gallery`}
-          />
-        </div>
-      </section>
+      {/* Photos. The company's whole library, filterable, rather than a strip with a
+          "see all" that sent you to the group gallery to filter it back down again. The
+          sub-pages keep their own strips; this is the one place you can see everything
+          this company does at once. */}
+      <GallerySection
+        lang={lang}
+        company={company}
+        eyebrow={t(`${ns}.gallery.eyebrow`)}
+        title={t(`${ns}.gallery.title`)}
+      />
 
       {/* Clients */}
       <section className={`section-tight ${cfg.surface}`}>

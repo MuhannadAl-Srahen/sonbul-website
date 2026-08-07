@@ -19,6 +19,18 @@ const PAGE_SIZE = 16;
 
 interface Props {
   lang: Lang;
+  /**
+   * Pin the gallery to one company.
+   *
+   * The company row disappears and the category row narrows to what that company
+   * actually has, so a company page carries one gallery covering everything it does
+   * rather than a separate strip per sub-page.
+   */
+  company?: CompanyId;
+  /** Heading overrides, so a company gallery can speak in its own words. */
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 interface Selection {
@@ -27,7 +39,13 @@ interface Selection {
   tag: MediaTag | null;
 }
 
-export default function GallerySection({ lang }: Props) {
+export default function GallerySection({
+  lang,
+  company: scope,
+  eyebrow,
+  title,
+  subtitle,
+}: Props) {
   const { t } = useLocale(lang);
   const [page, setPage] = useState(0);
   const [openIndex, setOpenIndex] = useState(-1);
@@ -45,11 +63,14 @@ export default function GallerySection({ lang }: Props) {
   const paramTag = useQueryParam('tag');
   const [selection, setSelection] = useState<Selection | null>(null);
 
-  const { company, filter, tag } = selection ?? {
+  const resolved = selection ?? {
     company: COMPANIES.some((c) => c.id === paramCompany) ? (paramCompany as CompanyId) : 'all',
     filter: (paramCategory as Filter) ?? 'all',
     tag: (paramTag as MediaTag) ?? null,
   };
+  // A scoped gallery cannot be talked out of its company by a click or a query string.
+  const company: CompanyFilter = scope ?? resolved.company;
+  const { filter, tag } = resolved;
 
   const filtered = useMemo(() => {
     let base = galleryItems;
@@ -107,6 +128,12 @@ export default function GallerySection({ lang }: Props) {
       active ? 'bg-primary text-white shadow-sm' : 'bg-ink/5 text-ink hover:bg-ink/10',
     );
 
+  // The group gallery explains itself; a company one is already under that company's
+  // heading, so it only speaks if given something to say.
+  const heroSubtitle = subtitle ?? (scope ? undefined : t('gallery.hero.subtitle'));
+  // Nothing to choose from means no reason to show the panel at all.
+  const showTray = !scope || categories.length > 1;
+
   // Arabic has its own comma; a Latin one in Arabic alt text reads as a typo.
   const comma = lang === 'ar' ? '، ' : ', ';
   const altFor = (item: (typeof galleryItems)[number]) =>
@@ -120,16 +147,20 @@ export default function GallerySection({ lang }: Props) {
           <Reveal className="mb-10 text-center">
             <span className="eyebrow justify-center">
               <Images className="h-4 w-4" />
-              {t('gallery.hero.eyebrow')}
+              {eyebrow ?? t('gallery.hero.eyebrow')}
             </span>
-            <h2 className="heading-lg mt-3">{t('gallery.hero.title')}</h2>
-            <p className="lead mx-auto mt-4 max-w-2xl">{t('gallery.hero.subtitle')}</p>
+            <h2 className="heading-lg mt-3">{title ?? t('gallery.hero.title')}</h2>
+            {heroSubtitle && <p className="lead mx-auto mt-4 max-w-2xl">{heroSubtitle}</p>}
           </Reveal>
 
           {/* Filters: company first, then category within it. Held in a floating glass
-              tray so the controls read as one panel rather than two loose rows. */}
+              tray so the controls read as one panel rather than two loose rows. The tray
+              is skipped entirely when there is nothing left to choose, which is what a
+              scoped gallery of a single-category company comes down to. */}
+          {showTray && (
           <Reveal className="mb-10 flex justify-center">
             <div className="glass w-full max-w-3xl p-3 sm:p-4">
+              {!scope && (
               <div className="flex flex-wrap justify-center gap-2">
                 <button
                   onClick={() => selectCompany('all')}
@@ -143,14 +174,23 @@ export default function GallerySection({ lang }: Props) {
                     onClick={() => selectCompany(c.id)}
                     className={pillClass(company === c.id)}
                   >
-                    {t(`companies.${c.id}.short`)}
+                    {/* The full registered name, as in the header. The short forms read as
+                        service names ("Transport", "Project Services") rather than as the
+                        three separate businesses they stand for. */}
+                    {t(`companies.${c.id}.name`)}
                   </button>
                 ))}
               </div>
+              )}
 
               {/* A single category is no choice at all, so the row only appears when there is one. */}
               {categories.length > 1 && (
-                <div className="mt-3 flex flex-wrap justify-center gap-2 border-t border-ink-100 pt-3">
+                <div
+                  className={clsx(
+                    'flex flex-wrap justify-center gap-2',
+                    !scope && 'mt-3 border-t border-ink-100 pt-3',
+                  )}
+                >
                   {filters.map((f) => (
                     <button
                       key={f}
@@ -169,6 +209,7 @@ export default function GallerySection({ lang }: Props) {
               )}
             </div>
           </Reveal>
+          )}
 
           {filtered.length === 0 && (
             <Reveal>
