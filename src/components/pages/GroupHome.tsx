@@ -51,7 +51,7 @@ export default function GroupHome({ lang }: Props) {
       <section className="relative overflow-hidden min-h-[100svh] flex flex-col bg-ink">
         <div className="absolute inset-0">
           <img
-            src="/assets/hero/hero.jpg"
+            src="/assets/hero/hero.webp"
             alt=""
             loading="eager"
             decoding="async"
@@ -163,7 +163,7 @@ export default function GroupHome({ lang }: Props) {
             <div className="relative">
               <div className="relative aspect-[4/3] sm:aspect-[4/5] overflow-hidden rounded-2xl shadow-soft">
                 <img
-                  src="/assets/gallery/home-image.jpg"
+                  src="/assets/gallery/home-image.webp"
                   alt=""
                   loading="lazy"
                   decoding="async"

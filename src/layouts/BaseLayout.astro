@@ -23,8 +23,11 @@ const { title, description, path, lang, image, schema, person, noindex } = Astro
 // The group hub uses the shared hero; every company page uses its own. Both are the
 // largest paint on their page.
 const isHome = path === '/' || path === '/ar/';
+// The WebP, matching what the hero <img> actually renders. `hero.jpg` next to it is the
+// 1200x630 og:image crop, so preloading that would fetch a file the page never shows and
+// leave the real LCP image undiscovered until the parser reaches it.
 const preloadImage =
-  companyFromPath(path)?.heroImage ?? (isHome ? '/assets/hero/hero.jpg' : undefined);
+  companyFromPath(path)?.heroImage ?? (isHome ? '/assets/hero/hero.webp' : undefined);
 
 // Resolved once and shared with both the header and the structured data, so the visible
 // navigation can never disagree with the page's schema about which company we are in.

@@ -80,13 +80,26 @@ async function load(file) {
 let built = 0;
 let bytes = 0;
 
+// Every source is checked before anything is deleted. This used to wipe each category
+// directory and only then look for its sources, so running it without the media-src
+// archive destroyed the committed derivatives and threw afterwards, leaving nothing.
+const missing = Object.values(CATEGORIES)
+  .flat()
+  .filter((file) => !existsSync(path.join(PHOTOS, file)));
+if (missing.length) {
+  throw new Error(
+    `${missing.length} source photos are missing from ${PHOTOS}, starting with ` +
+      `${missing.slice(0, 3).join(', ')}. Nothing was written. This script rebuilds the ` +
+      `whole library from the originals, so it needs the complete media-src archive.`,
+  );
+}
+
 for (const [category, files] of Object.entries(CATEGORIES)) {
   const dir = path.join(OUT_GALLERY, category);
   await rm(dir, { recursive: true, force: true });
   await mkdir(dir, { recursive: true });
 
   for (const [i, file] of files.entries()) {
-    if (!existsSync(path.join(PHOTOS, file))) throw new Error(`missing source: ${file}`);
     const name = `${category}-${String(i + 1).padStart(2, '0')}`;
 
     const thumb = await (await load(file))
@@ -119,8 +132,8 @@ console.log(`  portrait   ${(portrait.size / 1024).toFixed(0)} KB`);
 const gig = await sharp(path.join(SRC, 'GIG.png'))
   .trim()
   .resize({ height: 80, fit: 'inside', withoutEnlargement: true })
-  .png({ compressionLevel: 9, palette: true })
-  .toFile(path.join(ROOT, 'public/assets/companies/gig.png'));
+  .webp({ lossless: true })
+  .toFile(path.join(ROOT, 'public/assets/companies/gig.webp'));
 console.log(`  gig logo   ${(gig.size / 1024).toFixed(1)} KB`);
 
 // --- video posters --------------------------------------------------------

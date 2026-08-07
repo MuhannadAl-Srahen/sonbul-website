@@ -29,8 +29,10 @@ export interface Company {
   i18nKey: CompanyI18nKey;
   /**
    * og:image and JSON-LD primary image for every page under this company.
-   * TODO(phase 9): replace with purpose-made 1200x630 art; hero.jpg is a stand-in so
-   * share previews point at something real rather than a 404.
+   *
+   * Kept as JPEG deliberately. The on-page versions are WebP, but social crawlers do not
+   * reliably render WebP share previews, so these two stay a format every scraper can
+   * read, cropped to the 1200x630 that `summary_large_image` expects.
    */
   image: string;
   /**
@@ -58,7 +60,7 @@ export const COMPANIES: Company[] = [
     base: '/transport',
     i18nKey: 'transport',
     image: '/assets/hero/hero.jpg',
-    heroImage: '/assets/hero/hero.jpg',
+    heroImage: '/assets/hero/hero.webp',
     galleryCategories: ['transport'],
     clientLogos: [
       'maraii', 'savola', 'pipsico', 'rajhi', 'krbonat', 'yascp', 'obekan', 'mondi',

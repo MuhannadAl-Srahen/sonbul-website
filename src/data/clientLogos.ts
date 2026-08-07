@@ -9,7 +9,7 @@ export const ALL_LOGOS = [
   'wfp', 'yascp', 'yousef',
 ];
 
-export const logoSrc = (name: string) => `/assets/companies/${name}.png`;
+export const logoSrc = (name: string) => `/assets/companies/${name}.webp`;
 
 /** Below this, a company's own row looks thinner than it deserves and we show the group. */
 const MIN_OWN_LOGOS = 8;
