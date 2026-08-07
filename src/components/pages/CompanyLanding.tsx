@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
-import { COMPANY_BY_ID, type CompanyId } from '../../data/companies';
+import { COMPANY_BY_ID, heroImageFor, type CompanyId } from '../../data/companies';
 import PageHero from '../ui/PageHero';
 import ClientSlider from '../ui/ClientSlider';
 import Reveal from '../ui/Reveal';
@@ -58,7 +58,7 @@ export default function CompanyLanding({ company, lang }: Props) {
         eyebrow={t(`${ns}.hero.eyebrow`)}
         title={t(`${ns}.hero.title`)}
         subtitle={t(`${ns}.hero.subtitle`)}
-        image={cfg.hero}
+        image={heroImageFor(c, lang)}
         overlay={cfg.overlay}
         texture={cfg.texture}
         rule={<EyebrowRule company={company} />}

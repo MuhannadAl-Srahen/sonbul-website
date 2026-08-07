@@ -5,7 +5,7 @@ import ClientSlider from '../ui/ClientSlider';
 import StatStrip, { type Stat } from '../sections/StatStrip';
 import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
-import { COMPANIES } from '../../data/companies';
+import { COMPANIES, GROUP_HERO } from '../../data/companies';
 import { companyChrome } from './companyChrome';
 import AboutSection from '../sections/AboutSection';
 import TeamSection from '../sections/TeamSection';
@@ -51,13 +51,13 @@ export default function GroupHome({ lang }: Props) {
       <section className="relative overflow-hidden min-h-[100svh] flex flex-col bg-ink">
         <div className="absolute inset-0">
           <img
-            src="/assets/hero/hero.webp"
+            src={GROUP_HERO[lang]}
             alt=""
             loading="eager"
             decoding="async"
             fetchPriority="high"
-            /* No `hero-img`: that class mirrors the photo in RTL, and this one carries the
-               company's own name on the cab door and bumper. */
+            /* Mirrored for Arabic by swapping the file, not by a CSS transform: the cab
+               carries "ABU SONBUL" and "IVECO", and scaleX(-1) would reverse both. */
             className="h-full w-full object-cover object-right-bottom"
           />
           <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-ink via-ink/90 to-ink/20" />

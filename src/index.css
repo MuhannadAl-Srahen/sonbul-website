@@ -161,11 +161,11 @@ html[dir='rtl'] .home-hero-title {
   line-height: 1.35;
 }
 
-/* ── Hero image: flip horizontally in RTL so truck mirrors correctly ── */
-html[dir='rtl'] .hero-img {
-  transform: scaleX(-1);
-  object-position: left bottom;
-}
+/* A `.hero-img` class used to mirror hero photos in RTL with scaleX(-1), so the subject
+   stayed clear of the Arabic copy. It is gone because it also reversed any lettering in
+   the shot, and the truck hero carries "ABU SONBUL" and "IVECO". Heroes that need
+   mirroring now ship a pre-mirrored file with the lettering pasted back the right way
+   round; see heroImageRtl in data/companies.ts and scripts/build-hero-rtl.mjs. */
 
 /* ── Mobile: reduce hero vertical padding on small screens ── */
 @media (max-width: 639px) {

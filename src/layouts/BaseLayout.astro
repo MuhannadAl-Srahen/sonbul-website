@@ -4,7 +4,7 @@ import Footer from '../components/layout/Footer.astro';
 import SEO from '../components/seo/SEO.astro';
 import type { Lang } from '../i18n/types';
 import { dict } from '../i18n/dictionaries';
-import { companyFromPath } from '../data/companies';
+import { companyFromPath, heroImageFor, GROUP_HERO } from '../data/companies';
 import '../index.css';
 
 interface Props {
@@ -23,15 +23,20 @@ const { title, description, path, lang, image, schema, person, noindex } = Astro
 // The group hub uses the shared hero; every company page uses its own. Both are the
 // largest paint on their page.
 const isHome = path === '/' || path === '/ar/';
-// The WebP, matching what the hero <img> actually renders. `hero.jpg` next to it is the
-// 1200x630 og:image crop, so preloading that would fetch a file the page never shows and
-// leave the real LCP image undiscovered until the parser reaches it.
-const preloadImage =
-  companyFromPath(path)?.heroImage ?? (isHome ? '/assets/hero/hero.webp' : undefined);
 
 // Resolved once and shared with both the header and the structured data, so the visible
 // navigation can never disagree with the page's schema about which company we are in.
 const company = companyFromPath(path);
+
+// Must be the exact file the hero <img> renders, which means the WebP and, in Arabic,
+// the mirrored counterpart. `hero.jpg` next to it is the 1200x630 og:image crop, so
+// preloading that would fetch a file the page never shows and leave the real LCP image
+// undiscovered until the parser reaches it.
+const preloadImage = company
+  ? heroImageFor(company, lang)
+  : isHome
+    ? GROUP_HERO[lang]
+    : undefined;
 ---
 
 <!doctype html>

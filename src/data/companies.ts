@@ -40,6 +40,15 @@ export interface Company {
    * companyChrome.ts so BaseLayout can preload it without importing a React module.
    */
   heroImage: string;
+  /**
+   * Arabic counterpart of `heroImage`, where the composition needs one.
+   *
+   * The hero copy sits on the left in English and the right in Arabic. If the subject of
+   * the photo is on the right it ends up underneath the Arabic text, so those heroes get
+   * a mirrored file. Mirroring in CSS would reverse any lettering in the shot, hence a
+   * built asset rather than a transform. See scripts/build-hero-rtl.mjs.
+   */
+  heroImageRtl?: string;
   /** Gallery categories whose photos belong to this company by default. */
   galleryCategories: GalleryCategory[];
   /** Client logo basenames under /assets/companies/. See logosFor() in clientLogos.ts. */
@@ -61,6 +70,7 @@ export const COMPANIES: Company[] = [
     i18nKey: 'transport',
     image: '/assets/hero/hero.jpg',
     heroImage: '/assets/hero/hero.webp',
+    heroImageRtl: '/assets/hero/hero-rtl.webp',
     galleryCategories: ['transport'],
     clientLogos: [
       'maraii', 'savola', 'pipsico', 'rajhi', 'krbonat', 'yascp', 'obekan', 'mondi',
@@ -128,4 +138,18 @@ export const COMPANY_BY_ID = Object.fromEntries(
 export function companyFromPath(path: string): Company | undefined {
   const clean = path.replace(/^\/ar(?=\/|$)/, '') || '/';
   return COMPANIES.find((c) => clean === c.base || clean.startsWith(`${c.base}/`));
+}
+
+/**
+ * The landing page hero. It is the same truck as the transport company's, and it needs
+ * the same mirrored counterpart in Arabic.
+ */
+export const GROUP_HERO = {
+  en: '/assets/hero/hero.webp',
+  ar: '/assets/hero/hero-rtl.webp',
+} as const;
+
+/** Hero background for a company, mirrored in Arabic where a counterpart exists. */
+export function heroImageFor(company: Company, lang: 'en' | 'ar'): string {
+  return (lang === 'ar' && company.heroImageRtl) || company.heroImage;
 }
