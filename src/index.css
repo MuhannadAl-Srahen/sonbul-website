@@ -172,6 +172,12 @@ html[dir='rtl'] .hero-img {
   .page-hero-title {
     font-size: clamp(1.875rem, 7.5vw, 3rem);
   }
+  /* The landing hero needs this too. Without it the RTL rules above scaled the Arabic
+     title down on a phone while the English one stayed at its full 48px, so the home
+     page was the one hero on the site that did not fit a small screen. */
+  .home-hero-title {
+    font-size: clamp(2rem, 8.5vw, 3.25rem);
+  }
   /* Ensure hero sections don't over-pad on very small phones */
   .section { padding-top: 3rem; padding-bottom: 3rem; }
 }

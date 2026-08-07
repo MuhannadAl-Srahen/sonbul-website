@@ -243,7 +243,7 @@ export default function ContactSection({ lang }: Props) {
                   name="message"
                   rows={5}
                   required
-                  className="w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition"
+                  className="w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-base sm:text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition"
                 />
               </div>
               {/* aria-live so a screen reader hears the outcome; without it the form
@@ -256,7 +256,7 @@ export default function ContactSection({ lang }: Props) {
                   </p>
                 )}
                 {status === 'error' && (
-                  <p className="text-sm text-red-600">{t('contact.form.error')}</p>
+                  <p className="text-sm text-red-600 break-words">{t('contact.form.error')}</p>
                 )}
                 <div className="flex justify-end">
                   <button
@@ -335,7 +335,9 @@ function Field({
         defaultValue={defaultValue}
         autoComplete={autoComplete}
         inputMode={inputMode}
-        className="w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition"
+        /* 16px on mobile, not 14: iOS Safari zooms the page in when you focus an input
+           smaller than 16px, and it does not zoom back out afterwards. */
+        className="w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-base sm:text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition"
       />
     </div>
   );

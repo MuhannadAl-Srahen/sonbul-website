@@ -102,14 +102,18 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
       holdUntil = performance.now() + 500;
     };
 
-    // Drag to scroll. Pointer events cover mouse, touch and pen with one path.
+    // Drag to scroll, for the mouse only.
     let down = false;
     let startX = 0;
     let startScroll = 0;
 
     const onDown = (e: PointerEvent) => {
-      down = true;
       paused.current = true;
+      // A finger already pans an `overflow-x: auto` container natively, so running the
+      // drag handler for touch too moved the strip twice as far as the finger went.
+      // Native panning also carries momentum, which this cannot reproduce.
+      if (e.pointerType !== 'mouse') return;
+      down = true;
       startX = e.clientX;
       startScroll = el.scrollLeft;
       el.setPointerCapture(e.pointerId);
