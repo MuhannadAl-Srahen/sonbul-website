@@ -3,7 +3,7 @@
     "hero": {
       "eyebrow": "Raed Abu Sonbul & Partner",
       "title": "Everything your project needs, before it needs it.",
-      "subtitle": "Manpower, camps, power, water, catering, housekeeping, machinery and site transport — delivered as one package so your team can get on with the actual work.",
+      "subtitle": "Manpower, camps, power, water, catering, housekeeping, machinery and site transport, delivered as one package so your team can get on with the actual work.",
       "ctaPrimary": "Discuss your project",
       "ctaSecondary": "See our projects"
     },
@@ -49,12 +49,12 @@
         "camps": {
           "title": "Camp construction",
           "short": "Full project camps, built and ready to operate.",
-          "body": "Turnkey accommodation camps for energy, defence and infrastructure projects — from site preparation and levelling to handover of a running camp."
+          "body": "Turnkey accommodation camps for energy, defence and infrastructure projects, from site preparation and levelling to handover of a running camp."
         },
         "infrastructure": {
           "title": "Site infrastructure",
           "short": "Power, water and communications on bare ground.",
-          "body": "Generators and distribution, water supply and storage, waste handling and communications — the services that make a remote site habitable."
+          "body": "Generators and distribution, water supply and storage, waste handling and communications: the services that make a remote site habitable."
         },
         "catering": {
           "title": "Catering & housekeeping",
@@ -89,13 +89,13 @@
       "subtitle": "Two flagship energy programmes in the Jordanian desert, back to back.",
       "items": {
         "argas": {
-          "name": "ARGAS — Al-Jaffr",
+          "name": "ARGAS, Al-Jaffr",
           "meta": "Seismic exploration · ~1 year · 600 workforce",
           "short": "Camp, catering and cross-border transport for a 600-person seismic survey programme.",
           "body": "ARGAS, the Saudi geophysical and surveying company, ran a seismic exploration programme in southern Jordan to locate oil-bearing structures. We built and operated the Al-Jaffr camp for a workforce that peaked at 600, handled the cross-border freight from Saudi Arabia, and ran catering and housekeeping for the duration of the programme."
         },
         "adnoc": {
-          "name": "ADNOC — Azraq & Sarhan",
+          "name": "ADNOC, Azraq & Sarhan",
           "meta": "Drilling & extraction · 2+ years",
           "short": "Two camps, UAE-to-Jordan transport and full site services across a multi-year drilling programme.",
           "body": "Following the exploration work, ADNOC moved in to drill and extract from the structures that had been identified. We constructed and operated the Azraq and Sarhan camps over more than two years, moved equipment and supplies from the UAE into Jordan, and provided catering, housekeeping and day-to-day site operations throughout."
@@ -117,7 +117,7 @@
         "eyebrow": "Camps & accommodation",
         "title": "A camp is a small town you have to build before the work starts.",
         "subtitle": "Site preparation through to a running camp, handed over ready to occupy.",
-        "intro": "On a remote site there is nothing until you bring it — no power, no water, no beds, no kitchen. We have built and run camps in Azraq, Sarhan and Al-Jaffr, and the pattern below is how each of them came together.",
+        "intro": "On a remote site there is nothing until you bring it: no power, no water, no beds, no kitchen. We have built and run camps in Azraq, Sarhan and Al-Jaffr, and the pattern below is how each of them came together.",
         "items": {
           "sitePrep": {
             "title": "Site preparation",
@@ -141,12 +141,12 @@
           },
           "handover": {
             "title": "Handover or full operation",
-            "body": "Take the keys to a finished camp, or leave it with us to run — catering, housekeeping, maintenance and day-to-day site management included."
+            "body": "Take the keys to a finished camp, or leave it with us to run, with catering, housekeeping, maintenance and day-to-day site management included."
           }
         },
         "seo": {
           "title": "Project Camp Construction in Jordan",
-          "description": "Turnkey accommodation camps for energy, defence and infrastructure projects in Jordan — site preparation, accommodation, power, water, messes and full operation."
+          "description": "Turnkey accommodation camps for energy, defence and infrastructure projects in Jordan: site preparation, accommodation, power, water, messes and full operation."
         }
       },
       "catering": {
@@ -173,7 +173,7 @@
           },
           "hygiene": {
             "title": "Hygiene and food safety",
-            "body": "Documented cleaning schedules, temperature logs and waste handling — the things an audit asks for, kept up when nobody is auditing."
+            "body": "Documented cleaning schedules, temperature logs and waste handling: the things an audit asks for, kept up when nobody is auditing."
           },
           "shifts": {
             "title": "Around-the-clock service",

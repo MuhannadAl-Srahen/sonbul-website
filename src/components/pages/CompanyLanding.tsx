@@ -79,7 +79,7 @@ export default function CompanyLanding({ company, lang }: Props) {
 
       <StatStrip items={stats} />
 
-      {/* Why us — dark band, numbered list */}
+      {/* Why us: dark band, numbered list */}
       <section className="section bg-ink text-white">
         <div className="container-page">
           <SectionHeader

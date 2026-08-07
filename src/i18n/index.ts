@@ -11,13 +11,13 @@ const resources = {
 };
 
 /**
- * Each page/island gets its own fixed-language i18next instance — language
+ * Each page/island gets its own fixed-language i18next instance. Language
  * is a build-time constant derived from the URL (/ar/... vs /...), not
  * runtime-detected. Deliberately NOT using react-i18next's context/hook
  * machinery here: Astro renders each client-hydrated island as its own
  * independent SSR pass, and nesting an <I18nextProvider> around a child in
  * a .astro file does not reliably propagate React context across that
- * boundary — components silently fell back to react-i18next's shared
+ * boundary, and components silently fell back to react-i18next's shared
  * global-default instance instead, which produced wrong/swapped-language
  * output depending on whatever page had most recently initialized an
  * instance elsewhere in the same build. Every component instead calls

@@ -41,13 +41,13 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
 
     let raf = 0;
     let last = performance.now();
-    // Deliberately slow — the strip should drift, not scroll past you.
+    // Deliberately slow: the strip should drift, not scroll past you.
     const SPEED = 16; // px per second
 
     /**
      * Width of one copy of the list, which is the distance the strip can travel before
      * it looks identical again. Measured off the first tile of the second copy rather
-     * than `scrollWidth / 2` — the container is padded, so half the scroll width
+     * than `scrollWidth / 2`, because the container is padded, so half the scroll width
      * overshoots one copy by the padding and the loop would jump on every wrap. The
      * tiles are fixed-size in CSS, so this is correct before any logo has loaded.
      */
@@ -62,13 +62,13 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
     /**
      * The position has to be accumulated here rather than read back off the element
      * every frame. `scrollLeft` snaps to whole pixels, and at this speed a frame is
-     * about a quarter of one — so `scrollLeft += 0.23` rounded straight back to where
+     * about a quarter of one, so `scrollLeft += 0.23` rounded straight back to where
      * it started and the strip never moved at all. Keeping the real position in a
      * float and writing it out lets the sub-pixel remainder survive between frames.
      */
     let pos = el.scrollLeft;
     let written = pos;
-    // While an arrow's smooth scroll is in flight, leave the element alone — writing
+    // While an arrow's smooth scroll is in flight, leave the element alone, because writing
     // to scrollLeft would cancel it mid-animation.
     let holdUntil = 0;
 

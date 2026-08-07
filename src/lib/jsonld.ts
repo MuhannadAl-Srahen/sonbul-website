@@ -1,5 +1,5 @@
 /**
- * schema.org graph builders. Pure functions — no React, no Astro globals — so they can
+ * schema.org graph builders. Pure functions with no React and no Astro globals, so they can
  * be unit-reasoned about and called from any .astro frontmatter.
  *
  * The load-bearing rule here is @id stability across locales. Entity nodes (#group,
@@ -114,7 +114,7 @@ const graph = (nodes: object[]) => ({ '@context': 'https://schema.org', '@graph'
  * The group hub at / and /ar.
  *
  * The contact details are a section of this page now rather than a route of their own, so
- * the single LocalBusiness node lives here too. Still exactly one — three separately
+ * the single LocalBusiness node lives here too. Still exactly one: three separately
  * marked local businesses at one Amman address reads as a spam signal.
  */
 export function groupGraph(ctx: Ctx) {
@@ -183,7 +183,7 @@ export function companyGraph(
 }
 
 /**
- * /about, /services, /gallery, /team — group-owned pages with no company of their own.
+ * /about, /services, /gallery, /team: group-owned pages with no company of their own.
  *
  * The Organization node travels with them. Emitting only a WebPage left `isPartOf` and
  * `about` pointing at `#website` and `#group` ids that existed on no page in that
@@ -223,7 +223,7 @@ function localBusiness(ctx: Ctx) {
   };
 }
 
-/** /team/<slug> — previously carried no structured data at all. */
+/** /team/<slug>: previously carried no structured data at all. */
 export function personGraph(ctx: Ctx, person: { name: string; jobTitle: string; image?: string }) {
   const id = `${ctx.canonical}#person`;
   return graph([

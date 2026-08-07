@@ -21,7 +21,7 @@ export default function ContactSection({ lang }: Props) {
   const { t } = useLocale(lang);
   const [status, setStatus] = useState<Status>('idle');
   // Arriving via "Get a Quote" (/contact?subject=quote) pre-fills the subject. Read
-  // through the hook rather than off `window` during render — an inline read makes the
+  // through the hook rather than off `window` during render: an inline read makes the
   // client's first paint disagree with the pre-rendered HTML.
   const defaultSubject = useQueryParam('subject') === 'quote' ? t('contact.quoteSubject') : '';
 
@@ -39,7 +39,7 @@ export default function ContactSection({ lang }: Props) {
     const subject = String(data.get('subject') || '');
     const message = String(data.get('message') || '');
     const companyId = String(data.get('company') || '');
-    // Send the readable name, not the slug — this lands in an inbox, not a database.
+    // Send the readable name, not the slug. This lands in an inbox, not a database.
     const companyName = companyId ? t(`companies.${companyId}.name`) : '';
 
     setStatus('sending');
@@ -62,7 +62,7 @@ export default function ContactSection({ lang }: Props) {
           phone,
           user_phone: phone,
           subject,
-          title: companyName ? `${subject} — ${companyName}` : subject,
+          title: companyName ? `${subject} - ${companyName}` : subject,
           company: companyName,
           message,
           user_message: message,
@@ -82,10 +82,10 @@ export default function ContactSection({ lang }: Props) {
 
   return (
     <>
-      {/* One desk answers for all three companies — say so before the form, so nobody
+      {/* One desk answers for all three companies, so say so before the form, so nobody
           wonders whether they are writing to the wrong part of the group. */}
       {/* The page used to end with a dark call-to-action that only scrolled you back up to
-          this form. Its treatment — the dark panel, the red edge, the soft glow — moved
+          this form. Its treatment (the dark panel, the red edge, the soft glow) moved
           here instead, so the section it was pointing at is the one that carries it. */}
       <section id="contact" className="section-tight bg-sand">
         <div className="container-page">
@@ -220,7 +220,7 @@ export default function ContactSection({ lang }: Props) {
                   autoComplete="tel"
                   inputMode="tel"
                 />
-                {/* `key` remounts the uncontrolled input once the query param resolves —
+                {/* `key` remounts the uncontrolled input once the query param resolves,
                     defaultValue alone would never reach an already-mounted field. */}
                 <Field
                   key={defaultSubject}

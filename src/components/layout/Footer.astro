@@ -3,7 +3,7 @@
  * Static Astro rather than a React island: the footer has zero interactivity, so
  * hydrating it cost every page a third bundle for nothing.
  */
-// lucide-react renders fine server-side in .astro with no client directive — plain HTML,
+// lucide-react renders fine server-side in .astro with no client directive, so this is plain HTML,
 // no hydration, no extra dependency.
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 import type { Lang } from '../../i18n/types';
@@ -51,7 +51,7 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/6
       </a>
     </div>
 
-    {/* The three companies — the footer is the one place all of them are always listed. */}
+    {/* The three companies: the footer is the one place all of them are always listed. */}
     <div>
       <h3 class={headingClass}>{t.nav.ourCompanies}</h3>
       <ul class="space-y-3 text-sm">

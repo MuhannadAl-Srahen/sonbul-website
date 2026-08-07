@@ -1,7 +1,7 @@
 /**
  * Builds the optimized media library in public/assets from the originals in media-src/.
  *
- * media-src/ is gitignored — only the derivatives this script writes are committed. Re-run it
+ * media-src/ is gitignored. Only the derivatives this script writes are committed. Re-run it
  * after adding a source image and updating the CATEGORIES map below.
  *
  *   node scripts/build-media.mjs
@@ -16,7 +16,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-// sharp ships only dist/index.mjs — a bare specifier will not resolve from this script's folder.
+// sharp ships only dist/index.mjs, so a bare specifier will not resolve from this script's folder.
 const sharp = (await import(pathToFileURL(path.join(ROOT, 'node_modules/sharp/dist/index.mjs')).href)).default;
 
 const SRC = path.join(ROOT, 'media-src');
@@ -60,7 +60,7 @@ const CATEGORIES = {
   ],
 };
 
-/** photo23 is a phone screenshot — trim the status bar off the top before resizing. */
+/** photo23 is a phone screenshot, so trim the status bar off the top before resizing. */
 const PRE_CROP = {
   'photo23.jpeg': { top: 60 },
 };

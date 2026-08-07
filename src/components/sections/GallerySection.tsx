@@ -55,7 +55,7 @@ export default function GallerySection({ lang }: Props) {
     let base = galleryItems;
     if (company !== 'all') base = base.filter((i) => i.company === company);
     if (filter !== 'all') base = base.filter((i) => i.category === filter);
-    // A tag that matches nothing is ignored rather than emptying the grid — the library
+    // A tag that matches nothing is ignored rather than emptying the grid, because the library
     // is only fully tagged in the final pass.
     if (tag) {
       const tagged = base.filter((i) => i.tags.includes(tag));
@@ -107,8 +107,11 @@ export default function GallerySection({ lang }: Props) {
       active ? 'bg-primary text-white shadow-sm' : 'bg-ink/5 text-ink hover:bg-ink/10',
     );
 
+  // Arabic has its own comma; a Latin one in Arabic alt text reads as a typo.
+  const comma = lang === 'ar' ? '، ' : ', ';
   const altFor = (item: (typeof galleryItems)[number]) =>
-    item.alt?.[lang] ?? `${t(`companies.${item.company}.short`)} — ${t(`gallery.filters.${item.category}`)}`;
+    item.alt?.[lang] ??
+    `${t(`companies.${item.company}.short`)}${comma}${t(`gallery.filters.${item.category}`)}`;
 
   return (
     <>
@@ -123,7 +126,7 @@ export default function GallerySection({ lang }: Props) {
             <p className="lead mx-auto mt-4 max-w-2xl">{t('gallery.hero.subtitle')}</p>
           </Reveal>
 
-          {/* Filters — company first, then category within it. Held in a floating glass
+          {/* Filters: company first, then category within it. Held in a floating glass
               tray so the controls read as one panel rather than two loose rows. */}
           <Reveal className="mb-10 flex justify-center">
             <div className="glass w-full max-w-3xl p-3 sm:p-4">
@@ -264,7 +267,7 @@ export default function GallerySection({ lang }: Props) {
 
           {totalPages > 1 && (
             <p className="text-center text-xs text-ink-500 mt-4">
-              {safePage + 1} / {totalPages} — {shown.length} {t('gallery.of')} {filtered.length}
+              {safePage + 1} / {totalPages} - {shown.length} {t('gallery.of')} {filtered.length}
             </p>
           )}
         </div>

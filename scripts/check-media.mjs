@@ -51,4 +51,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`[check-media] ok — ${ids.length} photos, manifest and disk agree`);
+console.log(`[check-media] ok: ${ids.length} photos, manifest and disk agree`);

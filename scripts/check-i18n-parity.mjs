@@ -4,7 +4,7 @@
  * Two failure modes this catches, both of which render as wrong text rather than as an
  * error at runtime:
  *   1. en and ar drifting out of key-for-key parity, so one language silently falls back.
- *   2. Two namespace files in the same language declaring the same top-level key —
+ *   2. Two namespace files in the same language declaring the same top-level key,
  *      dictionaries.ts shallow-spreads them, so one would be dropped without a word.
  *
  * Run via `npm run lint`.
@@ -50,7 +50,7 @@ for (const lang of LANGS) {
   for (const file of files) {
     const key = `${lang}/${file.replace(/\.json$/, '')}`;
     if (!wired.has(key)) {
-      errors.push(`${key}.json is not imported in src/i18n/dictionaries.ts — its copy never loads`);
+      errors.push(`${key}.json is not imported in src/i18n/dictionaries.ts, so its copy never loads`);
     }
   }
 
@@ -68,7 +68,7 @@ for (const lang of LANGS) {
     for (const key of Object.keys(parsed)) {
       if (owner[key]) {
         errors.push(
-          `top-level key "${key}" is declared in both ${lang}/${owner[key]} and ${lang}/${file} — the spread in dictionaries.ts would drop one`,
+          `top-level key "${key}" is declared in both ${lang}/${owner[key]} and ${lang}/${file}, and the spread in dictionaries.ts would drop one`,
         );
       }
       owner[key] = file;
@@ -94,5 +94,5 @@ if (errors.length) {
 }
 
 console.log(
-  `[check-i18n-parity] ok — ${Object.keys(merged.en).length} namespaces, en/ar key trees match`,
+  `[check-i18n-parity] ok: ${Object.keys(merged.en).length} namespaces, en/ar key trees match`,
 );

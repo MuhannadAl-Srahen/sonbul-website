@@ -11,7 +11,7 @@ export interface ProjectRef {
   slug: string;
   /** Key under projectServices.projects.items.* in the locale files. */
   key: string;
-  /** Photos to show on the case study — see mediaFor() in media.ts. */
+  /** Photos to show on the case study. See mediaFor() in media.ts. */
   tags: MediaTag[];
 }
 

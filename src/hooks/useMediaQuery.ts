@@ -20,7 +20,7 @@ export function useMediaQuery(query: string): boolean {
 }
 
 /**
- * True only for devices that can genuinely hover — a mouse or trackpad.
+ * True only for devices that can genuinely hover: a mouse or trackpad.
  *
  * Touch screens report no hover, and emulating it there gives the "first tap opens, second
  * tap follows the link" behaviour that makes hover menus feel broken on a phone.

@@ -1,7 +1,7 @@
 /**
  * The gallery page's view of the photo library.
  *
- * All metadata now lives in media.ts — this file only owns display order. Kept as a
+ * All metadata now lives in media.ts. This file only owns display order. Kept as a
  * separate module because the ordering rule (round-robin across categories) is a gallery
  * concern, not a property of the photos.
  */

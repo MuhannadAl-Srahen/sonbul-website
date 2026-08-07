@@ -6,7 +6,7 @@
  * a fresh clone or a CI build with no dashboard variables would otherwise inline
  * `undefined` and nobody would notice until an enquiry went missing.
  *
- * These are PUBLIC_ by design — EmailJS public keys are meant to be exposed to the browser.
+ * These are PUBLIC_ by design: EmailJS public keys are meant to be exposed to the browser.
  */
 function required(name: string, value: string | undefined): string {
   if (!value) {

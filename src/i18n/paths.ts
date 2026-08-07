@@ -5,14 +5,14 @@ import type { Lang } from './types';
  *
  * `lang: undefined` collapses to the un-prefixed English route (/about), while 'ar'
  * produces the prefixed one (/ar/about). Every page under src/pages/[...lang]/ must
- * export getStaticPaths — Astro errors at build time otherwise.
+ * export getStaticPaths, or Astro errors at build time.
  */
 export const localePaths = () => [{ params: { lang: undefined } }, { params: { lang: 'ar' } }];
 
 /**
  * Cross-product of locale × slug, for parameterised sub-routes.
  *
- * Slugs must come from a TypeScript constant, never from a translated JSON array —
+ * Slugs must come from a TypeScript constant, never from a translated JSON array,
  * a route keyed on array position silently changes URLs when a translator reorders it.
  */
 export const localeSlugPaths = (slugs: readonly string[]) =>

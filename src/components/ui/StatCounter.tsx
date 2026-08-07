@@ -11,7 +11,7 @@ interface Props {
  *
  * The final number is server-rendered and the animation drives `textContent` directly
  * rather than React state. Holding it in state meant the HTML shipped "0+", so until
- * ~350 KB of JavaScript had parsed — and forever without JavaScript — the stat bands
+ * ~350 KB of JavaScript had parsed, and forever without JavaScript, the stat bands
  * read "0+ Years in business". Crawlers saw the same thing.
  */
 export default function StatCounter({ end, suffix = '', duration = 1600 }: Props) {

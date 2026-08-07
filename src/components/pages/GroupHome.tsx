@@ -46,7 +46,7 @@ export default function GroupHome({ lang }: Props) {
   return (
     <>
       {/* ══════════════════════════════════════════
-          HERO — full-screen, transparent header overlay
+          HERO: full-screen, transparent header overlay
       ══════════════════════════════════════════ */}
       <section className="relative overflow-hidden min-h-[100svh] flex flex-col bg-ink">
         <div className="absolute inset-0">
@@ -100,7 +100,7 @@ export default function GroupHome({ lang }: Props) {
       </section>
 
       {/* ══════════════════════════════════════════
-          COMPANIES — the group's reason to exist
+          COMPANIES: the group's reason to exist
       ══════════════════════════════════════════ */}
       <section id="companies" className="section bg-white">
         <div className="container-page">
@@ -155,7 +155,7 @@ export default function GroupHome({ lang }: Props) {
       </section>
 
       {/* ══════════════════════════════════════════
-          WHY US — dark bg, image + feature list
+          WHY US: dark bg, image + feature list
       ══════════════════════════════════════════ */}
       <section className="section bg-ink text-white">
         <div className="container-page grid lg:grid-cols-2 gap-16 items-center">
@@ -219,7 +219,7 @@ export default function GroupHome({ lang }: Props) {
       </section>
 
       {/* ══════════════════════════════════════════
-          VIDEO — founder's word
+          VIDEO: founder's word
       ══════════════════════════════════════════ */}
       <section className="relative section bg-ink text-white overflow-hidden">
         <div className="absolute inset-0 grain opacity-10 pointer-events-none" aria-hidden />
@@ -289,7 +289,7 @@ export default function GroupHome({ lang }: Props) {
       </section>
 
       {/* ══════════════════════════════════════════
-          CLIENTS — draggable logo strip
+          CLIENTS: draggable logo strip
       ══════════════════════════════════════════ */}
       <section className="section-tight bg-white border-y border-ink-100">
         <div className="container-page text-center mb-10">

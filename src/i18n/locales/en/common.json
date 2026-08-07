@@ -72,12 +72,12 @@
     "hero": {
       "eyebrow": "About Abu Sonbul",
       "title": "Built in Jordan. Trusted across the region.",
-      "subtitle": "A Jordanian group of three companies — cross-border transport, project services and border logistics — founded by one family and run to one standard."
+      "subtitle": "A Jordanian group of three companies: cross-border transport, project services and border logistics, founded by one family and run to one standard."
     },
     "story": {
       "eyebrow": "Our story",
       "title": "From a single transport license in 2008 to a group of three companies.",
-      "body": "Abu Sonbul was established in Jordan in 2008 by Mr. Raed Abdel Fatah Abu Sonbul, on one transport licence. As the work grew it separated into three companies rather than one sprawling one: Abu Sonbul Arab Transporters for cross-border freight, Raed Abu Sonbul & Partner for everything a remote project needs to operate, and Abu Sonbul For Logistic Services for moving goods through Jordan's border crossings. Each stands on its own, with its own fleet, crews and clients — and together they cover a shipment from the loading bay to the far side of the border and out to the site.",
+      "body": "Abu Sonbul was established in Jordan in 2008 by Mr. Raed Abdel Fatah Abu Sonbul, on one transport licence. As the work grew it separated into three companies rather than one sprawling one: Abu Sonbul Arab Transporters for cross-border freight, Raed Abu Sonbul & Partner for everything a remote project needs to operate, and Abu Sonbul For Logistic Services for moving goods through Jordan's border crossings. Each stands on its own, with its own fleet, crews and clients, and together they cover a shipment from the loading bay to the far side of the border and out to the site.",
       "stats": [
         {
           "k": "2008",
@@ -100,7 +100,7 @@
     "companies": {
       "eyebrow": "Group structure",
       "title": "Three companies, one owner.",
-      "subtitle": "Separating the businesses means each one is judged on its own work — and it means you deal with specialists rather than a generalist."
+      "subtitle": "Separating the businesses means each one is judged on its own work, and it means you deal with specialists rather than a generalist."
     },
     "founder": {
       "eyebrow": "Founder & General Manager",
@@ -111,7 +111,7 @@
         "Strong leadership in executing large-scale projects in Jordan.",
         "Visionary approach in growing the Abu Sonbul group into new markets.",
         "Committed to delivering excellence and building long-term partnerships.",
-        "Personally directed the ADNOC Azraq and Sarhan camp programmes — 2+ years of full-service delivery including camp construction, cross-border transport from the UAE, catering and housekeeping.",
+        "Personally directed the ADNOC Azraq and Sarhan camp programmes: 2+ years of full-service delivery including camp construction, cross-border transport from the UAE, catering and housekeeping.",
         "Led the ARGAS Al-Jaffr project in southern Jordan, overseeing cross-border freight from Saudi Arabia, full camp construction and daily site operations.",
         "Built and scaled a team of over 80 professionals across six specialised departments.",
         "Established long-term partnerships with major energy sector operators including ADNOC, ARGAS and government entities."
@@ -120,11 +120,11 @@
     "values": {
       "eyebrow": "Our values",
       "title": "What we stand for",
-      "subtitle": "The principles that guide every decision we make — from the smallest shipment to the largest camp project.",
+      "subtitle": "The principles that guide every decision we make, from the smallest shipment to the largest camp project.",
       "items": {
         "integrity": {
           "title": "Integrity",
-          "body": "We honour our commitments — to clients, to our team and to the communities we operate in."
+          "body": "We honour our commitments to clients, to our team and to the communities we operate in."
         },
         "safety": {
           "title": "Safety first",
@@ -166,7 +166,7 @@
     "allCompanies": "All companies",
     "browse": "Browse the library",
     "page": "Page",
-    "empty": "No photos here yet — try another company or category.",
+    "empty": "No photos here yet. Try another company or category.",
     "playVideo": "Play video",
     "prev": "Previous",
     "next": "Next",
@@ -206,7 +206,7 @@
     "oneDesk": {
       "eyebrow": "One number for all three",
       "title": "One office. One team. Whichever company you need.",
-      "body": "You do not have to work out which of our companies to approach. The same people answer for all three, from the same office in Amman — tell us what you need and it gets to the right crew from there."
+      "body": "You do not have to work out which of our companies to approach. The same people answer for all three, from the same office in Amman. Tell us what you need and it gets to the right crew from there."
     },
     "getInTouch": "Get in touch",
     "quoteSubject": "Quote request",
@@ -225,7 +225,7 @@
       "message": "How can we help?",
       "send": "Send message",
       "sending": "Sending...",
-      "success": "Thanks — your message has been sent. We'll be in touch shortly.",
+      "success": "Thanks, your message has been sent. We'll be in touch shortly.",
       "error": "Something went wrong. Please email us directly at info@abusonbul-transporters.com."
     },
     "info": {

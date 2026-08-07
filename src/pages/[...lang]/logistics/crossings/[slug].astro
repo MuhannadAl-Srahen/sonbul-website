@@ -13,10 +13,13 @@ const crossing = getCrossing(slug!)!;
 const entry = dict[lang].logisticsCo.crossings.items[
   crossing.key as keyof typeof dict.en.logisticsCo.crossings.items
 ];
+
+// Arabic has its own comma. A Latin one in an Arabic title reads as a typo.
+const comma = lang === 'ar' ? '، ' : ', ';
 ---
 
 <BaseLayout
-  title={`${entry.name} — ${entry.corridor}`}
+  title={`${entry.name}${comma}${entry.corridor}`}
   description={entry.short}
   path={Astro.url.pathname}
   lang={lang}

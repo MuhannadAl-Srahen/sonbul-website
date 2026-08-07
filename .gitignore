@@ -29,7 +29,7 @@ DEPLOY.md
 # Claude Code local config
 .claude/
 
-# Source media originals — only the optimized derivatives in public/assets are committed.
+# Source media originals. Only the optimized derivatives in public/assets are committed.
 # Re-runnable via `node scripts/build-media.mjs`.
 media-src/
 

@@ -114,7 +114,7 @@ export default function Header({ currentPath, lang }: Props) {
     /* Floating rather than pinned to the very top: a translucent bar inset from the edges,
        riding over the hero instead of sitting in a white strip above it.
        `absolute` below lg so it scrolls away on phones, `fixed` from lg up so it stays
-       put — see the overflow-x note in index.css for why `sticky` never worked. */
+       put. See the overflow-x note in index.css for why `sticky` never worked. */
     <header className="absolute lg:fixed inset-x-0 top-0 z-50 pt-1.5 lg:pt-2 3xl:pt-3">
       <div className="container-page">
         <div
@@ -171,7 +171,7 @@ export default function Header({ currentPath, lang }: Props) {
                   <Icon className="h-4 w-4 flex-shrink-0" />
                   {/* The full company name is the label, but three of them run to ~85
                       characters and simply do not fit beside the logo, language link
-                      and quote button below 1280px — so that range keeps the short
+                      and quote button below 1280px, so that range keeps the short
                       form rather than overflowing the bar. */}
                   <span className="whitespace-nowrap xl:hidden">
                     {t(`companies.${company.id}.short`)}
@@ -249,7 +249,7 @@ export default function Header({ currentPath, lang }: Props) {
         </div>
       </div>
 
-      {/* Mobile drawer — each company is a labelled group with its own sections listed.
+      {/* Mobile drawer: each company is a labelled group with its own sections listed.
           Inside the container so it lines up with the floating bar above it. */}
       <div
         id="mobile-nav"

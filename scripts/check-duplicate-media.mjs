@@ -4,7 +4,7 @@
  *   node scripts/check-duplicate-media.mjs [maxDistance]
  *
  * Compares a 64-bit dHash (9x8 grayscale, horizontal gradient) of every image and prints any
- * pair within `maxDistance` Hamming distance — so it catches re-encodes, resizes and crops that
+ * pair within `maxDistance` Hamming distance, so it catches re-encodes, resizes and crops that
  * a checksum would miss. Exits 1 if anything is found, so it can gate a build.
  *
  * Thumbnails are compared against thumbnails only; a photo and its own -thumb derivative are

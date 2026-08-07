@@ -6,7 +6,7 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^abusonbul-transporters\.com$ [NC]
 RewriteRule ^ https://www.abusonbul-transporters.com%{REQUEST_URI} [R=301,L]
 
-# Legacy URLs from the previous site — still indexed by Google, redirect to the new routes
+# Legacy URLs from the previous site, still indexed by Google, redirect to the new routes
 RewriteRule ^index(-2)?\.html$ / [R=301,L]
 RewriteRule ^index(-2)?-ar\.html$ /ar/ [R=301,L]
 RewriteRule ^about\.html$ /about/ [R=301,L]

@@ -28,7 +28,7 @@ interface Props {
  * One project case study or one border crossing.
  *
  * Photos come from the entry's own tags in the media manifest, so this page shows the
- * ARGAS photos rather than a generic camps dump — that is the whole point of the tags.
+ * ARGAS photos rather than a generic camps dump, which is the whole point of the tags.
  */
 export default function CompanyEntry({ collection, slug, lang }: Props) {
   const { t } = useLocale(lang);

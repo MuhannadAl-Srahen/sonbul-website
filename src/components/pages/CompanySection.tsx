@@ -16,7 +16,7 @@ interface Props {
 }
 
 /**
- * One deep-dive page behind a company's "Know more" link — fleet, routes, cargo, camps,
+ * One deep-dive page behind a company's "Know more" link: fleet, routes, cargo, camps,
  * catering, equipment or customs.
  *
  * Seven pages, one component: they differ only in which copy subtree they read and which

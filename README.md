@@ -1,4 +1,4 @@
-# Abu Sonbul Group — Website
+# Abu Sonbul Group Website
 
 Bilingual (English + Arabic, full RTL) marketing site for the Abu Sonbul Group: three
 Jordanian companies under one owner.
@@ -15,7 +15,7 @@ group-level and shared. 99 pages in total, every one of them static.
 ## Stack
 
 - **Astro 7**, `output: 'static'`, `trailingSlash: 'always'`
-- **React 19** islands — only where something is genuinely interactive
+- **React 19** islands, only where something is genuinely interactive
 - **Tailwind CSS 3**
 - **i18next** for copy, with language as a build-time constant rather than runtime state
 - **EmailJS** for the contact form
@@ -34,9 +34,9 @@ npm run preview
 `npm run build` runs `astro check`, then `npm run lint`, then the build. Lint is
 ESLint plus two data-integrity checks that cannot live in the app:
 
-- `scripts/check-media.mjs` — every row of the photo manifest resolves to a file that
+- `scripts/check-media.mjs`: every row of the photo manifest resolves to a file that
   exists, and no photo on disk is missing from the manifest
-- `scripts/check-i18n-parity.mjs` — English and Arabic key trees are identical, no two
+- `scripts/check-i18n-parity.mjs`: English and Arabic key trees are identical, no two
   namespace files declare the same top-level key, and every locale file is actually
   imported in `dictionaries.ts`
 
@@ -44,19 +44,19 @@ ESLint plus two data-integrity checks that cannot live in the app:
 
 | To change | Edit |
 |---|---|
-| Any user-facing text | `src/i18n/locales/{en,ar}/*.json` — always both |
+| Any user-facing text | `src/i18n/locales/{en,ar}/*.json` (always both) |
 | A company's name, slug, nav, client logos | `src/data/companies.ts` |
 | A company's hero, icons, colours, service links | `src/components/pages/companyChrome.ts` |
 | Which photos a page shows | `src/data/media.ts` (tags), then any `PhotoStrip` query |
-| Team members | `src/data/teamProfiles.ts` — this drives `getStaticPaths` |
+| Team members | `src/data/teamProfiles.ts` (this drives `getStaticPaths` |
 | Border crossings / project case studies | `src/data/crossings.ts`, `src/data/projects.ts` |
 | Phone, email, address, opening hours | `src/config/site.ts` |
-| Redirects | `vercel.json`, `public/.htaccess` **and** `public/web.config` — all three |
+| Redirects | `vercel.json`, `public/.htaccess` **and** `public/web.config` (all three) |
 
 ## Things worth knowing before you edit
 
 **Copy lives in two files at once.** Every string exists in `en/` and `ar/`. The parity
-check fails the build if they drift, which is deliberate — a missing Arabic key renders
+check fails the build if they drift, which is deliberate: a missing Arabic key renders
 as the raw key path, not as English.
 
 **Each locale file owns whole top-level keys.** `dictionaries.ts` shallow-spreads them,
@@ -74,7 +74,7 @@ import it without pulling the icon library into the server graph. Icons live in
 value.
 
 **`.rtl-flip` composes with other transforms** because it is written as Tailwind's own
-transform chain. Do not simplify it back to `transform: scaleX(-1)` — that silently
+transform chain. Do not simplify it back to `transform: scaleX(-1)`, because that silently
 cancels `rotate-*` and `translate-*` on the same element.
 
 **Do not put `hero-img` on a photo containing signage or livery.** It mirrors the image in
@@ -84,7 +84,7 @@ RTL, which reverses any text baked into it.
 
 Vercel, static output. `vercel.json` carries the redirects and security headers.
 `public/.htaccess` and `public/web.config` mirror them for Apache and IIS and are copied
-into `dist/` verbatim — if you add a redirect, add it in all three.
+into `dist/` verbatim, so if you add a redirect, add it in all three.
 
 The three `PUBLIC_EMAILJS_*` variables must be set in the host's environment. They are
 asserted at module scope, so a build without them fails loudly rather than shipping a

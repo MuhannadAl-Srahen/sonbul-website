@@ -13,7 +13,7 @@ interface Props {
   lang: Lang;
 }
 
-/** The full service list for one company — the same shape for all three. */
+/** The full service list for one company: the same shape for all three. */
 export default function CompanyServices({ company, lang }: Props) {
   const { t } = useLocale(lang);
   const c = COMPANY_BY_ID[company];

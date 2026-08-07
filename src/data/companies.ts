@@ -1,12 +1,12 @@
 /**
- * The three companies of the Abu Sonbul Group — single source of truth.
+ * The three companies of the Abu Sonbul Group: single source of truth.
  *
  * The navbar, the footer, the gallery filters, the contact prefill, the sitemap
  * priorities, the JSON-LD graph and the per-page <title> suffix all derive from this
  * file. No company fact should be hardcoded into a page or component.
  *
  * Deliberately free of any React or lucide import so BaseLayout.astro can read it
- * without dragging the icon library into the Astro server module graph — the icon per
+ * without dragging the icon library into the Astro server module graph. The icon per
  * company lives in Header.tsx instead.
  */
 import type { GalleryCategory } from './media';
@@ -45,7 +45,7 @@ export interface Company {
   /**
    * Contextual header links, rendered beside the company switcher.
    *
-   * HARD CAP OF 5 — at 1024px the bar cannot fit more alongside the switcher, the
+   * HARD CAP OF 5: at 1024px the bar cannot fit more alongside the switcher, the
    * language link and the quote button. Deeper pages are reached from the landing page's
    * "Know more" cards, not from here.
    */
@@ -95,7 +95,7 @@ export const COMPANIES: Company[] = [
     base: '/logistics',
     i18nKey: 'logisticsCo',
     image: '/assets/hero/hero.jpg',
-    // A gantry crane over a loaded trailer in a border yard — the one shot in the library
+    // A gantry crane over a loaded trailer in a border yard, the one shot in the library
     // that says what this company actually does.
     heroImage: '/assets/gallery/equipment/equipment-02.webp',
     // No folder of its own; its photos are reassigned out of equipment/ and transport/

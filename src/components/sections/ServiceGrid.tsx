@@ -38,7 +38,7 @@ function columnsFor(count: number) {
 }
 
 /**
- * The gap-px mosaic that fills red on hover — the site's signature service block,
+ * The gap-px mosaic that fills red on hover: the site's signature service block,
  * generalised out of the home page so all three companies share it.
  */
 export default function ServiceGrid({ items, moreLabel }: Props) {

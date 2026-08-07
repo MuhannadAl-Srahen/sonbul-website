@@ -60,7 +60,7 @@ function companyServiceNames(c: Company): string[] {
 // The suffix follows whichever entity owns the page. Hardcoding one company's name here
 // would be wrong on two thirds of the site.
 const suffix = companyName ?? SITE_NAME[lang];
-const fullTitle = title === suffix ? title : `${title} — ${suffix}`;
+const fullTitle = title === suffix ? title : `${title} | ${suffix}`;
 
 const canonical = abs(path === '/' ? '' : path);
 // TODO(phase 9): swap the fallback for purpose-made 1200x630 OG art.
@@ -133,7 +133,7 @@ const graph =
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:alt" content={title} />
-{/* og:image:width/height go back once phase 9 ships real 1200x630 art — declaring
+{/* og:image:width/height go back once phase 9 ships real 1200x630 art. Declaring
     dimensions the stand-in does not have would just mislead crawlers. */}
 
 <meta name="twitter:card" content="summary_large_image" />

@@ -4,7 +4,7 @@ Every number and factual claim below was **written as plausible filler during th
 2026 restructure**. None of it came from you, the old website, the presentation
 deck or the company record. It is live on the site and reads to a visitor as fact.
 
-Your brief said to fill gaps with fillers that make sense, so this is expected —
+Your brief said to fill gaps with fillers that make sense, so this is expected,
 but a client or a competitor can check most of it. Replace each figure with the
 real one, or delete the stat.
 
@@ -31,20 +31,20 @@ These are the most exposed: they sit in the red band directly under each hero.
 
 | Claim | Problem |
 |---|---|
-| `/transport` — "**40+** regular shippers" | The original site said "40+ trusted clients" for the business as a whole. It is now presented as one company's client count. |
+| `/transport`: "**40+** regular shippers" | The original site said "40+ trusted clients" for the business as a whole. It is now presented as one company's client count. |
 
 ## 3. Prose claims worth checking
 
 Softer than the stat bands, but still stated as fact.
 
-- **`/logistics`** — "the same crew standards and the same single point of contact at every one" of the four crossings, and equipment "kept at the crossing" permanently. Presence at all four crossings came from your brief; *permanent stationing of equipment at each* did not.
-- **`/transport/fleet`** — the trailer types listed (flatbeds, curtain-siders, tippers, lowbeds, **tankers**) and "our own workshop and mechanics". Tankers and the in-house workshop were invented.
-- **`/transport/routes`** — the four named corridors (Riyadh / Jeddah / Dammam–Jubail / Aqaba and domestic) and the claim that return legs run loaded.
-- **`/transport/cargo`** — chemical trailer cleaning and certification between products.
-- **`/project-services/camps`** — the six-stage camp process, and generator redundancy, potable/grey water separation and on-site medical rooms.
-- **`/project-services/catering`** — refrigerated on-site storage, documented cleaning schedules and temperature logs, and meal service matched to night shifts.
-- **`/logistics/customs`** — a named contact per shipment who calls when something changes.
-- **`/logistics/equipment`** — winches and recovery gear, slings/spreaders/clamps/drum handlers, certified operators, and scheduled in-house servicing.
+- **`/logistics`**: "the same crew standards and the same single point of contact at every one" of the four crossings, and equipment "kept at the crossing" permanently. Presence at all four crossings came from your brief; *permanent stationing of equipment at each* did not.
+- **`/transport/fleet`**: the trailer types listed (flatbeds, curtain-siders, tippers, lowbeds, **tankers**) and "our own workshop and mechanics". Tankers and the in-house workshop were invented.
+- **`/transport/routes`**: the four named corridors (Riyadh / Jeddah / Dammam–Jubail / Aqaba and domestic) and the claim that return legs run loaded.
+- **`/transport/cargo`**: chemical trailer cleaning and certification between products.
+- **`/project-services/camps`**: the six-stage camp process, and generator redundancy, potable/grey water separation and on-site medical rooms.
+- **`/project-services/catering`**: refrigerated on-site storage, documented cleaning schedules and temperature logs, and meal service matched to night shifts.
+- **`/logistics/customs`**: a named contact per shipment who calls when something changes.
+- **`/logistics/equipment`**: winches and recovery gear, slings/spreaders/clamps/drum handlers, certified operators, and scheduled in-house servicing.
 
 ## 4. Maintenance hazard
 
@@ -66,8 +66,8 @@ record, and can stay as they are:
 - 30+ years of leadership experience
 - 80+ people across six specialised departments
 - The group stat band: 18+ years, 25+ major projects, 40+ clients, 80+ team
-- ADNOC Azraq and Sarhan — 2+ years
-- ARGAS Al-Jaffr — about 1 year, workforce peaking at 600
+- ADNOC Azraq and Sarhan, 2+ years
+- ARGAS Al-Jaffr, about 1 year, workforce peaking at 600
 - The four crossings: Jaber, Tarbil, Al-Karamah, Al-Omari
 - Head office in Sahab, Al-Faisaliah, Amman; both phone numbers; the email
 - Company record: general partnership, national establishment no. 200192602,

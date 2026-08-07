@@ -60,8 +60,8 @@ const company = companyFromPath(path);
       rel="stylesheet"
     />
 
-    {/* Playfair Display used to be requested here. Nothing referenced it — `font-display`
-        maps to Inter in tailwind.config.js — so it was a render-blocking request for a
+    {/* Playfair Display used to be requested here. Nothing referenced it (`font-display`
+        maps to Inter in tailwind.config.js), so it was a render-blocking request for a
         font that never rendered. */}
 
     {/* The LCP image on most pages. The preload scanner only finds it after parsing the
@@ -122,7 +122,7 @@ const company = companyFromPath(path);
         // A page is one big island, and when an island fails to hydrate React recovers
         // by throwing away the server markup and rebuilding the subtree from scratch.
         // The replacements are not the nodes we observed, the originals were already
-        // unobserved as they revealed, and the timeout below has long since fired — so
+        // unobserved as they revealed, and the timeout below has long since fired, so
         // without this rescan every section stays at opacity 0 and the page reads as
         // blank. That has happened twice: once on /contact, once on the landing page.
         if ('MutationObserver' in window) {

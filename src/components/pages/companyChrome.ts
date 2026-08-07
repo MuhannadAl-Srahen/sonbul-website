@@ -24,7 +24,7 @@ import type { HeroOverlay } from '../ui/PageHero';
 /**
  * Everything visual that differs between the three companies, in one place.
  *
- * The section markup is identical across all three — only these four axes (hero
+ * The section markup is identical across all three, and only these four axes (hero
  * treatment, texture, surface temperature and iconography) vary, which is what makes
  * the group read as one brand rather than three sites.
  */
@@ -39,7 +39,7 @@ export interface CompanyChrome {
    * Where each service tile actually goes, relative to the company root.
    *
    * Every tile used to point at `/services`, so a tile with its own icon, title and
-   * "Know more" delivered the generic list instead — eight identical links on one page.
+   * "Know more" delivered the generic list instead: eight identical links on one page.
    * Anything not listed here falls back to `/services`, which is the honest destination
    * when no deeper page exists yet.
    */

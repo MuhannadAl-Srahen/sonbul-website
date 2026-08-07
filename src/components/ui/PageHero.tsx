@@ -3,13 +3,13 @@ import type { ReactNode } from 'react';
 
 /**
  * How the dark overlay sits over the hero photo. This is one of the four axes that make
- * the three companies feel distinct without introducing a second brand colour — every
+ * the three companies feel distinct without introducing a second brand colour: every
  * variant is built from `ink` and `primary` only.
  */
 export type HeroOverlay = 'sweep' | 'lift' | 'diagonal';
 
 const overlays: Record<HeroOverlay, string> = {
-  // Motion along a road — the incumbent treatment.
+  // Motion along a road: the incumbent treatment.
   sweep: 'bg-gradient-to-r rtl:bg-gradient-to-l from-ink/90 via-ink/75 to-ink/35',
   // Settled ground, a camp on a site.
   lift: 'bg-gradient-to-t from-ink via-ink/80 to-ink/35',
@@ -23,7 +23,7 @@ interface Props {
   subtitle?: string;
   image?: string;
   overlay?: HeroOverlay;
-  /** Extra glyphs after the eyebrow rule — the per-company eyebrow signature. */
+  /** Extra glyphs after the eyebrow rule: the per-company eyebrow signature. */
   rule?: ReactNode;
   texture?: 'grain' | 'hatch' | 'none';
   children?: ReactNode;
@@ -41,7 +41,7 @@ export default function PageHero({
 }: Props) {
   return (
     /* The header is fixed and floats over this, so no negative margin is needed to pull
-       the hero underneath it — the padding below simply clears the bar. */
+       the hero underneath it. The padding below simply clears the bar. */
     <section className="relative overflow-hidden min-h-[46vh] sm:min-h-[58vh] flex flex-col justify-end bg-ink">
       {/* Background */}
       {image ? (

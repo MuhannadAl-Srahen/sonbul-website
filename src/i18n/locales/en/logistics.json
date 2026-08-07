@@ -3,7 +3,7 @@
     "hero": {
       "eyebrow": "Abu Sonbul For Logistic Services",
       "title": "We get your goods across the border.",
-      "subtitle": "Trained handling crews, forklifts and lifting equipment stationed at Jordan's main crossings — with the truck and customs paperwork handled alongside.",
+      "subtitle": "Trained handling crews, forklifts and lifting equipment stationed at Jordan's main crossings, with the truck and customs paperwork handled alongside.",
       "ctaPrimary": "Talk to our border desk",
       "ctaSecondary": "See the crossings"
     },
@@ -19,7 +19,7 @@
       "items": {
         "coverage": {
           "title": "Four crossings, one operator",
-          "body": "Jaber, Tarbil, Al-Karamah and Al-Omari — the same crew standards, the same equipment and the same single point of contact at every one."
+          "body": "Jaber, Tarbil, Al-Karamah and Al-Omari. The same crew standards, the same equipment and the same single point of contact at every one."
         },
         "equipment": {
           "title": "Equipment already on site",
@@ -121,7 +121,7 @@
           },
           "cranes": {
             "title": "Mobile and gantry cranes",
-            "body": "For pieces beyond forklift reach or weight — machinery, structural sections and anything that has to come off the top rather than the side."
+            "body": "For pieces beyond forklift reach or weight: machinery, structural sections and anything that has to come off the top rather than the side."
           },
           "winches": {
             "title": "Winches and recovery gear",
@@ -169,7 +169,7 @@
           },
           "release": {
             "title": "Release and onward dispatch",
-            "body": "Cleared cargo handed to the onward carrier — often our own transport company — with the documentation that travels with it."
+            "body": "Cleared cargo handed to the onward carrier, often our own transport company, with the documentation that travels with it."
           },
           "updates": {
             "title": "Status you do not have to chase",

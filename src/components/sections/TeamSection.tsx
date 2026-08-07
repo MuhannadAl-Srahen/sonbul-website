@@ -8,7 +8,7 @@ import type { Lang } from '../../i18n';
  * Leadership only.
  *
  * The standalone /team page and its 22 individual profiles are gone, so this keeps the
- * four people a visitor would actually want named and drops the department rosters —
+ * four people a visitor would actually want named and drops the department rosters,
  * which were largely one shared biography repeated across five staff members anyway.
  */
 const leadership: { name: string; roleKey: string; icon: LucideIcon; photo?: string }[] = [

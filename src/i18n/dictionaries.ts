@@ -2,7 +2,7 @@
  * The raw translation trees, free of any React import so .astro frontmatter can pull
  * `dict` for <title>/<meta> without dragging React into the server build.
  *
- * Namespace files are shallow-spread into one flat tree per locale — i18next still
+ * Namespace files are shallow-spread into one flat tree per locale, and i18next still
  * receives the single `translation` namespace it always has, so every existing
  * t('a.b.c') key path keeps working unchanged.
  *
@@ -25,7 +25,7 @@ import arLogistics from './locales/ar/logistics.json';
  * common.json holds the group and shared-page copy; each company owns one file, so an
  * en/ar diff of "just the logistics company" stays reviewable.
  *
- * Every file must own whole top-level keys — this is a shallow spread, so two files
+ * Every file must own whole top-level keys. This is a shallow spread, so two files
  * declaring the same key would silently drop one. scripts/check-i18n-parity.mjs enforces it.
  */
 export const en = {

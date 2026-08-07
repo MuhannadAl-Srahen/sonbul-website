@@ -33,11 +33,11 @@ export const ADDRESS = {
 /** Head office, Sahab. Matches the Google Maps embed on the contact page. */
 export const GEO = { latitude: 31.854288, longitude: 36.035675 } as const;
 
-/** Countries the group operates in — drives `areaServed` in the structured data. */
+/** Countries the group operates in, which drives `areaServed` in the structured data. */
 export const AREA_SERVED = ['Jordan', 'Saudi Arabia', 'Iraq', 'Syria'] as const;
 
 /**
  * Social / directory profiles. The single highest-value property for entity resolution
- * in search — collect LinkedIn, Facebook and the Google Business Profile and add them.
+ * in search. Collect LinkedIn, Facebook and the Google Business Profile and add them.
  */
 export const SAME_AS: string[] = [];

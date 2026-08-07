@@ -10,7 +10,7 @@ function splitQuery(href: string): [string, string] {
  * Canonical URLs and the sitemap are directory-style, so links must be too.
  *
  * Astro emits dist/about/index.html and canonicalises `/about/`, but every nav link used
- * to say `/about` — so all internal link equity travelled through a non-canonical URL and
+ * to say `/about`, so all internal link equity travelled through a non-canonical URL and
  * a redirect hop.
  */
 export function withTrailingSlash(path: string) {
