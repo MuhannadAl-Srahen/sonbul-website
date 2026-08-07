@@ -3,7 +3,16 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.abusonbul-transporters.com',
+  /**
+   * The live origin unless a deployment overrides it.
+   *
+   * Canonicals, hreflang, og:image and the sitemap are all built from this. A preview
+   * build served from another host with this left alone would tell crawlers that every
+   * one of its pages really lives on the production domain, and would publish a sitemap
+   * full of production URLs. Preview hosts set SITE_URL to their own origin; production
+   * sets nothing and is unaffected.
+   */
+  site: process.env.SITE_URL || 'https://www.abusonbul-transporters.com',
   output: 'static',
   // Matches the directory-style output and the canonicals the sitemap already emits, so
   // internal links stop resolving through a redirect to a different URL than the canonical.

@@ -41,8 +41,19 @@ const {
   company,
   schema = 'auto',
   person,
-  noindex = false,
+  noindex: noindexProp = false,
 } = Astro.props;
+
+/**
+ * A staging build is never indexable, whatever the page asked for.
+ *
+ * A client-preview copy of the site on another host is the same content as production
+ * under a second set of URLs, which is exactly what search engines treat as duplication.
+ * Set PUBLIC_PREVIEW=1 on the preview deployment; production leaves it unset and nothing
+ * about its output changes.
+ */
+const isPreview = import.meta.env.PUBLIC_PREVIEW === '1';
+const noindex = noindexProp || isPreview;
 
 // `site` in astro.config.mjs is the single source of truth for the origin.
 const origin = Astro.site!.href.replace(/\/$/, '');
