@@ -85,7 +85,12 @@ export default function PageHero({
       className={clsx(
         'relative overflow-hidden flex flex-col bg-ink',
         full
-          ? 'min-h-[100svh] lg:h-[100svh] lg:min-h-[54rem] justify-center'
+          ? // Height is the viewport with a floor, at every width, so it is a function of
+            // the window and never of how long the copy happens to be. `min-h` alone left
+            // a longer heading growing the section, and since `object-cover` scales to
+            // its box that showed up as the same photo being more zoomed on one page than
+            // another. The floors clear the tallest copy either language produces.
+            'h-[100svh] min-h-[44rem] lg:min-h-[54rem] justify-center'
           : 'min-h-[46vh] sm:min-h-[58vh] justify-end',
       )}
     >

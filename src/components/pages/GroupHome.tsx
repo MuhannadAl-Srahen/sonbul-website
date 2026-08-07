@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowRight, Award, Globe2, Layers, Play, Quote, Users } from 'lucide-react';
 import Reveal from '../ui/Reveal';
 import ClientSlider from '../ui/ClientSlider';
+import PageHero from '../ui/PageHero';
 import StatStrip, { type Stat } from '../sections/StatStrip';
 import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
@@ -45,77 +46,47 @@ export default function GroupHome({ lang }: Props) {
 
   return (
     <>
-      {/* ══════════════════════════════════════════
-          HERO: full-screen, transparent header overlay
-      ══════════════════════════════════════════ */}
-      {/* Height is the viewport, with a floor, rather than "at least the viewport" as it
-          was. `min-h` let the copy grow the section, and the English heading wraps to
-          three lines where the Arabic wraps to two, so between roughly 770px and 830px of
-          window height the two heroes were different heights. `object-cover` scales to
-          the box it is given, so that showed up as the Arabic truck looking closer. The
-          floor is above either language's content, so nothing is clipped and the crop now
-          depends only on the window. */}
-      <section className="relative overflow-hidden flex flex-col bg-ink min-h-[100svh] lg:h-[100svh] lg:min-h-[54rem]">
-        <div className="absolute inset-0">
-          <img
-            src={GROUP_HERO[lang]}
-            alt=""
-            width={1678}
-            height={937}
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-            /* Mirrored for Arabic by swapping the file, not by a CSS transform: the cab
-               carries "ABU SONBUL" and "IVECO", and scaleX(-1) would reverse both.
-               A phone crops the sides hard, and 78% is where the whole cab front, the
-               door lettering and the front wheel land. Arabic mirrors to 100-78. */
-            className="h-full w-full object-cover object-[78%_bottom] rtl:object-[22%_bottom]"
-          />
-          {/* The desktop sweep darkens the side the copy sits on and lets the far side
-              stay bright. On a phone the copy spans the whole width, so there is no
-              "other side" to protect and it needs an even scrim instead. Deepest at the
-              top where the heading is, easing off at the bottom so the truck still
-              reads. */}
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/80 to-ink/60 lg:hidden" />
-          <div className="absolute inset-0 hidden lg:block bg-gradient-to-r rtl:bg-gradient-to-l from-ink via-ink/90 to-ink/20" />
-          <div className="pointer-events-none absolute inset-y-0 start-0 w-2/3 hidden lg:block bg-gradient-to-r rtl:bg-gradient-to-l from-ink/60 to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/50 to-transparent" />
-          <div className="absolute inset-0 grain opacity-15" aria-hidden />
+      {/*
+       * HERO
+       *
+       * The same component the company landings use, not a copy of it. This page had its
+       * own hand-built hero, and the two drifted: the landing stacked three overlay
+       * layers where a company page has one, so it was visibly darker, and it kept the
+       * stat strip inside the section, which pushed the section past the viewport and,
+       * because `object-cover` scales to its box, zoomed the photo in on a phone. Both
+       * were symptoms of maintaining the same thing twice. The image, its crop, the
+       * height rule, the overlay and the phone scrim now come from one place, and only
+       * the words differ.
+       */}
+      <PageHero
+        eyebrow={t('group.hero.eyebrow')}
+        title={t('group.hero.title')}
+        subtitle={t('group.hero.subtitle')}
+        image={GROUP_HERO[lang]}
+        // Read off transport rather than repeated, because it is the same photograph and
+        // the two must not be able to drift apart again.
+        imagePosition={companyChrome.transport.heroPosition}
+        size="full"
+        overlay="sweep"
+      >
+        {/* Same pair of buttons as a company landing, down to the sizes. They used to be
+            larger here, which is the sort of small divergence that made the two heroes
+            behave differently. */}
+        <div className="flex flex-wrap gap-3">
+          <a href={`${href('/')}#contact`} className="btn-primary">
+            {t('group.hero.ctaPrimary')}
+            <ArrowRight className="h-4 w-4 rtl-flip" />
+          </a>
+          <a
+            href="#companies"
+            className="btn border-2 border-white/30 text-white transition-all duration-200 hover:border-white hover:bg-white hover:text-ink"
+          >
+            {t('group.hero.ctaSecondary')}
+          </a>
         </div>
+      </PageHero>
 
-        <div className="relative z-10 flex-1 container-page flex flex-col justify-center pt-28 sm:pt-36 pb-8">
-          <div className="animate-fade-in-up-hero max-w-3xl">
-            <span className="glass-dark inline-flex items-center gap-3 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-primary-200 mb-6">
-              <span className="h-[2px] w-8 bg-primary inline-block" />
-              {t('group.hero.eyebrow')}
-            </span>
-            <h1 className="home-hero-title text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight hero-text-shadow">
-              {t('group.hero.title')}
-            </h1>
-            <p className="mt-7 text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed hero-text-shadow">
-              {t('group.hero.subtitle')}
-            </p>
-            <div className="mt-11 flex flex-wrap gap-4">
-              <a
-                href={`${href('/')}#contact`}
-                className="btn bg-primary text-white hover:bg-primary-600 shadow-lg hover:shadow-xl active:scale-[0.98] !px-8 !py-4 !text-base"
-              >
-                {t('group.hero.ctaPrimary')}
-                <ArrowRight className="h-5 w-5 rtl-flip" />
-              </a>
-              <a
-                href="#companies"
-                className="btn border-2 border-white/30 text-white hover:bg-white hover:text-ink hover:border-white !px-8 !py-4 !text-base transition-all duration-200"
-              >
-                {t('group.hero.ctaSecondary')}
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-        <StatStrip items={stats} className="relative z-10" />
-      </section>
+      <StatStrip items={stats} />
 
       {/* ══════════════════════════════════════════
           COMPANIES: the group's reason to exist
