@@ -56,7 +56,32 @@ export default function GroupHome({ lang }: Props) {
           floor is above either language's content, so nothing is clipped and the crop now
           depends only on the window. */}
       <section className="relative overflow-hidden flex flex-col bg-ink min-h-[100svh] lg:h-[100svh] lg:min-h-[54rem]">
-        <div className="pointer-events-none absolute inset-0 grain opacity-15" aria-hidden />
+        <div className="absolute inset-0">
+          <img
+            src={GROUP_HERO[lang]}
+            alt=""
+            width={1678}
+            height={937}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            /* Mirrored for Arabic by swapping the file, not by a CSS transform: the cab
+               carries "ABU SONBUL" and "IVECO", and scaleX(-1) would reverse both.
+               A phone crops the sides hard, and 78% is where the whole cab front, the
+               door lettering and the front wheel land. Arabic mirrors to 100-78. */
+            className="h-full w-full object-cover object-[78%_bottom] rtl:object-[22%_bottom]"
+          />
+          {/* The desktop sweep darkens the side the copy sits on and lets the far side
+              stay bright. On a phone the copy spans the whole width, so there is no
+              "other side" to protect and it needs an even scrim instead. Deepest at the
+              top where the heading is, easing off at the bottom so the truck still
+              reads. */}
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/80 to-ink/60 lg:hidden" />
+          <div className="absolute inset-0 hidden lg:block bg-gradient-to-r rtl:bg-gradient-to-l from-ink via-ink/90 to-ink/20" />
+          <div className="pointer-events-none absolute inset-y-0 start-0 w-2/3 hidden lg:block bg-gradient-to-r rtl:bg-gradient-to-l from-ink/60 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/50 to-transparent" />
+          <div className="absolute inset-0 grain opacity-15" aria-hidden />
+        </div>
 
         <div className="relative z-10 flex-1 container-page flex flex-col justify-center pt-28 sm:pt-36 pb-8">
           <div className="animate-fade-in-up-hero max-w-3xl">
@@ -88,45 +113,6 @@ export default function GroupHome({ lang }: Props) {
           </div>
         </div>
 
-        {/*
-         * The truck.
-         *
-         * In flow on a phone and full-bleed from lg up, which is one element rather than
-         * two so nothing is downloaded and thrown away. A phone is about 0.46 wide to
-         * tall against a 1.79 photo, so `object-cover` had to discard three quarters of
-         * the width and left a slice of cab filling the screen. Here it simply runs the
-         * full width at its own proportions: the whole vehicle, small, the way it reads
-         * on a desktop. Sitting after the copy in the DOM, it lands between the text and
-         * the stats without any ordering tricks.
-         *
-         * The width and height attributes are what reserve its space before it loads.
-         * `object-*` below only bites from lg, where there is a box to fit into.
-         */}
-        <div className="relative lg:absolute lg:inset-0">
-          <img
-            src={GROUP_HERO[lang]}
-            alt=""
-            width={1678}
-            height={937}
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-            /* Mirrored for Arabic by swapping the file, not by a CSS transform: the cab
-               carries "ABU SONBUL" and "IVECO", and scaleX(-1) would reverse both.
-               78% rather than the right edge so that when a narrower desktop window does
-               crop the sides, it keeps the cab whole. Arabic mirrors to 100-78. */
-            className="w-full object-[78%_bottom] rtl:object-[22%_bottom] lg:h-full lg:object-cover"
-          />
-          {/* Softens the top edge of the band into the section on a phone. */}
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ink to-transparent lg:hidden"
-            aria-hidden
-          />
-          <div className="absolute inset-0 hidden lg:block bg-gradient-to-r rtl:bg-gradient-to-l from-ink via-ink/90 to-ink/20" />
-          <div className="pointer-events-none absolute inset-y-0 start-0 w-2/3 hidden lg:block bg-gradient-to-r rtl:bg-gradient-to-l from-ink/60 to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 hidden lg:block bg-gradient-to-b from-black/50 to-transparent" />
-          <div className="absolute inset-0 hidden lg:block grain opacity-15" aria-hidden />
-        </div>
 
         <StatStrip items={stats} className="relative z-10" />
       </section>

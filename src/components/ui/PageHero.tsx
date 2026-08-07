@@ -35,10 +35,9 @@ interface Props {
   rule?: ReactNode;
   texture?: 'grain' | 'hatch' | 'none';
   /**
-   * `full` matches the group landing page: a whole screen, and on a phone the photo runs
-   * in flow at its own proportions below the copy rather than being cropped to fill.
-   * A company landing is the same kind of page as the group one and looked wrong at half
-   * the height beside it. `compact` is for everything underneath them.
+   * `full` matches the group landing page's height: a whole screen. A company landing is
+   * the same kind of page and looked wrong at half the height beside it. `compact` is for
+   * everything underneath them, which should not cost a screen to scroll past.
    */
   size?: 'full' | 'compact';
   children?: ReactNode;
@@ -58,28 +57,21 @@ export default function PageHero({
 }: Props) {
   const full = size === 'full';
 
-  /* On a phone a `full` hero puts the photo in flow underneath the copy, so it shows
-     whole at its own proportions instead of being cropped to fill a tall narrow box.
-     From lg up, and for `compact` at every width, it is the full-bleed background. */
+  /* The overlay variants are directional: they darken the side the copy sits on and let
+     the far side stay bright. That only works while the copy occupies one side of the
+     frame. On a phone it spans the whole width, and a full-height hero crops the photo
+     to a tall slice behind it, so an even scrim goes on underneath instead. */
   const media = image ? (
-    <div className={clsx('relative', full ? 'lg:absolute lg:inset-0' : 'absolute inset-0')}>
+    <div className="absolute inset-0">
       <img
         src={image}
         alt=""
         width={1678}
         height={937}
         fetchPriority="high"
-        className={clsx(
-          full ? 'w-full lg:h-full lg:object-cover' : 'h-full w-full object-cover',
-          imagePosition,
-        )}
+        className={clsx('h-full w-full object-cover', imagePosition)}
       />
-      {full && (
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ink to-transparent lg:hidden"
-          aria-hidden
-        />
-      )}
+      {full && <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/80 to-ink/60 lg:hidden" />}
       <div className={clsx('absolute inset-0', full && 'hidden lg:block', overlays[overlay])} />
     </div>
   ) : (
@@ -97,7 +89,7 @@ export default function PageHero({
           : 'min-h-[46vh] sm:min-h-[58vh] justify-end',
       )}
     >
-      {!full && media}
+      {media}
       {texture !== 'none' && (
         <div
           className={clsx('absolute inset-0 pointer-events-none', texture, 'opacity-15')}
@@ -130,9 +122,6 @@ export default function PageHero({
         </div>
       </div>
 
-      {/* After the copy in the DOM, so on a phone it lands below it without any ordering
-          tricks, and from lg up it goes back to being the background behind everything. */}
-      {full && media}
     </section>
   );
 }
