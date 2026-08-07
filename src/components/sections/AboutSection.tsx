@@ -48,12 +48,16 @@ export default function AboutSection({ lang }: Props) {
           </Reveal>
         </div>
 
-        {/* Founder */}
-        <div className="mt-20 grid items-center gap-12 lg:grid-cols-2">
+        {/* Founder. The block is centred and the first column is sized to the portrait
+            rather than to half the shell: `grid-cols-2` gave the image a ~700px column to
+            sit in while it was capped at 20rem, leaving a band of empty white between it
+            and the text. Capping the pair keeps the bullet lines a readable length on a
+            wide monitor too. */}
+        <div className="mx-auto mt-20 grid max-w-5xl items-center gap-10 lg:grid-cols-[20rem_1fr] lg:gap-14">
           <Reveal>
-            {/* Capped rather than filling the grid column: at half of a 1536px shell a
-                4:5 portrait rendered around 800px tall and dominated the section. */}
-            <div className="mx-auto aspect-[4/3] w-full max-w-[20rem] overflow-hidden rounded-3xl shadow-soft sm:aspect-[4/5] lg:mx-0">
+            {/* Capped rather than filling the column: at half of a 1536px shell a 4:5
+                portrait rendered around 800px tall and dominated the section. */}
+            <div className="mx-auto aspect-[4/3] w-full max-w-[20rem] overflow-hidden rounded-3xl shadow-soft sm:aspect-[4/5]">
               <img
                 src="/assets/people/raed-abu-sonbul.webp"
                 alt={t('about.founder.name')}
