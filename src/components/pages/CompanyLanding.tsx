@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
 import { COMPANY_BY_ID, heroImageFor, type CompanyId } from '../../data/companies';
@@ -124,6 +124,19 @@ export default function CompanyLanding({ company, lang }: Props) {
             </a>
           </Reveal>
           <ServiceGrid items={services} moreLabel={t('common.knowMore')} />
+
+          {/* Every one of those services is delivered under the same safety standard, so
+              the link belongs here rather than only in the footer. */}
+          <Reveal delay={0.2} className="mt-12 flex justify-center">
+            <a
+              href={href('/safety')}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all hover:gap-3"
+            >
+              <ShieldCheck className="h-4 w-4" />
+              {t('safety.link')}
+              <ArrowRight className="h-4 w-4 rtl-flip" />
+            </a>
+          </Reveal>
         </div>
       </section>
 

@@ -1,6 +1,6 @@
-import { ArrowUpRight, CheckCircle2, Handshake, HardHat, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CheckCircle2, Handshake, HardHat, ShieldCheck, Sparkles } from 'lucide-react';
 import Reveal from '../ui/Reveal';
-import { useLocale } from '../../i18n';
+import { localizedHref, useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
 
 const valueIcons = {
@@ -163,6 +163,16 @@ export default function AboutSection({ lang }: Props) {
             );
           })}
         </div>
+
+        {/* The values say safety matters; this is where a reader can go and check whether
+            it is backed by anything. The footer link alone was too far from the claim. */}
+        <Reveal delay={0.2} className="mt-12 flex justify-center">
+          <a href={localizedHref('/safety', lang)} className="btn-outline">
+            <ShieldCheck className="h-4 w-4" />
+            {t('safety.link')}
+            <ArrowRight className="h-4 w-4 rtl-flip" />
+          </a>
+        </Reveal>
       </div>
     </section>
   );
