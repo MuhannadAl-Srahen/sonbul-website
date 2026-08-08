@@ -117,11 +117,16 @@ export default function PlacesMap({ lang }: Props) {
               const Icon = kindIcons[kind];
               return (
                 <Reveal key={kind} className="mb-8 last:mb-0">
-                  <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-ink-400">
+                  {/* Centred while the column is stacked under the map, at the start edge
+                      from lg where it sits beside it. The places themselves stay
+                      start-aligned at both sizes so their dots line up. */}
+                  <p className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-ink-400 lg:justify-start">
                     <Icon className="h-4 w-4 text-primary" />
                     {t(`places.kinds.${kind}`)}
                   </p>
-                  <ul className="mt-3 space-y-2">
+                  {/* The block centres under the map while stacked; the entries inside
+                      it share one edge, so their dots line up in a column. */}
+                  <ul className="mx-auto mt-3 w-fit max-w-sm space-y-2 text-start lg:mx-0 lg:max-w-none">
                     {inKind.map((p) => (
                       <li key={p.id} className="flex gap-3">
                         <span

@@ -169,8 +169,12 @@ export default function GroupHome({ lang }: Props) {
           </Reveal>
 
           <div>
-            <Reveal>
-              <span className="eyebrow !text-primary-300">{t('group.why.eyebrow')}</span>
+            {/* Same rule as the founder block: centred while it is stacked under the
+                photograph, back to the start edge from lg where it sits beside it. */}
+            <Reveal className="text-center lg:text-start">
+              <span className="eyebrow !text-primary-300 justify-center lg:justify-start">
+                {t('group.why.eyebrow')}
+              </span>
               <h2 className="heading-lg !text-white mt-3">{t('group.why.title')}</h2>
             </Reveal>
             <div className="mt-10 space-y-0">

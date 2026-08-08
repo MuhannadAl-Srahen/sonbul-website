@@ -70,12 +70,19 @@ export default function AboutSection({ lang }: Props) {
             </div>
           </Reveal>
           <div>
-            <Reveal>
-              <span className="eyebrow">{t('about.founder.eyebrow')}</span>
+            {/* Centred while it is stacked under the portrait, and set back to the start
+                edge from lg, where it sits beside it and centring would float it away
+                from the photograph it belongs to. */}
+            <Reveal className="text-center lg:text-start">
+              <span className="eyebrow justify-center lg:justify-start">
+                {t('about.founder.eyebrow')}
+              </span>
               <h3 className="heading-lg mt-3">{t('about.founder.name')}</h3>
-              <div className="mt-2 h-1 w-14 rounded-full bg-primary" />
+              <div className="mx-auto mt-2 h-1 w-14 rounded-full bg-primary lg:mx-0" />
             </Reveal>
-            <ul className="mt-8 space-y-4">
+            {/* The block centres under the portrait while stacked; the lines inside it
+                keep one shared edge at every width. */}
+            <ul className="mx-auto mt-8 w-fit max-w-lg space-y-4 text-start lg:mx-0 lg:max-w-none">
               {points.map((p) => (
                 <Reveal key={p}>
                   <li className="flex gap-3">
@@ -95,12 +102,16 @@ export default function AboutSection({ lang }: Props) {
             because it is the one belief the whole site has to demonstrate. */}
         <div className="mt-20 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <Reveal>
-              <span className="eyebrow">{t('about.beliefs.eyebrow')}</span>
+            {/* The heading centres; the list does not. Centring each line individually
+                left every line starting at a different place, so the icons zigzagged
+                down the column. The block is centred instead and the lines inside it
+                share one edge, which is what makes a list readable. */}
+            <Reveal className="text-center">
+              <span className="eyebrow justify-center">{t('about.beliefs.eyebrow')}</span>
               <h3 className="heading-lg mt-3">{t('about.beliefs.title')}</h3>
-              <div className="mt-2 h-1 w-14 rounded-full bg-primary" />
+              <div className="mx-auto mt-2 h-1 w-14 rounded-full bg-primary" />
             </Reveal>
-            <ul className="mt-8 space-y-3">
+            <ul className="mx-auto mt-8 w-fit max-w-lg space-y-3 text-start">
               {(t('about.beliefs.items', { returnObjects: true }) as string[]).map((line, i) => (
                 <Reveal key={line} delay={i * 0.05}>
                   <li className="flex gap-3">
@@ -111,9 +122,9 @@ export default function AboutSection({ lang }: Props) {
               ))}
             </ul>
             <Reveal delay={0.3}>
-              <div className="mt-8 rounded-2xl border-s-4 border-primary bg-ink-50 p-6">
+              <div className="mx-auto mt-8 max-w-lg rounded-2xl border-s-4 border-primary bg-ink-50 p-6 text-start">
                 <p className="flex items-center gap-2 font-bold text-ink">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <ShieldCheck className="h-5 w-5 flex-shrink-0 text-primary" />
                   {t('about.beliefs.safety.title')}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-ink-600">
@@ -124,12 +135,12 @@ export default function AboutSection({ lang }: Props) {
           </div>
 
           <div>
-            <Reveal>
-              <span className="eyebrow">{t('about.ambition.eyebrow')}</span>
+            <Reveal className="text-center">
+              <span className="eyebrow justify-center">{t('about.ambition.eyebrow')}</span>
               <h3 className="heading-lg mt-3">{t('about.ambition.title')}</h3>
-              <div className="mt-2 h-1 w-14 rounded-full bg-primary" />
+              <div className="mx-auto mt-2 h-1 w-14 rounded-full bg-primary" />
             </Reveal>
-            <ul className="mt-8 space-y-3">
+            <ul className="mx-auto mt-8 w-fit max-w-lg space-y-3 text-start">
               {(t('about.ambition.items', { returnObjects: true }) as string[]).map((line, i) => (
                 <Reveal key={line} delay={i * 0.04}>
                   <li className="flex gap-3">

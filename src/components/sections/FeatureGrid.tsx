@@ -19,7 +19,10 @@ export default function FeatureGrid({ items }: Props) {
     <div className="grid sm:grid-cols-2 gap-x-10 gap-y-8">
       {items.map((item, i) => (
         <Reveal key={item.key} delay={i * 0.08}>
-          <div className="flex gap-4">
+          {/* Each item keeps its number in a gutter and its text on one edge. On a
+              single column the block is centred as a whole rather than line by line,
+              which would stagger every number. */}
+          <div className="mx-auto flex w-fit max-w-lg gap-4 text-start sm:mx-0 sm:max-w-none">
             <span className="flex-shrink-0 text-sm font-bold tabular-nums text-primary-300 pt-1">
               {String(i + 1).padStart(2, '0')}
             </span>
