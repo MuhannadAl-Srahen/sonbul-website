@@ -45,6 +45,65 @@ if (!files.length) {
   process.exit(1);
 }
 
+/**
+ * Clears the background by flooding inward from the edges.
+ *
+ * The slider sits on tinted surfaces and thirty of the existing thirty-two marks are
+ * transparent, so a logo that arrives as a JPEG on white would show as a pale rectangle
+ * among them. Simply making every white pixel transparent is not the answer: it would
+ * punch through Nestle's white lettering and the gaps inside the CAT wordmark. Only
+ * background reachable from the edge is removed, so anything enclosed by the artwork
+ * survives.
+ *
+ * It runs twice. One pass clears whatever colour the border actually is, which for a
+ * logo that arrives matted on black is the frame; the second clears the white sheet
+ * underneath that the frame was hiding.
+ */
+function clearBackground(data, w, h, tolerance = 38) {
+  const near = (i, r, g, b) =>
+    Math.abs(data[i] - r) <= tolerance &&
+    Math.abs(data[i + 1] - g) <= tolerance &&
+    Math.abs(data[i + 2] - b) <= tolerance;
+
+  for (const seed of ['edge', 'white']) {
+    // Sample the colour to clear from the first pixel still opaque at a corner.
+    let sr = 255, sg = 255, sb = 255;
+    if (seed === 'edge') {
+      const corners = [0, (w - 1) * 4, (h - 1) * w * 4, (h * w - 1) * 4];
+      const opaque = corners.find((c) => data[c + 3] > 0);
+      if (opaque === undefined) continue;
+      [sr, sg, sb] = [data[opaque], data[opaque + 1], data[opaque + 2]];
+    }
+
+    const queue = [];
+    const seen = new Uint8Array(w * h);
+    const visit = (px, py) => {
+      if (px < 0 || py < 0 || px >= w || py >= h) return;
+      const p = py * w + px;
+      if (seen[p]) return;
+      const i = p * 4;
+      // Already cleared pixels are passable, so the flood reaches under a cleared frame.
+      if (data[i + 3] !== 0 && !near(i, sr, sg, sb)) return;
+      seen[p] = 1;
+      data[i + 3] = 0;
+      queue.push(p);
+    };
+
+    for (let x = 0; x < w; x++) { visit(x, 0); visit(x, h - 1); }
+    for (let y = 0; y < h; y++) { visit(0, y); visit(w - 1, y); }
+
+    while (queue.length) {
+      const p = queue.pop();
+      const px = p % w;
+      const py = (p - px) / w;
+      visit(px + 1, py);
+      visit(px - 1, py);
+      visit(px, py + 1);
+      visit(px, py - 1);
+    }
+  }
+}
+
 const ids = [];
 for (const file of files) {
   const id = path
@@ -55,9 +114,14 @@ for (const file of files) {
 
   const raw = await readFile(path.join(dir, file));
   // `density` matters for SVG: rasterising at the default 72dpi makes a soft mark.
-  const img = sharp(raw, { density: 384 });
+  const { data, info } = await sharp(raw, { density: 384 })
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
 
-  const out = await img
+  clearBackground(data, info.width, info.height);
+
+  const out = await sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } })
     .trim({ threshold: 10 })
     .resize({ ...BOX, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .webp({ quality: 92, alphaQuality: 100 })

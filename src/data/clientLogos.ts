@@ -2,11 +2,13 @@ import { COMPANY_BY_ID, type CompanyId } from './companies';
 
 /** Every client logo in /assets/companies/, in marquee order. */
 export const ALL_LOGOS = [
-  'adnoc', 'adnocc', 'arabeeh', 'arrow', 'etihad', 'gig', 'golf', 'go-tech',
-  'jana', 'kemyan', 'kibar', 'krbonat', 'lion', 'maraii', 'mnaser',
-  'moasron', 'mondi', 'mr', 'nabd', 'obekan', 'pipsico', 'rabee',
-  'rajhi', 'safwa', 'savola', 'texofib', 'ucic', 'watad', 'wataneh',
-  'wfp', 'yascp', 'yousef',
+  'adnoc', 'adnocc', 'al-awadi', 'al-tahooneh', 'arabeeh', 'arrow',
+  'caterpillar', 'etihad', 'gig', 'go-tech', 'golf', 'jana',
+  'kemyan', 'kibar', 'krbonat', 'lion', 'maraii', 'mnaser',
+  'moasron', 'mondi', 'mr', 'nabd', 'nestle-purelife', 'obekan',
+  'original', 'pipsico', 'rabee', 'rajhi', 'safi', 'safwa',
+  'savola', 'texofib', 'ucic', 'watad', 'wataneh', 'wfp',
+  'yascp', 'yousef',
 ];
 
 export const logoSrc = (name: string) => `/assets/companies/${name}.webp`;

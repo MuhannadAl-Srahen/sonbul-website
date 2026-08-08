@@ -73,10 +73,12 @@ export const COMPANIES: Company[] = [
     heroImageRtl: '/assets/hero/hero-rtl.webp',
     galleryCategories: ['transport'],
     clientLogos: [
-      'maraii', 'savola', 'pipsico', 'rajhi', 'krbonat', 'yascp', 'obekan', 'mondi',
-      'kibar', 'wataneh', 'safwa', 'ucic', 'texofib', 'arabeeh', 'jana', 'kemyan',
-      'lion', 'mnaser', 'moasron', 'nabd', 'rabee', 'watad', 'arrow', 'golf',
-      'etihad', 'mr', 'yousef',
+      'al-awadi', 'al-tahooneh', 'arabeeh', 'arrow', 'caterpillar', 'etihad',
+      'golf', 'jana', 'kemyan', 'kibar', 'krbonat', 'lion',
+      'maraii', 'mnaser', 'moasron', 'mondi', 'mr', 'nabd',
+      'nestle-purelife', 'obekan', 'original', 'pipsico', 'rabee', 'rajhi',
+      'safi', 'safwa', 'savola', 'texofib', 'ucic', 'watad',
+      'wataneh', 'yascp', 'yousef',
     ],
     nav: [
       { to: '/transport', key: 'overview' },
