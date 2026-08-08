@@ -161,9 +161,19 @@ export default function ClientSlider({ lang, logos: names = ALL_LOGOS }: Props) 
     <div className="relative">
       <div
         ref={ref}
-        // Full-bleed and hard-edged. The previous version masked the strip to transparent
-        // at both ends, which over a light section read as a grey smear, not a fade.
-        className="no-scrollbar flex cursor-grab gap-12 overflow-x-auto overscroll-x-contain px-10 py-3 active:cursor-grabbing sm:px-14"
+        /*
+         * `scroll-auto` is load-bearing. `scroll-behavior: smooth` is set on <html> for
+         * anchor links, and it is an inherited property, so it reaches every scroll
+         * container on the page including this one. That turns each `scrollLeft = pos`
+         * below into a smooth animation towards a target a quarter of a pixel away, sixty
+         * times a second, which cancels itself out: the strip stood still and dragging it
+         * felt like wading. The arrows still glide, because they ask for that explicitly
+         * with `behavior: 'smooth'`, which overrides this.
+         *
+         * Full-bleed and hard-edged. The previous version masked the strip to transparent
+         * at both ends, which over a light section read as a grey smear, not a fade.
+         */
+        className="no-scrollbar scroll-auto flex cursor-grab gap-12 overflow-x-auto overscroll-x-contain px-10 py-3 active:cursor-grabbing sm:px-14"
       >
         {[...logos, ...logos].map((src, i) => (
           <div
