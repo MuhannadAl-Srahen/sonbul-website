@@ -16,8 +16,8 @@ export interface ProjectRef {
 }
 
 export const PROJECTS: ProjectRef[] = [
-  { slug: 'argas-al-jaffr', key: 'argas', tags: ['argas'] },
-  { slug: 'adnoc-azraq-sarhan', key: 'adnoc', tags: ['adnoc'] },
+  { slug: 'argas-azraq', key: 'argas', tags: ['argas'] },
+  { slug: 'adnoc-azraq-om-lahem', key: 'adnoc', tags: ['adnoc'] },
 ];
 
 export const PROJECT_SLUGS = PROJECTS.map((p) => p.slug);

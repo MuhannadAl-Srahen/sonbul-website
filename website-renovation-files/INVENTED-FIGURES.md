@@ -66,8 +66,8 @@ record, and can stay as they are:
 - 30+ years of leadership experience
 - 250+ people across six specialised departments
 - The group stat band: 18+ years, 40+ major projects, 60+ clients, 250+ team
-- ADNOC Azraq and Sarhan, 2+ years
-- ARGAS Al-Jaffr, about 1 year, workforce peaking at 600
+- ADNOC at Azraq and Om Lahem, 2+ years (locations confirmed by the client, August 2026)
+- ARGAS at Azraq, about 1 year, workforce peaking at 600 (location confirmed by the client)
 - The four crossings: Jaber, Tarbil, Al-Karamah, Al-Omari
 - Head office in Sahab, Al-Faisaliah, Amman; both phone numbers; the email
 - Company record: general partnership, national establishment no. 200192602,
@@ -111,3 +111,29 @@ border crossings**, **25t** and **24/7**, which are facts rather than estimates.
 
 Everything in this section is still an estimate except the load count. If the real fleet
 size and headcount are known, they should replace these.
+
+## 7. Project locations, corrected August 2026
+
+The brief never named a location for either project, so the site invented them. The
+client has now given the real ones and they are in place:
+
+| Project | Site used to say | Actually |
+|---|---|---|
+| ARGAS | Al-Jaffr, "southern Jordan" | **Azraq**, in the eastern desert |
+| ADNOC | Azraq and Sarhan | **Azraq and Om Lahem** |
+
+Om Lahem is in Ma'an and is the same place the site had been calling Al-Jaffr, so that
+name was not wrong, it was attached to the wrong project. **Sarhan was invented
+outright and is gone.** The project URLs changed with it, to `/argas-azraq` and
+`/adnoc-azraq-om-lahem`, which is safe only because these pages have never been live.
+
+### Still an estimate: one map pin
+
+The map in "Where we work" plots seven places. Six are settled towns, a port, or a
+crossing whose position is known. **Al-Omari is placed on the Saudi frontier
+south-east of Azraq at roughly the right point along it**, which is accurate enough at
+the scale of a whole country but is not survey data. If the client can give a pin,
+correct `lon` and `lat` for `omari` in `src/data/places.ts` and nothing else needs
+touching, because the map projects real coordinates rather than storing pixels.
+
+The Jordan outline itself is a 22-point simplification, not a survey boundary.

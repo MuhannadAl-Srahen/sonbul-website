@@ -11,6 +11,7 @@ import { companyChrome } from './companyChrome';
 import AboutSection from '../sections/AboutSection';
 import TeamSection from '../sections/TeamSection';
 import GallerySection from '../sections/GallerySection';
+import PlacesMap from '../sections/PlacesMap';
 import ContactSection from '../sections/ContactSection';
 import { companyIcons } from '../ui/companyIcons';
 
@@ -296,6 +297,8 @@ export default function GroupHome({ lang }: Props) {
 
       {/* The standalone /about, /team, /gallery and /contact pages were folded into this
           one, so the landing page is now the whole group story end to end. */}
+      <PlacesMap lang={lang} />
+
       <AboutSection lang={lang} />
       <TeamSection lang={lang} />
       <GallerySection lang={lang} />

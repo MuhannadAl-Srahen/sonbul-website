@@ -112,8 +112,8 @@
         "Strong leadership in executing large-scale projects in Jordan.",
         "Visionary approach in growing the Abu Sonbul group into new markets.",
         "Committed to delivering excellence and building long-term partnerships.",
-        "Personally directed the ADNOC Azraq and Sarhan camp programmes: 2+ years of full-service delivery including camp construction, cross-border transport from the UAE, catering and housekeeping.",
-        "Led the ARGAS Al-Jaffr project in southern Jordan, overseeing cross-border freight from Saudi Arabia, full camp construction and daily site operations.",
+        "Personally directed the ADNOC camp programmes at Azraq and Om Lahem: 2+ years of full-service delivery including camp construction, cross-border transport from the UAE, catering and housekeeping.",
+        "Led the ARGAS project at Azraq, overseeing cross-border freight from Saudi Arabia, full camp construction and daily site operations.",
         "Built and scaled a team of over 250 professionals across six specialised departments.",
         "Established long-term partnerships with major energy sector operators including ADNOC, ARGAS and government entities."
       ]
@@ -281,5 +281,47 @@
     "explore": "Explore",
     "contact": "Contact",
     "rights": "All rights reserved."
+  },
+  "places": {
+    "eyebrow": "Places of service",
+    "title": "Where we work",
+    "subtitle": "One office, project sites in the eastern desert and in Ma’an, and crews standing at the crossings on three of Jordan’s borders.",
+    "mapAlt": "Map of Jordan marking the head office at Sahab, project sites at Azraq and Om Lahem, the Jaber, Al-Karamah and Al-Omari border crossings, and the port of Aqaba.",
+    "kinds": {
+      "office": "Head office",
+      "project": "Project sites",
+      "crossing": "Border crossings",
+      "port": "Port"
+    },
+    "items": {
+      "sahab": {
+        "name": "Sahab",
+        "note": "Head office and yard, in the industrial city south-east of Amman."
+      },
+      "azraq": {
+        "name": "Azraq",
+        "note": "Camp built and run for the ARGAS survey, and again for ADNOC’s drilling."
+      },
+      "omLahem": {
+        "name": "Om Lahem",
+        "note": "Camp in Ma’an for the ADNOC programme."
+      },
+      "jaber": {
+        "name": "Jaber",
+        "note": "The Syrian corridor."
+      },
+      "karamah": {
+        "name": "Al-Karamah",
+        "note": "The Iraqi corridor, opposite Turaybil."
+      },
+      "omari": {
+        "name": "Al-Omari",
+        "note": "The Saudi corridor, on the Amman road south-east of Azraq."
+      },
+      "aqaba": {
+        "name": "Aqaba",
+        "note": "Jordan’s port, where sea freight is collected and hauled inland."
+      }
+    }
   }
 }

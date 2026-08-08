@@ -40,7 +40,7 @@
         },
         "mobilise": {
           "title": "Built for remote sites",
-          "body": "We have stood up full camps in Azraq, Sarhan and Al-Jaffr, where the nearest town is an hour away and nothing arrives unless we bring it."
+          "body": "We have stood up full camps at Azraq and at Om Lahem in Ma’an, where the nearest town is an hour away and nothing arrives unless we bring it."
         },
         "manufacture": {
           "title": "We build our own caravans",
@@ -105,16 +105,16 @@
       "subtitle": "Two flagship energy programmes in the Jordanian desert, back to back.",
       "items": {
         "argas": {
-          "name": "ARGAS, Al-Jaffr",
+          "name": "ARGAS, Azraq",
           "meta": "Seismic exploration · ~1 year · 600 workforce",
           "short": "Camp, catering and cross-border transport for a 600-person seismic survey programme.",
-          "body": "ARGAS, the Saudi geophysical and surveying company, ran a seismic exploration programme in southern Jordan to locate oil-bearing structures. We built and operated the Al-Jaffr camp for a workforce that peaked at 600, handled the cross-border freight from Saudi Arabia, and ran catering and housekeeping for the duration of the programme."
+          "body": "ARGAS, the Saudi geophysical and surveying company, ran a seismic exploration programme in the eastern desert to locate oil-bearing structures. We built and operated the Azraq camp for a workforce that peaked at 600, handled the cross-border freight from Saudi Arabia, and ran catering and housekeeping for the duration of the programme."
         },
         "adnoc": {
-          "name": "ADNOC, Azraq & Sarhan",
+          "name": "ADNOC, Azraq & Om Lahem",
           "meta": "Drilling & extraction · 2+ years",
           "short": "Two camps, UAE-to-Jordan transport and full site services across a multi-year drilling programme.",
-          "body": "Following the exploration work, ADNOC moved in to drill and extract from the structures that had been identified. We constructed and operated the Azraq and Sarhan camps over more than two years, moved equipment and supplies from the UAE into Jordan, and provided catering, housekeeping and day-to-day site operations throughout."
+          "body": "Following the exploration work, ADNOC moved in to drill and extract from the structures that had been identified. We constructed and operated the camps at Azraq and at Om Lahem in Ma’an over more than two years, moved equipment and supplies from the UAE into Jordan, and provided catering, housekeeping and day-to-day site operations throughout."
         }
       }
     },
@@ -133,7 +133,7 @@
         "eyebrow": "Camps & accommodation",
         "title": "A camp is a small town you have to build before the work starts.",
         "subtitle": "Site preparation through to a running camp, handed over ready to occupy.",
-        "intro": "On a remote site there is nothing until you bring it: no power, no water, no beds, no kitchen. We have built and run camps in Azraq, Sarhan and Al-Jaffr, and the pattern below is how each of them came together.",
+        "intro": "On a remote site there is nothing until you bring it: no power, no water, no beds, no kitchen. We have built and run camps at Azraq and at Om Lahem in Ma’an, and the pattern below is how each of them came together.",
         "items": {
           "sitePrep": {
             "title": "Site preparation",
