@@ -55,7 +55,8 @@
     "explore": "Explore",
     "switchLanguage": "Switch language",
     "toggleMenu": "Toggle menu",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "safety": "Health & safety"
   },
   "lang": {
     "switchTo": "العربية"
@@ -92,7 +93,7 @@
           "v": "Companies in the group"
         },
         {
-          "k": "80+",
+          "k": "250+",
           "v": "People on our payroll"
         }
       ]
@@ -113,7 +114,7 @@
         "Committed to delivering excellence and building long-term partnerships.",
         "Personally directed the ADNOC Azraq and Sarhan camp programmes: 2+ years of full-service delivery including camp construction, cross-border transport from the UAE, catering and housekeeping.",
         "Led the ARGAS Al-Jaffr project in southern Jordan, overseeing cross-border freight from Saudi Arabia, full camp construction and daily site operations.",
-        "Built and scaled a team of over 80 professionals across six specialised departments.",
+        "Built and scaled a team of over 250 professionals across six specialised departments.",
         "Established long-term partnerships with major energy sector operators including ADNOC, ARGAS and government entities."
       ]
     },
@@ -139,6 +140,37 @@
           "body": "We measure success by the years our clients stay with us."
         }
       }
+    },
+    "beliefs": {
+      "eyebrow": "Our values and principles",
+      "title": "We believe that",
+      "items": [
+        "Every person has worth and matters.",
+        "We are responsible for supporting one another.",
+        "We value work done well.",
+        "We hold ourselves to a 10 out of 10 standard of service.",
+        "We take responsibility.",
+        "We keep our promises."
+      ],
+      "safety": {
+        "title": "We serve safely",
+        "body": "Safety is not just a priority, it is the foundation of everything we do, and we are proud that it is part of our daily culture."
+      }
+    },
+    "ambition": {
+      "eyebrow": "Our ambition",
+      "title": "What we are working towards",
+      "items": [
+        "Steady growth and continuous development of the company.",
+        "Strengthening our standing in the field we work in.",
+        "Delivering projects and services of high quality.",
+        "Meeting safety standards and protecting the environment.",
+        "Developing the skills and capabilities of our people.",
+        "Using modern methods and technology in our work.",
+        "Achieving sustainable development.",
+        "Growing our clients’ trust and satisfaction.",
+        "Widening the scope of our work and sustaining our success."
+      ]
     }
   },
   "services": {

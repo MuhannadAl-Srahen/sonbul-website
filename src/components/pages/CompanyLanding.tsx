@@ -79,6 +79,17 @@ export default function CompanyLanding({ company, lang }: Props) {
         </div>
       </PageHero>
 
+      {/* A short statement of what this company actually is, before the figures. The page
+          used to open on a stat band, which tells you how much without telling you what. */}
+      <section className="section-tight bg-white">
+        <div className="container-page">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <span className="eyebrow justify-center">{t(`${ns}.intro.title`)}</span>
+            <p className="lead mt-4">{t(`${ns}.intro.body`)}</p>
+          </Reveal>
+        </div>
+      </section>
+
       <StatStrip items={stats} />
 
       {/* Why us: dark band, numbered list */}

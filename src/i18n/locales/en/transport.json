@@ -14,17 +14,17 @@
         "label": "Years on the road"
       },
       "trucks": {
-        "value": 60,
+        "value": 150,
         "suffix": "+",
         "label": "Trucks and trailers"
       },
       "clients": {
-        "value": 40,
+        "value": 60,
         "suffix": "+",
         "label": "Regular shippers"
       },
       "loads": {
-        "value": 300,
+        "value": 1000,
         "suffix": "+",
         "label": "Loads a month"
       }
@@ -191,6 +191,10 @@
         "title": "Cross-Border Trucking Jordan & Saudi Arabia",
         "description": "Abu Sonbul Arab Transporters moves bulk, project and general cargo between Jordan and Saudi Arabia on an owned fleet with in-house drivers. Established in Jordan since 2008."
       }
+    },
+    "intro": {
+      "title": "About the company",
+      "body": "Abu Sonbul for Arab Transporters moves freight between Jordan and Saudi Arabia in both directions, on its own fleet and with its own drivers. Bulk commodities, project cargo and general freight travel on the trailer type each one actually needs, and the workshop that keeps that fleet running is ours as well."
     }
   }
 }

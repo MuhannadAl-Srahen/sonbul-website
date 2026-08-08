@@ -8,10 +8,26 @@
       "ctaSecondary": "See the crossings"
     },
     "stats": {
-      "crossings": { "value": 4, "suffix": "", "label": "Border crossings covered" },
-      "forklifts": { "value": 12, "suffix": "+", "label": "Forklifts on station" },
-      "capacity": { "value": 25, "suffix": "t", "label": "Lifting capacity" },
-      "hours": { "value": 24, "suffix": "/7", "label": "Crews on call" }
+      "crossings": {
+        "value": 4,
+        "suffix": "",
+        "label": "Border crossings covered"
+      },
+      "forklifts": {
+        "value": 20,
+        "suffix": "+",
+        "label": "Forklifts on station"
+      },
+      "capacity": {
+        "value": 25,
+        "suffix": "t",
+        "label": "Lifting capacity"
+      },
+      "hours": {
+        "value": 24,
+        "suffix": "/7",
+        "label": "Crews on call"
+      }
     },
     "highlights": {
       "eyebrow": "Why it works",
@@ -187,6 +203,10 @@
         "title": "Border Cargo Handling & Clearance in Jordan",
         "description": "Abu Sonbul For Logistic Services moves goods across the Jaber, Tarbil, Al-Karamah and Al-Omari crossings with forklifts, lifting equipment, trained crews and documentation support."
       }
+    },
+    "intro": {
+      "title": "About the company",
+      "body": "Abu Sonbul for Logistic Services gets goods through Jordan’s border crossings. Trained handling crews, forklifts and lifting equipment are stationed at Jaber, Tarbil, Al-Karamah and Al-Omari, with the customs paperwork prepared alongside so nothing waits on a signature."
     }
   }
 }

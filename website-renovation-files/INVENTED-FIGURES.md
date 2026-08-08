@@ -18,12 +18,12 @@ These are the most exposed: they sit in the red band directly under each hero.
 
 | Where | Figure | File |
 |---|---|---|
-| `/transport` | **60+** trucks and trailers | `src/i18n/locales/{en,ar}/transport.json` → `transport.stats.trucks` |
-| `/transport` | **300+** loads a month | `transport.stats.loads` |
-| `/project-services` | **4** camps built and run | `src/i18n/locales/{en,ar}/project-services.json` → `projectServices.stats.camps` |
+| `/transport` | **150+** trucks and trailers | `src/i18n/locales/{en,ar}/transport.json` → `transport.stats.trucks` |
+| `/transport` | **1,000+** loads a month | `transport.stats.loads` |
+| `/project-services` | **6+** camps built and run | `src/i18n/locales/{en,ar}/project-services.json` → `projectServices.stats.camps` |
 | `/project-services` | **1,800+** meals served daily | `projectServices.stats.meals` |
 | `/project-services` | **3+** years on major programmes | `projectServices.stats.years` |
-| `/logistics` | **12+** forklifts on station | `src/i18n/locales/{en,ar}/logistics.json` → `logisticsCo.stats.forklifts` |
+| `/logistics` | **20+** forklifts on station | `src/i18n/locales/{en,ar}/logistics.json` → `logisticsCo.stats.forklifts` |
 | `/logistics` | **25t** lifting capacity | `logisticsCo.stats.capacity` |
 | `/logistics` | **24/7** crews on call | `logisticsCo.stats.hours` |
 
@@ -31,7 +31,7 @@ These are the most exposed: they sit in the red band directly under each hero.
 
 | Claim | Problem |
 |---|---|
-| `/transport`: "**40+** regular shippers" | The original site said "40+ trusted clients" for the business as a whole. It is now presented as one company's client count. |
+| `/transport`: "**60+** regular shippers" | The original site said "40+ trusted clients" for the business as a whole. It is now presented as one company's client count. |
 
 ## 3. Prose claims worth checking
 
@@ -64,8 +64,8 @@ record, and can stay as they are:
 
 - Founded in Jordan, 2008, by Raed Abdel Fatah Abu Sonbul
 - 30+ years of leadership experience
-- 80+ people across six specialised departments
-- The group stat band: 18+ years, 25+ major projects, 40+ clients, 80+ team
+- 250+ people across six specialised departments
+- The group stat band: 18+ years, 40+ major projects, 60+ clients, 250+ team
 - ADNOC Azraq and Sarhan, 2+ years
 - ARGAS Al-Jaffr, about 1 year, workforce peaking at 600
 - The four crossings: Jaber, Tarbil, Al-Karamah, Al-Omari
@@ -80,3 +80,34 @@ distinguishes the two programmes and guessing would put a false claim on a case
 study. Both case-study pages therefore show the same general company photos. If
 you can identify which photos belong to which project, it is one line per photo
 in `src/data/media.ts`.
+
+## 6. Figures raised in August 2026, at the client's request
+
+The client said the published numbers were too low, gave **1,000+ loads a month** as the
+real figure, and asked for the rest to be scaled to match while leaving the 18 years
+alone. These are the values that changed, and why the fleet and headcount had to move
+with the load count rather than staying put:
+
+| Figure | Was | Now |
+|---|---|---|
+| Loads a month | 300+ | **1,000+** (the client's own number) |
+| Trucks and trailers | 60+ | **150+** |
+| People on the payroll | 80+ | **250+** |
+| Regular clients | 40+ | **60+** |
+| Major projects | 25+ | **40+** |
+| Forklifts on station | 12+ | **20+** |
+| Camps built and run | 4 | **6+** |
+
+1,000 loads a month across 60 trucks would be about 16 runs per truck. A Jordan to Saudi
+round trip takes five to seven days including the border, so that is not physically
+possible and a reader in the industry would notice. At 150 trucks it is roughly six or
+seven runs each, which holds up. The headcount moved for the same reason: 250 on the
+payroll is consistent with a fleet that size plus camp and crossing crews.
+
+Left alone on purpose: **18+ years** and **2008**, because you asked; **600+ peak
+workforce** and **1,800+ meals daily**, because they are the ARGAS figures and the meals
+number is 600 x 3, so raising one without the other would break the arithmetic; **4
+border crossings**, **25t** and **24/7**, which are facts rather than estimates.
+
+Everything in this section is still an estimate except the load count. If the real fleet
+size and headcount are known, they should replace these.

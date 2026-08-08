@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Safety from '../../components/pages/Safety';
+import { dict } from '../../i18n/dictionaries';
+import { localePaths, langOf } from '../../i18n/paths';
+
+export const getStaticPaths = localePaths;
+
+const lang = langOf(Astro.params.lang as string | undefined);
+const t = dict[lang];
+---
+
+<BaseLayout
+  title={t.safety.seo.title}
+  description={t.safety.seo.description}
+  path={Astro.url.pathname}
+  lang={lang}
+>
+  <Safety lang={lang} client:load />
+</BaseLayout>

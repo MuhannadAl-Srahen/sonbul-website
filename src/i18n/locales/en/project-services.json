@@ -9,10 +9,26 @@
     },
     "badge": "Trusted by ADNOC, ARGAS and other international operators.",
     "stats": {
-      "workforce": { "value": 600, "suffix": "+", "label": "Workforce at peak" },
-      "camps": { "value": 4, "suffix": "", "label": "Camps built and run" },
-      "meals": { "value": 1800, "suffix": "+", "label": "Meals served daily" },
-      "years": { "value": 3, "suffix": "+", "label": "Years on major programmes" }
+      "workforce": {
+        "value": 600,
+        "suffix": "+",
+        "label": "Workforce at peak"
+      },
+      "camps": {
+        "value": 6,
+        "suffix": "+",
+        "label": "Camps built and run"
+      },
+      "meals": {
+        "value": 1800,
+        "suffix": "+",
+        "label": "Meals served daily"
+      },
+      "years": {
+        "value": 3,
+        "suffix": "+",
+        "label": "Years on major programmes"
+      }
     },
     "highlights": {
       "eyebrow": "How we work",
@@ -191,6 +207,10 @@
         "title": "Project Camps, Catering & Manpower in Jordan",
         "description": "Raed Abu Sonbul & Partner supplies manpower, camps, site infrastructure, catering, housekeeping and equipment for remote projects in Jordan. Delivered for ADNOC and ARGAS."
       }
+    },
+    "intro": {
+      "title": "About the company",
+      "body": "Raed Abu Sonbul & Partner supplies everything a remote project needs in order to run: manpower, accommodation camps, power and water, catering and housekeeping, machinery and site transport. Our own maintenance department keeps that machinery working where there is nobody else to call, which is the difference between a delay of an hour and a delay of a week."
     }
   }
 }

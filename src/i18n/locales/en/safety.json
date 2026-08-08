@@ -1,0 +1,41 @@
+{
+  "safety": {
+    "hero": {
+      "eyebrow": "Health and safety",
+      "title": "Safety is the ground everything else stands on.",
+      "subtitle": "The same rules apply on a loaded trailer, in a camp kitchen and in a border yard, because the people doing the work are ours in all three."
+    },
+    "intro": {
+      "title": "How safety is run on our sites",
+      "body": "Every project we take on is run to one written standard, supervised on site rather than filed away. The points below are what our safety supervision actually covers, from the first inspection round to the corrective action after an incident."
+    },
+    "provisions": {
+      "eyebrow": "On site",
+      "title": "General safety provisions on projects",
+      "items": {
+        "supervision": "Supervising the application of general safety rules and instructions inside project sites.",
+        "compliance": "Making sure every worker follows occupational safety and health procedures.",
+        "ppe": "Monitoring the use of personal protective equipment suited to the work being done.",
+        "inspections": "Carrying out regular inspection rounds of work sites to confirm equipment and facilities are sound.",
+        "hazards": "Identifying potential hazards on project sites and working to reduce and resolve them.",
+        "fire": "Confirming that firefighting equipment, emergency provisions and first aid are ready for use.",
+        "emergency": "Setting and maintaining procedures for emergencies and evacuation.",
+        "handling": "Overseeing the safety of loading, unloading and moving materials and equipment inside the project.",
+        "vehicles": "Confirming the safety of the vehicles and machinery used to carry out the work.",
+        "reporting": "Reporting incidents, injuries and hazards, and following through on corrective and preventive action.",
+        "training": "Briefing workers on safety procedures and the safe handling of equipment and materials.",
+        "coordination": "Coordinating with project management and the competent authorities to meet general safety requirements.",
+        "environment": "Keeping the working environment safe and reducing the likelihood of incidents and injuries."
+      }
+    },
+    "cta": {
+      "title": "Ask us how we would run safety on your site.",
+      "subtitle": "We will walk you through the supervision, the reporting line and what we would need from your side.",
+      "button": "Talk to us"
+    },
+    "seo": {
+      "title": "Health and Safety on Our Projects",
+      "description": "How Abu Sonbul runs occupational safety across transport, project sites and border operations: supervision, protective equipment, inspection rounds, emergency readiness and incident reporting."
+    }
+  }
+}

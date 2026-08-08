@@ -1,4 +1,4 @@
-import { CheckCircle2, Handshake, HardHat, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, Handshake, HardHat, ShieldCheck, Sparkles } from 'lucide-react';
 import Reveal from '../ui/Reveal';
 import { useLocale } from '../../i18n';
 import type { Lang } from '../../i18n';
@@ -81,6 +81,60 @@ export default function AboutSection({ lang }: Props) {
                   <li className="flex gap-3">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                     <span className="leading-relaxed text-ink-700">{p}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* What we believe, and what we are working towards. The client's own wording,
+            kept as two plain lists: the first is a set of commitments in the first
+            person, the second a set of goals, and neither reads as a card with an icon.
+            The safety line closes the first list because that is where it was given, and
+            because it is the one belief the whole site has to demonstrate. */}
+        <div className="mt-20 grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <Reveal>
+              <span className="eyebrow">{t('about.beliefs.eyebrow')}</span>
+              <h3 className="heading-lg mt-3">{t('about.beliefs.title')}</h3>
+              <div className="mt-2 h-1 w-14 rounded-full bg-primary" />
+            </Reveal>
+            <ul className="mt-8 space-y-3">
+              {(t('about.beliefs.items', { returnObjects: true }) as string[]).map((line, i) => (
+                <Reveal key={line} delay={i * 0.05}>
+                  <li className="flex gap-3">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                    <span className="leading-relaxed text-ink-700">{line}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+            <Reveal delay={0.3}>
+              <div className="mt-8 rounded-2xl border-s-4 border-primary bg-ink-50 p-6">
+                <p className="flex items-center gap-2 font-bold text-ink">
+                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  {t('about.beliefs.safety.title')}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-600">
+                  {t('about.beliefs.safety.body')}
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          <div>
+            <Reveal>
+              <span className="eyebrow">{t('about.ambition.eyebrow')}</span>
+              <h3 className="heading-lg mt-3">{t('about.ambition.title')}</h3>
+              <div className="mt-2 h-1 w-14 rounded-full bg-primary" />
+            </Reveal>
+            <ul className="mt-8 space-y-3">
+              {(t('about.ambition.items', { returnObjects: true }) as string[]).map((line, i) => (
+                <Reveal key={line} delay={i * 0.04}>
+                  <li className="flex gap-3">
+                    <ArrowUpRight className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                    <span className="leading-relaxed text-ink-700">{line}</span>
                   </li>
                 </Reveal>
               ))}

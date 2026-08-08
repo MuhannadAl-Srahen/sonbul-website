@@ -14,12 +14,14 @@ import enGroup from './locales/en/group.json';
 import enTransport from './locales/en/transport.json';
 import enProjectServices from './locales/en/project-services.json';
 import enLogistics from './locales/en/logistics.json';
+import enSafety from './locales/en/safety.json';
 
 import arCommon from './locales/ar/common.json';
 import arGroup from './locales/ar/group.json';
 import arTransport from './locales/ar/transport.json';
 import arProjectServices from './locales/ar/project-services.json';
 import arLogistics from './locales/ar/logistics.json';
+import arSafety from './locales/ar/safety.json';
 
 /**
  * common.json holds the group and shared-page copy; each company owns one file, so an
@@ -34,6 +36,7 @@ export const en = {
   ...enTransport,
   ...enProjectServices,
   ...enLogistics,
+  ...enSafety,
 } as const;
 
 export const ar = {
@@ -42,6 +45,7 @@ export const ar = {
   ...arTransport,
   ...arProjectServices,
   ...arLogistics,
+  ...arSafety,
 } as const;
 
 export const dict = { en, ar } as const;
