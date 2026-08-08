@@ -21,6 +21,7 @@ export const CROSSINGS: CrossingRef[] = [
   { slug: 'tarbil', key: 'tarbil', corridor: 'IQ', tags: ['tarbil'] },
   { slug: 'al-karamah', key: 'alKaramah', corridor: 'IQ', tags: ['al-karamah'] },
   { slug: 'al-omari', key: 'alOmari', corridor: 'SA', tags: ['al-omari'] },
+  { slug: 'al-mudawwara', key: 'alMudawwara', corridor: 'SA', tags: ['al-mudawwara'] },
 ];
 
 export const CROSSING_SLUGS = CROSSINGS.map((c) => c.slug);

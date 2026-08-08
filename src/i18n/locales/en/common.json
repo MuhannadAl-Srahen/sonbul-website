@@ -321,6 +321,10 @@
       "aqaba": {
         "name": "Aqaba",
         "note": "Jordan’s port, where sea freight is collected and hauled inland."
+      },
+      "mudawwara": {
+        "name": "Al-Mudawwara",
+        "note": "The second Saudi corridor, in the far south below Ma’an."
       }
     }
   }

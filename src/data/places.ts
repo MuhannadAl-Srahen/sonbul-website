@@ -37,6 +37,8 @@ export const PLACES: Place[] = [
   { id: 'jaber', kind: 'crossing', lon: 36.19, lat: 32.66, anchor: 'middle', dx: 0, dy: -12, precision: 'known' },
   { id: 'karamah', kind: 'crossing', lon: 38.97, lat: 32.53, anchor: 'end', dx: -10, dy: -6, precision: 'known' },
   { id: 'omari', kind: 'crossing', lon: 37.6, lat: 30.6, anchor: 'start', dx: 10, dy: 4, precision: 'approximate' },
+  // The far southern gateway, below Ma'an on the desert road into Saudi Arabia.
+  { id: 'mudawwara', kind: 'crossing', lon: 36.0, lat: 29.33, anchor: 'start', dx: 10, dy: 4, precision: 'known' },
 
   // The port, where the sea freight this company hauls inland arrives.
   { id: 'aqaba', kind: 'port', lon: 35.0, lat: 29.53, anchor: 'start', dx: 10, dy: 6, precision: 'known' },
@@ -60,10 +62,12 @@ export const JORDAN_OUTLINE: [number, number][] = [
   [39.05, 32.85],
   [39.29, 32.15],
   [38.0, 30.9],
-  [37.2, 30.15],
-  [37.0, 29.9],
-  [36.2, 29.55],
-  [35.3, 29.35],
+  // The southern frontier runs out to about 29.2 north, which is further south than the
+  // first draft of this outline allowed. Al-Mudawwara sits just inside it, and with the
+  // old line it plotted outside the country.
+  [37.4, 30.2],
+  [36.8, 29.4],
+  [35.55, 29.19],
   [34.96, 29.36],
   [35.0, 29.55],
   [35.15, 30.1],

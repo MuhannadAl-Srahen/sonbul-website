@@ -35,7 +35,7 @@ export type MediaTag =
   // Projects
   | 'argas' | 'adnoc' | 'azraq' | 'om-lahem'
   // Border crossings
-  | 'jaber' | 'tarbil' | 'al-karamah' | 'al-omari'
+  | 'jaber' | 'tarbil' | 'al-karamah' | 'al-omari' | 'al-mudawwara'
   // Subjects
   | 'fleet' | 'flatbed' | 'lowbed' | 'tanker' | 'forklift' | 'crane' | 'winch' | 'loader'
   | 'caravan' | 'kitchen' | 'dining' | 'accommodation' | 'office' | 'workshop' | 'crew'

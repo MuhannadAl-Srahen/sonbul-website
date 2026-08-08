@@ -9,7 +9,7 @@
     },
     "stats": {
       "crossings": {
-        "value": 4,
+        "value": 5,
         "suffix": "",
         "label": "Border crossings covered"
       },
@@ -34,8 +34,8 @@
       "title": "The border stops being the slow part.",
       "items": {
         "coverage": {
-          "title": "Four crossings, one operator",
-          "body": "Jaber, Tarbil, Al-Karamah and Al-Omari. The same crew standards, the same equipment and the same single point of contact at every one."
+          "title": "Five crossings, one operator",
+          "body": "Jaber, Tarbil, Al-Karamah, Al-Omari and Al-Mudawwara. The same crew standards, the same equipment and the same single point of contact at every one."
         },
         "equipment": {
           "title": "Equipment already on site",
@@ -81,7 +81,7 @@
     "crossings": {
       "eyebrow": "Where we operate",
       "title": "Jordan's border crossings",
-      "subtitle": "We are present at all four of the crossings that matter for regional freight.",
+      "subtitle": "We are present at all five of the crossings that matter for regional freight.",
       "seeAll": "See all crossings",
       "items": {
         "jaber": {
@@ -111,6 +111,13 @@
           "corridor": "Saudi Arabia ⇄ Jordan",
           "short": "The southern gateway to the Gulf.",
           "body": "The crossing most of our Saudi-bound and Saudi-origin freight passes through, with forklifts and lifting gear kept permanently on site."
+        },
+        "alMudawwara": {
+          "name": "Al-Mudawwara",
+          "nameLocal": "المدورة",
+          "corridor": "Saudi Arabia ⇄ Jordan",
+          "short": "The far southern crossing into Saudi Arabia.",
+          "body": "Jordan’s southernmost gateway, on the desert route below Ma’an. It carries the traffic that would otherwise run the length of the country to reach Al-Omari, and it is the shorter road for anything moving between the south of Jordan and the Saudi interior."
         }
       }
     },
@@ -194,14 +201,14 @@
         },
         "seo": {
           "title": "Customs Documentation & Clearance Support",
-          "description": "Truck and customs documentation prepared, submitted and followed through at the Jaber, Tarbil, Al-Karamah and Al-Omari crossings in Jordan."
+          "description": "Truck and customs documentation prepared, submitted and followed through at the Jaber, Tarbil, Al-Karamah, Al-Omari and Al-Mudawwara crossings in Jordan."
         }
       }
     },
     "seo": {
       "home": {
         "title": "Border Cargo Handling & Clearance in Jordan",
-        "description": "Abu Sonbul For Logistic Services moves goods across the Jaber, Tarbil, Al-Karamah and Al-Omari crossings with forklifts, lifting equipment, trained crews and documentation support."
+        "description": "Abu Sonbul For Logistic Services moves goods across the Jaber, Tarbil, Al-Karamah, Al-Omari and Al-Mudawwara crossings with forklifts, lifting equipment, trained crews and documentation support."
       }
     },
     "intro": {
