@@ -22,7 +22,7 @@ export const FOUNDER: Record<Lang, string> = {
 export const EMAIL = 'info@abusonbul-transporters.com';
 
 /** Display form is localised in the contact copy; these are the tel: / JSON-LD forms. */
-export const PHONES = ['+962795700658', '+962799128641'] as const;
+export const PHONES = ['+962795700658', '+962799128641', '+962797188202'] as const;
 
 export const ADDRESS = {
   streetAddress: 'Al-Faisaliah, Sahab',

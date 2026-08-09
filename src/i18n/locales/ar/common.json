@@ -265,7 +265,12 @@
       "email": "info@abusonbul-transporters.com",
       "phone": "+962 79 570 0658",
       "phone2": "+962 79 912 8641",
-      "hours": "السبت – الخميس · 8:00 – 16:00"
+      "hours": "السبت – الخميس · 8:00 – 16:00",
+      "logistics": {
+        "name": "عيسى العالم",
+        "role": "مدير اللوجستيات",
+        "phone": "+962 79 718 8202"
+      }
     }
   },
   "teamMember": {

@@ -105,6 +105,19 @@ const headingClass = 'text-xs font-bold uppercase tracking-[0.18em] text-white/6
             <span dir="ltr">{t.contact.info.phone2}</span>
           </a>
         </li>
+        {/* A named direct line rather than another switchboard number, so it carries who
+            answers it. The number stays the link text, matching the two above it. */}
+        <li>
+          <a href={`tel:${PHONES[2]}`} class={`flex items-start gap-3 ${linkClass}`}>
+            <Phone className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
+            <span>
+              <span dir="ltr" class="block">{t.contact.info.logistics.phone}</span>
+              <span class="mt-0.5 block text-xs text-white/45">
+                {t.contact.info.logistics.name} &middot; {t.contact.info.logistics.role}
+              </span>
+            </span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

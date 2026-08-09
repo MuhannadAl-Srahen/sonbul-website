@@ -180,6 +180,20 @@ export default function ContactSection({ lang }: Props) {
                     <a href={`tel:${PHONES[1]}`} className="font-medium mt-0.5 block hover:text-primary-300 transition-colors" dir="ltr">
                       {t('contact.info.phone2')}
                     </a>
+                    {/* Set apart from the two general numbers above, because this one
+                        reaches a particular person and it should be obvious who. */}
+                    <span className="mt-3 block border-t border-white/10 pt-3">
+                      <a
+                        href={`tel:${PHONES[2]}`}
+                        className="font-medium block hover:text-primary-300 transition-colors"
+                        dir="ltr"
+                      >
+                        {t('contact.info.logistics.phone')}
+                      </a>
+                      <span className="mt-0.5 block text-xs text-white/50">
+                        {t('contact.info.logistics.name')} &middot; {t('contact.info.logistics.role')}
+                      </span>
+                    </span>
                   </div>
                 </li>
                 <li className="flex gap-4">
