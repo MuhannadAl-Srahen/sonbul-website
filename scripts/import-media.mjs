@@ -38,6 +38,8 @@ const WRITE = process.argv.includes('--write');
  * with the reason, so a later reviewer does not "helpfully" add them back.
  * `assign` maps a category to the indices that belong in it, and `tags` maps an index to
  * what the photo actually shows. Anything not in `assign` or `skip` is an error.
+ * `crop` trims pixels off the edges of an index before resizing, for screen chrome or a
+ * damaged border that would otherwise ship with the photo.
  */
 const PLAN = [
   {
@@ -113,6 +115,28 @@ const PLAN = [
       36: ['recreation'], 37: ['dining'],
     },
   },
+  {
+    // The container yard at Aqaba. The folder also holds the yard's daily movement log
+    // (the PDF), which is the source of every figure in the case study, and 2.mp4, which
+    // ships as the container-lift video.
+    folder: 'Aqaba Yard',
+    baseTags: ['aqaba'],
+    skip: {},
+    assign: {
+      'aqaba-yard': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    },
+    tags: {
+      3: ['night-ops'], 4: ['crane'], 5: ['crane'], 6: ['loading'], 7: ['crew'],
+      9: ['loading', 'night-ops'], 10: ['crane', 'crew'], 14: ['loading', 'night-ops'],
+      15: ['night-ops'],
+    },
+    crop: {
+      3: { top: 48, right: 64, bottom: 25 }, // phone status bar, nav buttons and home bar
+      6: { bottom: 1440 }, // green blur on the cab glass
+      8: { right: 30, bottom: 27 }, // edges smeared by a bad resize
+      13: { bottom: 290 }, // a foot and a wrapper in the foreground
+    },
+  },
 ];
 
 /**
@@ -124,6 +148,22 @@ const PLAN = [
  * pinned, a re-run rewrites exactly the same names and is a no-op.
  */
 const BASELINE = { transport: 26, equipment: 11, camps: 20, catering: 12, projects: 9 };
+
+/**
+ * A factory for the source image, upright and with any `crop` trimmed off its edges.
+ *
+ * .rotate() with no argument applies the EXIF orientation and then drops the tag, so
+ * the pixels are upright for every consumer. Phone photos are routinely sideways. The
+ * crop is measured on that upright image, which is what `autoOrient` reports.
+ */
+async function loader(src, crop) {
+  const upright = () => sharp(src).rotate();
+  if (!crop) return upright;
+  const { width, height } = (await sharp(src).metadata()).autoOrient;
+  const { top = 0, right = 0, bottom = 0, left = 0 } = crop;
+  const region = { left, top, width: width - left - right, height: height - top - bottom };
+  return () => upright().extract(region);
+}
 
 const next = {};
 const rows = [];
@@ -165,9 +205,7 @@ for (const entry of PLAN) {
 
     if (!WRITE) continue;
     await mkdir(outDir, { recursive: true });
-    // .rotate() with no argument applies the EXIF orientation and then drops the tag, so
-    // the pixels are upright for every consumer. Phone photos are routinely sideways.
-    const load = () => sharp(src).rotate();
+    const load = await loader(src, entry.crop?.[i]);
 
     const thumb = await load()
       .resize(THUMB, THUMB, { fit: 'cover', position: sharp.strategy.attention })

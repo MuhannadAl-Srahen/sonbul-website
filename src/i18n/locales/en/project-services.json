@@ -102,7 +102,7 @@
     "projects": {
       "eyebrow": "Track record",
       "title": "Programmes we have delivered",
-      "subtitle": "Two flagship energy programmes in the Jordanian desert, back to back.",
+      "subtitle": "Two flagship energy programmes in the Jordanian desert, and a container yard in Aqaba.",
       "items": {
         "argas": {
           "name": "ARGAS, Azraq",
@@ -115,6 +115,12 @@
           "meta": "Drilling & extraction · 2+ years",
           "short": "Two camps, UAE-to-Jordan transport and full site services across a multi-year drilling programme.",
           "body": "Following the exploration work, ADNOC moved in to drill and extract from the structures that had been identified. We constructed and operated the camps at Azraq and at Om Lahem in Ma’an over more than two years, moved equipment and supplies from the UAE into Jordan, and provided catering, housekeeping and day-to-day site operations throughout."
+        },
+        "aqabaYard": {
+          "name": "Container Yard, Aqaba",
+          "meta": "Container handling · Since August 2026 · 2,200+ containers",
+          "short": "Receiving, stacking and releasing shipping containers in Aqaba, with every movement logged daily.",
+          "body": "Since August 2026 we have run a container yard in Aqaba. Containers arrive by truck, are lifted off and stacked by reach stackers and mobile cranes, and are loaded back onto trucks when they leave, by day and by night. Every movement in and out is recorded in a daily report. By October 2026 the yard had received 2,200+ containers and released 1,700+, with 500+ still in the yard. At its busiest, in September, it held 1,200+ containers at once."
         }
       }
     },

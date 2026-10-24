@@ -94,7 +94,7 @@ export const COMPANIES: Company[] = [
     i18nKey: 'projectServices',
     image: '/assets/gallery/home-image.jpg',
     heroImage: '/assets/gallery/camps/camps-01.webp',
-    galleryCategories: ['camps', 'catering', 'equipment', 'projects'],
+    galleryCategories: ['camps', 'catering', 'equipment', 'projects', 'aqaba-yard'],
     clientLogos: ['adnoc', 'adnocc', 'wfp'],
     nav: [
       { to: '/project-services', key: 'overview' },

@@ -14,7 +14,13 @@
  */
 import type { CompanyId } from './companies';
 
-export type GalleryCategory = 'transport' | 'equipment' | 'camps' | 'catering' | 'projects';
+export type GalleryCategory =
+  | 'transport'
+  | 'equipment'
+  | 'camps'
+  | 'catering'
+  | 'projects'
+  | 'aqaba-yard';
 
 export const GALLERY_CATEGORIES: GalleryCategory[] = [
   'transport',
@@ -22,6 +28,7 @@ export const GALLERY_CATEGORIES: GalleryCategory[] = [
   'camps',
   'catering',
   'projects',
+  'aqaba-yard',
 ];
 
 /** Physical folders under /assets/gallery/. Happen to share the category names today. */
@@ -33,7 +40,7 @@ type MediaDir = GalleryCategory;
  */
 export type MediaTag =
   // Projects
-  | 'argas' | 'adnoc' | 'azraq' | 'om-lahem'
+  | 'argas' | 'adnoc' | 'azraq' | 'om-lahem' | 'aqaba'
   // Border crossings
   | 'jaber' | 'tarbil' | 'al-karamah' | 'al-omari' | 'al-mudawwara'
   // Subjects
@@ -52,6 +59,7 @@ const DIR_OWNER: Record<MediaDir, CompanyId> = {
   camps: 'project-services',
   catering: 'project-services',
   projects: 'project-services',
+  'aqaba-yard': 'project-services',
 };
 
 /** A hand-edited row. Everything except `id` is optional and falls back to the folder. */
@@ -470,6 +478,140 @@ const SEED: MediaSeed[] = [
   { id: 'projects-07', tags: ['site'] },
   { id: 'projects-08', tags: ['site'] },
   { id: 'projects-09', tags: ['site'] },
+
+  // ── aqaba-yard/: the container yard at Aqaba ─────────────────────────────
+  // From the client's Aqaba set via import-media.mjs, which records the four that are
+  // cropped and why. The subject tags are from looking at each photo.
+  {
+    id: 'aqaba-yard-01',
+    tags: ['aqaba'],
+    featured: true,
+    alt: {
+      en: 'Aisle between container stacks at the Aqaba yard, with the mountains behind',
+      ar: 'ممر بين صفوف الحاويات في ساحة العقبة والجبال في الخلفية',
+    },
+  },
+  {
+    id: 'aqaba-yard-02',
+    tags: ['aqaba'],
+    alt: {
+      en: 'Container stacks seen through a railing, with the slope and mountains beyond',
+      ar: 'أكوام حاويات تظهر من خلف حاجز، والمنحدر والجبال خلفها',
+    },
+  },
+  {
+    id: 'aqaba-yard-03',
+    tags: ['aqaba', 'night-ops'],
+    alt: {
+      en: 'Security camera view of the yard at night, with container stacks and a reach stacker',
+      ar: 'لقطة من كاميرا المراقبة للساحة ليلًا، تظهر أكوام الحاويات ورافعة حاويات',
+    },
+  },
+  {
+    id: 'aqaba-yard-04',
+    tags: ['aqaba', 'crane'],
+    alt: {
+      en: 'Two mobile cranes rigged between container rows at the Aqaba yard',
+      ar: 'رافعتان متنقلتان منصوبتان بين صفوف الحاويات في ساحة العقبة',
+    },
+  },
+  {
+    id: 'aqaba-yard-05',
+    tags: ['aqaba', 'crane'],
+    alt: {
+      en: 'Mobile crane on its outriggers in a lane between container stacks',
+      ar: 'رافعة متنقلة على مساندها في ممر بين أكوام الحاويات',
+    },
+  },
+  {
+    id: 'aqaba-yard-06',
+    tags: ['aqaba', 'loading'],
+    alt: {
+      en: 'Reach stacker spreader over a container, seen from the operator cab',
+      ar: 'ذراع رافعة الحاويات فوق حاوية، كما يظهر من مقصورة المشغّل',
+    },
+  },
+  {
+    id: 'aqaba-yard-07',
+    tags: ['aqaba', 'crew'],
+    alt: {
+      en: 'Worker in a high-visibility vest in front of the container stacks',
+      ar: 'عامل بسترة عاكسة أمام أكوام الحاويات',
+    },
+  },
+  {
+    id: 'aqaba-yard-08',
+    tags: ['aqaba'],
+    alt: {
+      en: 'Container stacks beside the yard roadway on a clear day',
+      ar: 'أكوام الحاويات بجانب طريق الساحة في يوم صافٍ',
+    },
+  },
+  {
+    id: 'aqaba-yard-09',
+    tags: ['aqaba', 'loading', 'night-ops'],
+    alt: {
+      en: 'Reach stacker loading a container onto a trailer at night',
+      ar: 'رافعة حاويات تحمّل حاوية على مقطورة ليلًا',
+    },
+  },
+  {
+    id: 'aqaba-yard-10',
+    tags: ['aqaba', 'crane', 'crew'],
+    alt: {
+      en: 'Operator stepping down from a truck-mounted crane set up in the yard',
+      ar: 'مشغّل ينزل عن رافعة محمولة على شاحنة منصوبة في الساحة',
+    },
+  },
+  {
+    id: 'aqaba-yard-11',
+    tags: ['aqaba'],
+    alt: {
+      en: 'Truck carrying a container across the yard at dusk',
+      ar: 'شاحنة تحمل حاوية تعبر الساحة عند الغروب',
+    },
+  },
+  {
+    id: 'aqaba-yard-12',
+    tags: ['aqaba'],
+    alt: {
+      en: 'Containers stacked three high in the Aqaba yard',
+      ar: 'حاويات مرصوصة ثلاث طبقات في ساحة العقبة',
+    },
+  },
+  {
+    id: 'aqaba-yard-13',
+    tags: ['aqaba'],
+    alt: {
+      en: 'Container stacks and a reach stacker across the open yard at dusk',
+      ar: 'أكوام الحاويات ورافعة حاويات في الساحة المفتوحة عند الغروب',
+    },
+  },
+  {
+    id: 'aqaba-yard-14',
+    tags: ['aqaba', 'loading', 'night-ops'],
+    featured: true,
+    alt: {
+      en: 'Reach stacker lifting a container under floodlights at night',
+      ar: 'رافعة حاويات ترفع حاوية تحت الإنارة ليلًا',
+    },
+  },
+  {
+    id: 'aqaba-yard-15',
+    tags: ['aqaba', 'night-ops'],
+    alt: {
+      en: 'Trucks bringing containers into the yard at night',
+      ar: 'شاحنات تُدخل الحاويات إلى الساحة ليلًا',
+    },
+  },
+  {
+    id: 'aqaba-yard-16',
+    tags: ['aqaba'],
+    alt: {
+      en: 'Containers from several shipping lines stacked in the yard',
+      ar: 'حاويات لخطوط شحن مختلفة مرصوصة في الساحة',
+    },
+  },
 ];
 
 const dirOf = (id: string) => id.replace(/-\d+$/, '') as MediaDir;
@@ -506,6 +648,25 @@ const videos: MediaVideo[] = [
     // these are the dimensions the browser actually displays.
     width: 576,
     height: 1024,
+  },
+  {
+    id: 'container-lift',
+    dir: 'aqaba-yard',
+    company: 'project-services',
+    category: 'aqaba-yard',
+    tags: ['aqaba', 'crane'],
+    alt: {
+      en: 'Mobile crane lifting a container from a stack at the Aqaba yard',
+      ar: 'رافعة متنقلة ترفع حاوية من أحد الأكوام في ساحة العقبة',
+    },
+    featured: false,
+    kind: 'video',
+    src: '/assets/video/container-lift.mp4',
+    poster: '/assets/video/container-lift-poster.webp',
+    thumb: '/assets/video/container-lift-thumb.webp',
+    // Portrait phone footage, stored upright with no rotation matrix.
+    width: 480,
+    height: 854,
   },
 ];
 
